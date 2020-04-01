@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="MakeableDrugPillBase">
+    <defName>PS_Drugs_Conditionall</defName>
+    <label>conditionall</label>
+    <description>A pill containing high concentrations of the same neural transmitter manipulating chemicals used in the reconditioning pod. One dose has half the effect as one hour in a pod. Ideal for those who are traveling, bedridden, or otherwise unable to reach a pod.</description>
+    <graphicData>
+      <texPath>Things/Items/Conditionall</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <rotatable>false</rotatable>
+    <socialPropernessMatters>false</socialPropernessMatters>
+    <statBases>
+      <WorkToMake>600</WorkToMake>
+      <MarketValue>18</MarketValue>
+      <Mass>0.005</Mass>
+      <Flammability>0.7</Flammability>
+    </statBases>
+    <techLevel>Industrial</techLevel>
+    <ingestible>
+      <drugCategory>Medical</drugCategory>
+      <outcomeDoers>
+        <li Class="PS_ReconPod.PS_Recipes_AdministerConditionall">
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisite>PS_ReconPodConditionallResearch</researchPrerequisite>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+    </recipeMaker>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <listOrder>1000</listOrder>
+        <overdoseSeverityOffset>
+          <min>0.08</min>
+          <max>0.14</max>
+        </overdoseSeverityOffset>
+      </li>
+    </comps>
+    <costList>
+      <PsychoidLeaves>5</PsychoidLeaves>
+      <Neutroamine>2</Neutroamine>
+    </costList>
+  </ThingDef>
+
+</Defs>

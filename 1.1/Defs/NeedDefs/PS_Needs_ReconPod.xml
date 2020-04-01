@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <NeedDef>
+    <defName>PS_Needs_Reconditioning</defName>
+    <needClass>PS_ReconPod.PS_Needs_Reconditioning</needClass>
+    <label>conditioning</label>
+    <description>The current stregnth of this pawn's reconditioning. At lower values they have a chance of reverting back to how they were. If it reaches zero the conditioning will be lost completly. 
+    
+Falls at a rate of 25% per day, doubled for each additional conditioning.</description>
+    <listPriority>10</listPriority>
+    <showForCaravanMembers>true</showForCaravanMembers>
+    <onlyIfCausedByHediff>true</onlyIfCausedByHediff>
+    <fallPerDay>0.25</fallPerDay>
+  </NeedDef>
+</Defs>

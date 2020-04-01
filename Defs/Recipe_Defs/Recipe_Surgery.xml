@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <RecipeDef ParentName="SurgeryFlesh">
+    <effectWorking>Surgery</effectWorking>
+    <soundWorking>Recipe_Surgery</soundWorking>
+    <workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+    <workSkill>Medicine</workSkill>
+    <workSkillLearnFactor>16</workSkillLearnFactor>
+    <defName>PS_Recipies_Surgery_NeuralCement</defName>
+    <label>cement conditioning</label>
+    <recipeUsers>
+      <li>Human</li>
+    </recipeUsers>
+    <description>A high risk surgery involving the application of neural cement directly to the brain. This will permanently apply the effects of any conditioning, negating the need for maintenance, but prevents all future reconditioning.
+
+Failure in this surgery can result in permanent brain damage, or death. Only attempt this procedure with a proper operating room and skilled surgeon.</description>
+    <workerClass>PS_ReconPod.PS_Recipes_Surgery_NeuralCement</workerClass>
+    <jobString>Attempting neural cementing.</jobString>
+    <workAmount>4500</workAmount>
+    <successfullyRemovedHediffMessage>{0} has successfully cemented {1}'s conditioning.</successfullyRemovedHediffMessage>
+    <deathOnFailedSurgeryChance>0.25</deathOnFailedSurgeryChance>
+    <surgerySuccessChanceFactor>0.5</surgerySuccessChanceFactor>
+    <skillRequirements>
+      <Medicine>15</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>MedicineUltratech</li>
+          </thingDefs>
+        </filter>
+        <count>5</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Plasteel</li>
+          </thingDefs>
+        </filter>
+        <count>20</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <thingDefs>
+        <li>MedicineUltratech</li>
+        <li>Plasteel</li>
+      </thingDefs>
+    </fixedIngredientFilter>
+    <allowMixingIngredients>true</allowMixingIngredients>
+    <researchPrerequisite>PS_ReconPodNeuralCementResearch</researchPrerequisite>
+  </RecipeDef>
+</Defs>

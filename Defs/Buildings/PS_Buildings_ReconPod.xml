@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>PS_Buildings_ReconPod</defName>
+    <category>Building</category>
+    <thingClass>PS_ReconPod.PS_Buildings_ReconPod</thingClass>
+    <label>reconditioning pod</label>
+    <description>A modified cryptosleep casket containing a digital psychologist capable of reconditioning a colonist</description>
+    <graphicData>
+      <texPath>Things/Buildings/PS_ReconPod</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(1, 2)</drawSize>
+      <shadowData>
+        <volume>(0.83, 0.3, 1.7)</volume>
+      </shadowData>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>70</pathCost>
+    <blockWind>true</blockWind>
+    <fillPercent>0.5</fillPercent>
+    <canOverlapZones>false</canOverlapZones>
+    <statBases>
+      <WorkToBuild>3200</WorkToBuild>
+      <MaxHitPoints>250</MaxHitPoints>
+      <Flammability>0.5</Flammability>
+      <Mass>100</Mass>
+    </statBases>
+    <thingCategories>
+      <li>BuildingsMisc</li>
+    </thingCategories>
+    <tickerType>Normal</tickerType>
+    <size>(1,2)</size>
+    <designationCategory>Misc</designationCategory>
+    <hasInteractionCell>true</hasInteractionCell>
+    <interactionCellOffset>(0,0,1)</interactionCellOffset>
+    <defaultPlacingRot>South</defaultPlacingRot>
+    <building>
+      <ai_chillDestination>false</ai_chillDestination>
+      <isPlayerEjectable>true</isPlayerEjectable>
+    </building>
+    <costList>
+      <Steel>180</Steel>
+      <Plasteel>40</Plasteel>
+      <ComponentIndustrial>10</ComponentIndustrial>
+      <ComponentSpacer>5</ComponentSpacer>
+    </costList>
+    <researchPrerequisites>
+      <li>PS_ReconPodResearch</li>
+    </researchPrerequisites>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <terrainAffordanceNeeded>Medium</terrainAffordanceNeeded>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+    <selectable>true</selectable>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <shortCircuitInRain>true</shortCircuitInRain>
+        <basePowerConsumption>800</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Flickable"/>
+      <li Class="CompProperties_Breakdownable"/>
+    </comps>
+    <!--<modExtensions>
+      <li Class="PS_ReconPod.PS_PawnOwnerProperties">
+      </li>
+    </modExtensions>-->
+    <drawGUIOverlay>true</drawGUIOverlay>
+  </ThingDef>
+
+
+</Defs>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <HediffDef ParentName="DiseaseBase">
+    <defName>PS_Hediff_Reconditioned</defName>
+    <hediffClass>PS_ReconPod.PS_Hediff_Reconditioned</hediffClass>
+    <defaultLabelColor>(0.42,0.63,0.62)</defaultLabelColor>
+    <label>reconditioned</label>
+    <labelNoun>reconditioned</labelNoun>
+    <minSeverity>0.0</minSeverity>
+    <maxSeverity>1.0</maxSeverity>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <stages>
+      <li>
+        <label>slipping</label>
+        <minSeverity>0</minSeverity>
+        <statOffsets>
+          <MentalBreakThreshold>0.2</MentalBreakThreshold>
+        </statOffsets>
+      </li>
+      <li>
+        <label>weak</label>
+        <minSeverity>0.25</minSeverity>
+        <statOffsets>
+          <MentalBreakThreshold>0.1</MentalBreakThreshold>
+        </statOffsets>
+      </li>
+      <li>
+        <label>strong</label>
+        <minSeverity>0.5</minSeverity>
+        <statOffsets>
+          <MentalBreakThreshold>0.03</MentalBreakThreshold>
+        </statOffsets>
+      </li>
+      <li>
+        <label>fresh</label>
+        <minSeverity>0.75</minSeverity>
+      </li>
+    </stages>
+    <causesNeed>PS_Needs_Reconditioning</causesNeed>
+  </HediffDef>
+  
+  <HediffDef>
+    <defName>PS_Hediff_NeuralCement</defName>
+    <defaultLabelColor>(0.42,0.63,0.62)</defaultLabelColor>
+    <label>neural cement</label>
+    <labelNoun>neural cement</labelNoun>
+    <minSeverity>0.0</minSeverity>
+    <maxSeverity>1.0</maxSeverity>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+  </HediffDef>
+</Defs>

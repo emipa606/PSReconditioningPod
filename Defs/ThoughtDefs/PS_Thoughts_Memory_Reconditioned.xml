@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThoughtDef>
+    <defName>PS_Thoughts_Memory_Reconditioned</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>was reconditioned</label>
+        <description>I don't know what that pod was about, but I feel different now. I'm not sure if I like it.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>PS_Thoughts_Memory_Deconditioned</defName>
+    <durationDays>2</durationDays>
+    <stages>
+      <li>
+        <label>was deconditioned</label>
+        <description>I feel like my old self again.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>PS_Thoughts_Memory_FailedConditioned</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>attempted reconditioning fail</label>
+        <description>Why did they lock me in that pod? What were they trying to do to me?</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>PS_Thoughts_Memory_BotchedConditioned</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>reconditioning was botched</label>
+        <description>Pod was bad. Now brain hurts.</description>
+        <baseMoodEffect>-15</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>PS_Thoughts_Memory_LuckyConditioned</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>happy reconditioning accident</label>
+        <description>That pod was amazing. My mind is so clear now and everything seems so simple.</description>
+        <baseMoodEffect>15</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>
