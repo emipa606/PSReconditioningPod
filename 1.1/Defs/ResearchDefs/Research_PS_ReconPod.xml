@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <ResearchTabDef>
     <defName>PS_ResearchTab</defName>
     <label>Plasteel Surgery</label>
   </ResearchTabDef>
-
   <ResearchProjectDef>
     <defName>PS_ReconPodResearch</defName>
     <tab>PS_ResearchTab</tab>
@@ -20,7 +19,6 @@ Unfortunately the conditioning is not permanent. Without proper maintenance the 
     <researchViewX>0</researchViewX>
     <researchViewY>0</researchViewY>
   </ResearchProjectDef>
-
   <ResearchProjectDef>
     <defName>PS_ReconPodConditionallResearch</defName>
     <tab>PS_ResearchTab</tab>
@@ -35,7 +33,6 @@ Unfortunately the conditioning is not permanent. Without proper maintenance the 
     <researchViewX>1</researchViewX>
     <researchViewY>0</researchViewY>
   </ResearchProjectDef>
-
   <ResearchProjectDef>
     <defName>PS_ReconPodNeuralCementResearch</defName>
     <tab>PS_ResearchTab</tab>
@@ -51,5 +48,4 @@ The procedure does have drawbacks. Firstly it is very risky with a high rate of 
     <researchViewX>2</researchViewX>
     <researchViewY>0</researchViewY>
   </ResearchProjectDef>
-
 </Defs>

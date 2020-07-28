@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
   <ThingDef ParentName="MakeableDrugPillBase">
     <defName>PS_Drugs_Conditionall</defName>
     <label>conditionall</label>
@@ -45,5 +44,4 @@
       <Neutroamine>2</Neutroamine>
     </costList>
   </ThingDef>
-
 </Defs>

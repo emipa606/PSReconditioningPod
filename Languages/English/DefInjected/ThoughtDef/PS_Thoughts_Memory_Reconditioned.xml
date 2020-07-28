@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <PS_Thoughts_Memory_Reconditioned.stages.0.label>was reconditioned</PS_Thoughts_Memory_Reconditioned.stages.0.label>
+  <PS_Thoughts_Memory_Reconditioned.stages.0.description>I don't know what that pod was about, but I feel different now. I'm not sure if I like it.</PS_Thoughts_Memory_Reconditioned.stages.0.description>
+
+  <PS_Thoughts_Memory_Deconditioned.stages.0.label>was deconditioned</PS_Thoughts_Memory_Deconditioned.stages.0.label>
+  <PS_Thoughts_Memory_Deconditioned.stages.0.description>I feel like my old self again.</PS_Thoughts_Memory_Deconditioned.stages.0.description>
+
+  <PS_Thoughts_Memory_FailedConditioned.stages.0.label>attempted reconditioning fail</PS_Thoughts_Memory_FailedConditioned.stages.0.label>
+  <PS_Thoughts_Memory_FailedConditioned.stages.0.description>Why did they lock me in that pod? What were they trying to do to me?</PS_Thoughts_Memory_FailedConditioned.stages.0.description>
+
+  <PS_Thoughts_Memory_BotchedConditioned.stages.0.label>reconditioning was botched</PS_Thoughts_Memory_BotchedConditioned.stages.0.label>
+  <PS_Thoughts_Memory_BotchedConditioned.stages.0.description>Pod was bad. Now brain hurts.</PS_Thoughts_Memory_BotchedConditioned.stages.0.description>
+
+  <PS_Thoughts_Memory_LuckyConditioned.stages.0.label>happy reconditioning accident</PS_Thoughts_Memory_LuckyConditioned.stages.0.label>
+  <PS_Thoughts_Memory_LuckyConditioned.stages.0.description>That pod was amazing. My mind is so clear now and everything seems so simple.</PS_Thoughts_Memory_LuckyConditioned.stages.0.description>
+
+
+</LanguageData>

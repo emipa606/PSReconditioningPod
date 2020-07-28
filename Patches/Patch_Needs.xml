@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<Operation Class="PatchOperationSequence">
-		<success>Always</success>
-		<operations>
-			<li Class="PatchOperationTest">
-				<xpath>/Defs/ThinkTreeDef[defName='MainColonistBehaviorCore']/thinkRoot[@Class='ThinkNode_Tagger']/subNodes/li[@Class='ThinkNode_PrioritySorter']/subNodes</xpath>
-			</li>
-			<li Class="PatchOperationAdd">
-				<xpath>/Defs/ThinkTreeDef[defName='MainColonistBehaviorCore']/thinkRoot[@Class='ThinkNode_Tagger']/subNodes/li[@Class='ThinkNode_PrioritySorter']/subNodes</xpath>
-				<order>Prepend</order>
-				<value>
-					<li Class="PS_ReconPod.PS_JobGiver_RefreshConditioning"/>
-				</value>
-			</li>
-		</operations>
-	</Operation>
+  <Operation Class="PatchOperationSequence">
+    <success>Always</success>
+    <operations>
+      <li Class="PatchOperationTest">
+        <xpath>/Defs/ThinkTreeDef[defName='MainColonistBehaviorCore']/thinkRoot[@Class='ThinkNode_Tagger']/subNodes/li[@Class='ThinkNode_PrioritySorter']/subNodes</xpath>
+      </li>
+      <li Class="PatchOperationAdd">
+        <xpath>/Defs/ThinkTreeDef[defName='MainColonistBehaviorCore']/thinkRoot[@Class='ThinkNode_Tagger']/subNodes/li[@Class='ThinkNode_PrioritySorter']/subNodes</xpath>
+        <order>Prepend</order>
+        <value>
+          <li Class="PS_ReconPod.PS_JobGiver_RefreshConditioning" />
+        </value>
+      </li>
+    </operations>
+  </Operation>
 </Patch>

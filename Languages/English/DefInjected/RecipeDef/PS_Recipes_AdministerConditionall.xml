@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <PS_Administer_Conditionall.label>administer conditionallASDF</PS_Administer_Conditionall.label>
+  <PS_Administer_Conditionall.description>Administer conditionall.</PS_Administer_Conditionall.description>
+  <PS_Administer_Conditionall.jobString>Administering conditionall.</PS_Administer_Conditionall.jobString>
+
+  <PS_OtherTest.label>HOW ABOUT NOW!</PS_OtherTest.label>
+  <PS_OtherTest.description>Euthanize a creature by cutting.</PS_OtherTest.description>
+  <PS_OtherTest.jobString>Euthanizing by cutting.</PS_OtherTest.jobString>
+
+
+</LanguageData>

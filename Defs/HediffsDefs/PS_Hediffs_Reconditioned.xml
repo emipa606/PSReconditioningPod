@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <HediffDef ParentName="DiseaseBase">
     <defName>PS_Hediff_Reconditioned</defName>
@@ -38,7 +38,6 @@
     </stages>
     <causesNeed>PS_Needs_Reconditioning</causesNeed>
   </HediffDef>
-  
   <HediffDef>
     <defName>PS_Hediff_NeuralCement</defName>
     <defaultLabelColor>(0.42,0.63,0.62)</defaultLabelColor>

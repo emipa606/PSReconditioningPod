@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <PS_ReconPodResearch.label>reconditioning pod</PS_ReconPodResearch.label>
+  <PS_ReconPodResearch.description>Further advances in plasteel study have resulted in new alteration technology. This time not in the body, but in the mind. Though the combination of neural transmitter manipulation, suggestive stimulus, and a digital psychologist AI, scientist have found a way to change the core components of a patient's personality. Obsessions with dangerous elements like fire or drugs can be removed, or a poor work ethic can be swapped out for a more industrious personality.
+
+Unfortunately the conditioning is not permanent. Without proper maintenance the patients psyche will become aware of and reject the foreign changes. As conditioning weakens the patient’s mind will grow more unstable. Eventually resulting in a  mental breakdown and reversion to their per-conditioning state. To avoid this it is recommended that all reconditioned subjects return to their pods for one hour every two days.</PS_ReconPodResearch.description>
+
+  <PS_ReconPodConditionallResearch.label>conditionall</PS_ReconPodConditionallResearch.label>
+  <PS_ReconPodConditionallResearch.description>Due to it’s bulk and power requirements, the reconditioning pod proved infeasible for use in transit. A more portable option was required for those who underwent conditioning. From this necessity plasteel researchers developed Conditionall. A pill containing high concentrations of the same neural transmitter manipulating chemicals used in the reconditioning pod. One dose has half the effect as one hour in a pod. Ideal for those who are traveling, bedridden, or otherwise unable to reach a pod.</PS_ReconPodConditionallResearch.description>
+
+  <PS_ReconPodNeuralCementResearch.label>neural cement</PS_ReconPodNeuralCementResearch.label>
+  <PS_ReconPodNeuralCementResearch.description>Due to growing complaints from investors, involving conditioning failure related riots, researches were tasked with developing a way to make conditioning perminate. The result, Neural Cementing. A highly aggressive procedure that involves application of a plasteel based neural cement. This substance has the ability to permanently apply the effects of conditioning, without the need for maintenance.
+
+The procedure does have drawbacks. Firstly it is very risky with a high rate of failure resulting in brain damage or death. Thus, should only be performed by skilled surgeons working in an ideal environment. Secondly, the cementing process, locks in neural pathways, preventing any future conditioning.</PS_ReconPodNeuralCementResearch.description>
+
+
+</LanguageData>

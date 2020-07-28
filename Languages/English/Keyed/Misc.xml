@@ -1,24 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <PS_ReconWoreOffMessage>This happened because conditioning wore off.</PS_ReconWoreOffMessage>
   <PS_Cancel>Cancel</PS_Cancel>
   <PS_Accept>Accept</PS_Accept>
   <PS_Status>Status</PS_Status>
-
   <PS_PodOption_Condition>Enter reconditioning pod</PS_PodOption_Condition>
   <PS_PodOption_RefreshConditioning>Refresh conditioning</PS_PodOption_RefreshConditioning>
   <PS_PodOption_Decondition>Manage conditioning</PS_PodOption_Decondition>
   <PS_PodOption_CheatMode>Dev: Use Cheat Mode(Don't do it)</PS_PodOption_CheatMode>
   <PS_PodOption_ClaimPod>Claim pod for {0}</PS_PodOption_ClaimPod>
-  
   <PS_PodState_StandBy>On standby</PS_PodState_StandBy>
   <PS_PodState_Reconditioning>Reconditioning</PS_PodState_Reconditioning>
   <PS_PodState_ReinforceingCondtioning>Reinforcing conditioning</PS_PodState_ReinforceingCondtioning>
   <PS_PodState_Deconditioning>Deconditioning</PS_PodState_Deconditioning>
   <PS_PodState_RepairingBotched>Repairing botched conditioning</PS_PodState_RepairingBotched>
-  
   <PS_BadDrugPolicyError>PS_Reconditioning_Pod: If you are seeing this error then most likely a pawn is trying to take Conditionall but has a drug policy that does not contain it. Assign them to a new policy to clear this error.</PS_BadDrugPolicyError>
-
   <PS_OwnedBy>Owned by: </PS_OwnedBy>
   <PS_NotOwnedBy>Not {0}'s pod</PS_NotOwnedBy>
   <PS_CementCantUsePod>{0} can not be conditioned (nueral cementing)</PS_CementCantUsePod>
@@ -32,11 +28,9 @@
   <PS_UITraitButtonAdd>Add</PS_UITraitButtonAdd>
   <PS_UITraitButtonRemove>Remove</PS_UITraitButtonRemove>
   <PS_3OrMoreWarning>Warning: The base game allows for 3 traits. Having more will still apply the traits, but may cause some to not show up in the UI.</PS_3OrMoreWarning>
-
   <PS_CurrentTraitsLab>Current Traits:</PS_CurrentTraitsLab>
   <PS_OptionalTraitsLab>Add Traits:</PS_OptionalTraitsLab>
   <PS_CurrentConditioningLab>Current Conditioning:</PS_CurrentConditioningLab>
-
   <PS_UILabels_ConditioningTime>Time: {0}</PS_UILabels_ConditioningTime>
   <PS_ToolTips_ConditioningTime>Time required to complete procedure. Increases for each active conditioning.</PS_ToolTips_ConditioningTime>
   <PS_UILabels_SuccessChance>Success: {0}%</PS_UILabels_SuccessChance>
@@ -45,17 +39,14 @@
 Warning: A failed conditioning could result in damage to the patient's psyci.</PS_ToolTips_SuccessChance>
   <PS_UILabels_ConditioningFallRate>Requires refresh every {0}</PS_UILabels_ConditioningFallRate>
   <PS_ToolTips_ConditioningFallRate>How frequently the patient will have to return to this pod to maintain their conditioning. DEterioration of conditioning doubles for each new conditioning.</PS_ToolTips_ConditioningFallRate>
-
   <PS_Time_Day>day</PS_Time_Day>
   <PS_Time_Days>days</PS_Time_Days>
   <PS_Time_Hour>hour</PS_Time_Hour>
   <PS_Time_Hours>hours</PS_Time_Hours>
   <PS_Time_Minute>min</PS_Time_Minute>
   <PS_Time_Minutes>mins</PS_Time_Minutes>
-
   <PS_SelectionString_FixBotched>Fixing botched conditioning</PS_SelectionString_FixBotched>
   <PS_SelectionString_RemoveingConditioning>Removing conditioning</PS_SelectionString_RemoveingConditioning>
-  
   <PS_Fix>fix</PS_Fix>
   <PS_Add>add</PS_Add>
   <PS_Added>Added</PS_Added>
@@ -65,7 +56,6 @@ Warning: A failed conditioning could result in damage to the patient's psyci.</P
   <PS_Change>change</PS_Change>
   <PS_Changed>Changed</PS_Changed>
   <PS_ChangeTo>change to </PS_ChangeTo>
-
   <PS_Messages_CompletedReconditioning>{0} has completed their reconditioning.</PS_Messages_CompletedReconditioning>
   <PS_Messages_CompletedDeconditioning>{0} has completed their deconditioning.</PS_Messages_CompletedDeconditioning>
   <PS_Messages_CompletedFixingBotched>{0} has had their botched reconditioning repaired.</PS_Messages_CompletedFixingBotched>
@@ -73,7 +63,6 @@ Warning: A failed conditioning could result in damage to the patient's psyci.</P
   <PS_Messages_FailConditioning>{0}'s reconditioning failed.</PS_Messages_FailConditioning>
   <PS_Messages_BotchedConditioning>Something went wrong with {0}'s reconditioning!</PS_Messages_BotchedConditioning>
   <PS_Messages_LuckyConditioning>Something went  wrong with {0}'s reconditioning! Wait, maybe not...</PS_Messages_LuckyConditioning>
-
   <PS_CheatModeString>Cheat Mode: Changes will take place instantly with no cost. This is intended for testing. Ignore the fact it's call cheat mode.</PS_CheatModeString>
-</LanguageData>
 
+</LanguageData>

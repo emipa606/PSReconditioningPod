@@ -1,25 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>[PS] Reconditioning Pod (Continued)</name>
-  	<packageId>Mlie.PSReconditioningPod</packageId>
-	<author>Neon1028</author>
-	<url>https://github.com/emipa606/PSReconditioningPod</url>
-	<supportedVersions>
-		<li>1.0</li>
-		<li>1.1</li>
-	</supportedVersions>
-	<modDependencies>
-		<li>
-			<packageId>Mlie.PlasteelSurgery</packageId>
-            <displayName>Plasteel Surgery (Continued)</displayName>
-            <steamWorkshopUrl>steam://url/CommunityFilePage/2018276375</steamWorkshopUrl>
-            <downloadUrl>https://github.com/emipa606/PlasteelSurgery</downloadUrl>
-		</li>
-	</modDependencies>
-	<loadAfter>
-		<li>Mlie.PlasteelSurgery</li>
-	</loadAfter>
-	<description>Update of Neon1028s mod for RimWorld 1.1
+  <packageId>Mlie.PSReconditioningPod</packageId>
+  <author>Neon1028</author>
+  <url>https://github.com/emipa606/PSReconditioningPod</url>
+  <supportedVersions>
+    <li>1.0</li>
+    <li>1.1</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>Mlie.PlasteelSurgery</packageId>
+      <displayName>Plasteel Surgery (Continued)</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2018276375</steamWorkshopUrl>
+      <downloadUrl>https://github.com/emipa606/PlasteelSurgery</downloadUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>Mlie.PlasteelSurgery</li>
+  </loadAfter>
+  <description>Update of Neon1028s mod for RimWorld 1.1
 https://steamcommunity.com/sharedfiles/filedetails/?id=1588408365
 
 [img]https://raw.githubusercontent.com/emipa606/RimWorld-Wrapper/master/Notice.png[/img]
@@ -89,4 +89,3 @@ Problems have been reported with multiple UI mods. No support it provided for UI
 
 Traits from other mods will still show up. Normal traits work fine, but a lot of other mods use traits to do cool stuff like add magic or the force. If you remove these some things might break.</description>
 </ModMetaData>
-

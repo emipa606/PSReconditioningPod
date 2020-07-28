@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <RecipeDef>
     <defName>PS_Administer_Conditionall</defName>
@@ -27,7 +27,6 @@
       </thingDefs>
     </fixedIngredientFilter>
   </RecipeDef>
-
   <RecipeDef>
     <defName>PS_OtherTest</defName>
     <label>HOW ABOUT NOW!</label>

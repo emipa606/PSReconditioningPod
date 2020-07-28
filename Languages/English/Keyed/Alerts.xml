@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <PS_AlertConditionedHasNoPodLab>Colonist need reconditioning pod</PS_AlertConditionedHasNoPodLab>
   <PS_AlertConditionedHasNoPodDes>A colonist who has undergone reconditioning can not find or reach a powered and allowed reconditioning pod they own</PS_AlertConditionedHasNoPodDes>
   <PS_AlertConditioningFailingLab>Colonist needs reconditioning</PS_AlertConditioningFailingLab>
   <PS_AlertConditioningFailingDes>A colonist who has undergone reconditioning is about to revert back. Reinforce their conditioning at a reconditioning pod or administer Conditionall immediately.</PS_AlertConditioningFailingDes>
-</LanguageData>
 
+</LanguageData>

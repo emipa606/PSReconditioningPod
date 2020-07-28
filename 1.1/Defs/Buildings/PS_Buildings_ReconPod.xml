@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
   <ThingDef ParentName="BuildingBase">
     <defName>PS_Buildings_ReconPod</defName>
     <category>Building</category>
@@ -60,8 +59,8 @@
         <shortCircuitInRain>true</shortCircuitInRain>
         <basePowerConsumption>800</basePowerConsumption>
       </li>
-      <li Class="CompProperties_Flickable"/>
-      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Flickable" />
+      <li Class="CompProperties_Breakdownable" />
     </comps>
     <!--<modExtensions>
       <li Class="PS_ReconPod.PS_PawnOwnerProperties">
@@ -69,6 +68,4 @@
     </modExtensions>-->
     <drawGUIOverlay>true</drawGUIOverlay>
   </ThingDef>
-
-
 </Defs>

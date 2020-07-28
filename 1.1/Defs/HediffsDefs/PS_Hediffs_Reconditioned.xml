@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <HediffDef ParentName="DiseaseBase">
     <defName>PS_Hediff_Reconditioned</defName>
@@ -7,6 +7,7 @@
     <label>reconditioned</label>
     <description>reconditioned</description>
     <labelNoun>reconditioned</labelNoun>
+    <isBad>false</isBad>
     <minSeverity>0.0</minSeverity>
     <maxSeverity>1.0</maxSeverity>
     <scenarioCanAdd>false</scenarioCanAdd>
@@ -39,7 +40,6 @@
     </stages>
     <causesNeed>PS_Needs_Reconditioning</causesNeed>
   </HediffDef>
-  
   <HediffDef>
     <defName>PS_Hediff_NeuralCement</defName>
     <defaultLabelColor>(0.42,0.63,0.62)</defaultLabelColor>

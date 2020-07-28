@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <PS_Hediff_Reconditioned.label>reconditioned</PS_Hediff_Reconditioned.label>
+  <PS_Hediff_Reconditioned.stages.0.label>slipping</PS_Hediff_Reconditioned.stages.0.label>
+  <PS_Hediff_Reconditioned.stages.1.label>weak</PS_Hediff_Reconditioned.stages.1.label>
+  <PS_Hediff_Reconditioned.stages.2.label>strong</PS_Hediff_Reconditioned.stages.2.label>
+  <PS_Hediff_Reconditioned.stages.3.label>fresh</PS_Hediff_Reconditioned.stages.3.label>
+  <PS_Hediff_Reconditioned.labelNoun>reconditioned</PS_Hediff_Reconditioned.labelNoun>
+
+  <PS_Hediff_NeuralCement.label>neural cement</PS_Hediff_NeuralCement.label>
+  <PS_Hediff_NeuralCement.labelNoun>neural cement</PS_Hediff_NeuralCement.labelNoun>
+
+
+</LanguageData>
