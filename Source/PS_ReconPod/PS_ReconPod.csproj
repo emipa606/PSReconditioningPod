@@ -79,6 +79,9 @@
     <Compile Include="PS_TextureLoader.cs" />
     <Compile Include="PS_ThoughtWorker_Conditioning.cs" />
     <Compile Include="PS_TraitHelper.cs" />
+    <Compile Include="Settings\Applyer.cs" />
+    <Compile Include="Settings\Mod.cs" />
+    <Compile Include="Settings\Settings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
