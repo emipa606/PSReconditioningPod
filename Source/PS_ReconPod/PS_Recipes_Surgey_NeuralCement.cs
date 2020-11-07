@@ -16,7 +16,10 @@ namespace PS_ReconPod
         public override IEnumerable<BodyPartRecord> GetPartsToApplyOn(Pawn pawn, RecipeDef recipe)
         {
             if (PS_ConditioningHelper.IsReconditioned(pawn))
+            {
                 yield return pawn.health.hediffSet.GetHediffs<PS_Hediff_Reconditioned>().First().Part;
+            }
+
             yield break;
         }
 
@@ -24,7 +27,7 @@ namespace PS_ReconPod
         {
             if (billDoer != null)
             {
-                if (!base.CheckSurgeryFail(billDoer, pawn, ingredients, part, bill))
+                if (!CheckSurgeryFail(billDoer, pawn, ingredients, part, bill))
                 {
                     TaleRecorder.RecordTale(TaleDefOf.DidSurgery, new object[] {
                         billDoer,
@@ -33,7 +36,10 @@ namespace PS_ReconPod
                     PS_ConditioningHelper.TryRemoveConditioning(pawn);
                     var brainPart = pawn.RaceProps.body.AllParts.Where(x => x.def.defName == "Brain").FirstOrDefault();
                     if (brainPart == null)
+                    {
                         brainPart = part;
+                    }
+
                     pawn.health.AddHediff(HediffMaker.MakeHediff(DefDatabase<HediffDef>.GetNamed("PS_Hediff_NeuralCement"), pawn, brainPart));
                     var pod = PS_PodFinder.FindMyPod(pawn);
                     if (pod != null)

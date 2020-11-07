@@ -1,10 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
-  <PS_DoConditioning.reportString>entering reconditioning pod.</PS_DoConditioning.reportString>
-  <PS_RefreshConditioning.reportString>reinforceing conditioning.</PS_RefreshConditioning.reportString>
-  <PS_DoDeconditioning.reportString>entering reconditioning pod.</PS_DoDeconditioning.reportString>
-  <PS_ManageConditioning.reportString>entering reconditioning pod.</PS_ManageConditioning.reportString>
-
+  <!--<PS_DoConditioning.reportString>entering reconditioning pod.</PS_DoConditioning.reportString>-->
+  <!--<PS_RefreshConditioning.reportString>reinforceing conditioning.</PS_RefreshConditioning.reportString>-->
+  <!--<PS_DoDeconditioning.reportString>entering reconditioning pod.</PS_DoDeconditioning.reportString>-->
+  <!--<PS_ManageConditioning.reportString>entering reconditioning pod.</PS_ManageConditioning.reportString>-->
 
 </LanguageData>

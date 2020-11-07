@@ -26,7 +26,7 @@ namespace PS_ReconPod
                 return null;
             }
 
-            var myPod = pods.Select(x => ((PS_Buildings_ReconPod)x)).Where(x => x.HasOwner && x.PodOwner == pawn).FirstOrDefault();
+            var myPod = pods.Select(x => (PS_Buildings_ReconPod)x).Where(x => x.HasOwner && x.PodOwner == pawn).FirstOrDefault();
             return myPod;
         }
         
@@ -35,14 +35,20 @@ namespace PS_ReconPod
         {
             var localTarget = new LocalTargetInfo(pod);
             if (!pawn.CanReach(localTarget, PathEndMode.Touch, Danger.Deadly))
+            {
                 return false;
+            }
 
             var possition = pod.Position;
             if (!possition.InAllowedArea(pawn))
+            {
                 return false;
+            }
 
             if (!possition.Walkable(pawn.Map))
+            {
                 return false;
+            }
 
             return true;
         }
@@ -51,13 +57,19 @@ namespace PS_ReconPod
         {
             var pod = FindMyPod(pawn, exspectToFind: false);
             if (pod == null)
+            {
                 return false;
+            }
 
             if (!pod.IsUseable(pawn))
+            {
                 return false;
+            }
 
             if (!CanGetToPod(pawn, pod))
+            {
                 return false;
+            }
 
             return true;
             

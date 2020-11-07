@@ -21,26 +21,26 @@ namespace PS_ReconPod
 
             public void ExposeData()
             {
-                Scribe_Values.Look<float>(ref this.Value, "Value");
-                Scribe_Values.Look<string>(ref this.DefName, "DefName");
+                Scribe_Values.Look<float>(ref Value, "Value");
+                Scribe_Values.Look<string>(ref DefName, "DefName");
             }
         }
 
-        private CompProperties_Power powerComp;
+        private readonly CompProperties_Power powerComp;
         //private Pawn _Owner;
         //private string PodOwnerId;
         private PS_Conditioning_JobState JobState;
         private float CurrentTicksLeft;
         private float CurrentMaxTicks;
-        private float TotalTicksPerAction = 2500;
-        private float TicksPerDay = 60000;
+        private readonly float TotalTicksPerAction = 2500;
+        private readonly float TicksPerDay = 60000;
         private PS_Conditioning_Data ConditioningData;
         private Effecter ProgressBarEffector;
         private bool CheckedHediffPart;
 
         private List<NeedValuePair> StartingNeedLevels;
-        
-        public bool HasOwner { get { return this.PodOwner != null; } }
+
+        public bool HasOwner => PodOwner != null;
         public bool IsUseable(Pawn pawn)
         {
             return this.TryGetComp<CompPowerTrader>().PowerOn && !this.IsForbidden(pawn);
@@ -72,12 +72,12 @@ namespace PS_ReconPod
         {
             base.ExposeData();
             //Scribe_Values.Look<string>(ref this.PodOwnerId, "PodOwnerId");
-            Scribe_Deep.Look<PS_Conditioning_Data>(ref this.ConditioningData, "ConditionData");
-            Scribe_References.Look<Pawn>(ref this.PodOwner, "PodOwner");
-            Scribe_Values.Look<PS_Conditioning_JobState>(ref this.JobState, "JobState");
-            Scribe_Values.Look<float>(ref this.CurrentTicksLeft, "CurrentTicksLeft");
-            Scribe_Values.Look<float>(ref this.CurrentMaxTicks, "CurrentMaxTicks");
-            Scribe_Collections.Look<NeedValuePair>(ref this.StartingNeedLevels, "StartingNeedLevels");
+            Scribe_Deep.Look<PS_Conditioning_Data>(ref ConditioningData, "ConditionData");
+            Scribe_References.Look<Pawn>(ref PodOwner, "PodOwner");
+            Scribe_Values.Look<PS_Conditioning_JobState>(ref JobState, "JobState");
+            Scribe_Values.Look<float>(ref CurrentTicksLeft, "CurrentTicksLeft");
+            Scribe_Values.Look<float>(ref CurrentMaxTicks, "CurrentMaxTicks");
+            Scribe_Collections.Look<NeedValuePair>(ref StartingNeedLevels, "StartingNeedLevels");
         }
 
         // Token: 0x06002513 RID: 9491 RVA: 0x00116F67 File Offset: 0x00115367
@@ -87,7 +87,7 @@ namespace PS_ReconPod
             {
                 if (allowSpecialEffects)
                 {
-                    SoundDefOf.CryptosleepCasket_Accept.PlayOneShot(new TargetInfo(base.Position, base.Map, false));
+                    SoundDefOf.CryptosleepCasket_Accept.PlayOneShot(new TargetInfo(Position, Map, false));
                 }
                 return true;
             }
@@ -100,17 +100,19 @@ namespace PS_ReconPod
             foreach (FloatMenuOption o in base.GetFloatMenuOptions(pawn))
             {
                 if(o.Label != "EnterCryptosleepCasket".Translate())
-                yield return o;
+                {
+                    yield return o;
+                }
             }
-            if(this.CheatMod)
+            if(CheatMod)
             {
                 JobDef jobDef = PS_ReconPodDefsOf.PS_DoConditioning;
                 string jobStr = "PS_PodOption_CheatMode".Translate();
-                Action jobAction = delegate ()
+                void jobAction()
                 {
-                    Job job = new Job(jobDef, this);
+                    var job = new Job(jobDef, this);
                     pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                };
+                }
                 yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(jobStr, jobAction, MenuOptionPriority.Default, null, null, 0f, null, null), pawn, this, "ReservedBy");
                 yield break;
             }
@@ -124,22 +126,24 @@ namespace PS_ReconPod
                 yield return new FloatMenuOption(string.Format("PS_CementCantUsePod".Translate(), pawn.LabelShort), null, MenuOptionPriority.Default, null, null, 0f, null, null);
                 yield break;
             }
-            else if (this.PodOwner != null && pawn != this.PodOwner)
+            else if (PodOwner != null && pawn != PodOwner)
             {
-                yield return new FloatMenuOption("PS_OwnedBy".Translate() + this.PodOwner.LabelShort, null, MenuOptionPriority.Default, null, null, 0f, null, null);
+                yield return new FloatMenuOption("PS_OwnedBy".Translate() + PodOwner.LabelShort, null, MenuOptionPriority.Default, null, null, 0f, null, null);
             }
-            else if (this.innerContainer.Count == 0)
+            else if (innerContainer.Count == 0)
             {
                 if(PS_ConditioningHelper.IsReconditioned(pawn) && PS_PodFinder.FindMyPod(pawn) != this && PS_PodFinder.FindMyPod(pawn) != null)
+                {
                     yield return new FloatMenuOption(string.Format("PS_NotOwnedBy".Translate(), pawn.LabelShort), null, MenuOptionPriority.Default, null, null, 0f, null, null);
-                else if (PS_ConditioningHelper.IsReconditioned(pawn) && PS_PodFinder.FindMyPod(pawn) == null && this.PodOwner == null)
+                }
+                else if (PS_ConditioningHelper.IsReconditioned(pawn) && PS_PodFinder.FindMyPod(pawn) == null && PodOwner == null)
                 {
                     JobDef jobDef = PS_ReconPodDefsOf.PS_RefreshConditioning;
-                    string jobStr = string.Format("PS_PodOption_ClaimPod".Translate(), pawn.LabelShort);
-                    Action jobAction = delegate ()
+                    var jobStr = string.Format("PS_PodOption_ClaimPod".Translate(), pawn.LabelShort);
+                    void jobAction()
                     {
-                        this.TryAssignPawn(pawn);
-                    };
+                        TryAssignPawn(pawn);
+                    }
                     yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(jobStr, jobAction, MenuOptionPriority.Default, null, null, 0f, null, null), pawn, this, "ReservedBy");
                 }
                 else if (pawn.CanReach(this, PathEndMode.InteractionCell, Danger.Deadly, false, TraverseMode.ByPawn))
@@ -148,31 +152,31 @@ namespace PS_ReconPod
                     {
                         JobDef jobDef = PS_ReconPodDefsOf.PS_RefreshConditioning;
                         string jobStr = "PS_PodOption_RefreshConditioning".Translate();
-                        Action jobAction = delegate ()
+                        void jobAction()
                         {
-                            Job job = new Job(jobDef, this);
+                            var job = new Job(jobDef, this);
                             pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                        };
+                        }
                         yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(jobStr, jobAction, MenuOptionPriority.Default, null, null, 0f, null, null), pawn, this, "ReservedBy");
 
                         JobDef jobDef2 = PS_ReconPodDefsOf.PS_ManageConditioning;
                         string jobStr2 = "PS_PodOption_Decondition".Translate();
-                        Action jobAction2 = delegate ()
+                        void jobAction2()
                         {
-                            Job job2 = new Job(jobDef2, this);
+                            var job2 = new Job(jobDef2, this);
                             pawn.jobs.TryTakeOrderedJob(job2, JobTag.Misc);
-                        };
+                        }
                         yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(jobStr2, jobAction2, MenuOptionPriority.Default, null, null, 0f, null, null), pawn, this, "ReservedBy");
                     }
                     else
                     {
                         JobDef jobDef = PS_ReconPodDefsOf.PS_DoConditioning;
                         string jobStr = "PS_PodOption_Condition".Translate();
-                        Action jobAction = delegate ()
+                        void jobAction()
                         {
-                            Job job = new Job(jobDef, this);
+                            var job = new Job(jobDef, this);
                             pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                        };
+                        }
                         yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(jobStr, jobAction, MenuOptionPriority.Default, null, null, 0f, null, null), pawn, this, "ReservedBy");
                     }
                 }
@@ -187,8 +191,10 @@ namespace PS_ReconPod
             //    this._Owner = null;
             //    this.PodOwnerId = pawn.ThingID;
             //}
-            if (this.PodOwner == null)
-                this.PodOwner = pawn;
+            if (PodOwner == null)
+            {
+                PodOwner = pawn;
+            }
         }
 
         //public bool TryStartConditioning(Pawn pawn, PS_Conditioning_JobState ConditionType)
@@ -212,7 +218,7 @@ namespace PS_ReconPod
         // Token: 0x060024DC RID: 9436 RVA: 0x00118724 File Offset: 0x00116B24
         public override string GetInspectString()
         {
-            bool flag = base.ParentHolder != null && !(base.ParentHolder is Map);
+            var flag = ParentHolder != null && !(ParentHolder is Map);
             string result;
             if (flag)
             {
@@ -220,27 +226,32 @@ namespace PS_ReconPod
             }
             else
             {
-                StringBuilder stringBuilder = new StringBuilder(base.GetInspectString());
+                var stringBuilder = new StringBuilder(base.GetInspectString());
                 stringBuilder.AppendLine();
-                if (this.PodOwner == null) //string.IsNullOrEmpty(this.PodOwnerId))
+                if (PodOwner == null) //string.IsNullOrEmpty(this.PodOwnerId))
                 {
                     stringBuilder.AppendLine("Owner".Translate() + ": " + "Nobody".Translate());
                 }
                 else
                 {
-                    stringBuilder.AppendLine("Owner".Translate() + ": " + this.PodOwner.Label);
+                    stringBuilder.AppendLine("Owner".Translate() + ": " + PodOwner.Label);
                 }
 
-                if(this.JobState == PS_Conditioning_JobState.Waiting)
+                if(JobState == PS_Conditioning_JobState.Waiting)
+                {
                     stringBuilder.AppendLine("PS_Status".Translate() + ": " + GetStatusString());
+                }
                 else
                 {
-                    var completion = (1f - this.CurrentTicksLeft / this.CurrentMaxTicks) * 100f;
+                    var completion = (1f - (CurrentTicksLeft / CurrentMaxTicks)) * 100f;
                     stringBuilder.AppendLine("PS_Status".Translate() + ": " + GetStatusString() + " (" + completion.ToString("0.00") + "%)");
                 }
 
-                if (Prefs.DevMode && this.PodOwner != null)
-                    stringBuilder.AppendLine("(Dev) Pawn need: " + PS_ConditioningHelper.GetCurrentNeedLevel(this.PodOwner));
+                if (Prefs.DevMode && PodOwner != null)
+                {
+                    stringBuilder.AppendLine("(Dev) Pawn need: " + PS_ConditioningHelper.GetCurrentNeedLevel(PodOwner));
+                }
+
                 result = stringBuilder.ToString().TrimEndNewlines();
             }
             return result;
@@ -248,7 +259,7 @@ namespace PS_ReconPod
 
         private string GetStatusString()
         {
-            switch(this.JobState)
+            switch(JobState)
             {
                 case PS_Conditioning_JobState.Waiting:
                     return "PS_PodState_StandBy".Translate();
@@ -265,9 +276,9 @@ namespace PS_ReconPod
 
         public void TryUnassignPawn(Pawn pawn)
         {
-            if(this.PodOwner == pawn)
+            if(PodOwner == pawn)
             {
-                this.PodOwner = null;
+                PodOwner = null;
             }
             //if (pawn.ThingID == this.PodOwnerId)
             //{
@@ -278,12 +289,15 @@ namespace PS_ReconPod
 
         public void ForceUnassignPawn(Pawn pawn)
         {
-            if (this.PodOwner == pawn)
+            if (PodOwner == pawn)
             {
-                this.PodOwner = null;
-                if (this.JobState != PS_Conditioning_JobState.Waiting)
-                    this.ForceEndJobState();
-                this.EjectContents();
+                PodOwner = null;
+                if (JobState != PS_Conditioning_JobState.Waiting)
+                {
+                    ForceEndJobState();
+                }
+
+                EjectContents();
             }
             //if (pawn.ThingID == this.PodOwnerId)
             //{
@@ -299,34 +313,33 @@ namespace PS_ReconPod
 
         public override void Open()
         {
-            this.ForceEndJobState();
+            ForceEndJobState();
             base.Open();
         }
 
         public override void EjectContents()
         {
-            this.ForceEndJobState();
-            foreach (Thing thing in ((IEnumerable<Thing>)this.innerContainer))
+            ForceEndJobState();
+            foreach (Thing thing in innerContainer)
             {
-                Pawn pawn = thing as Pawn;
-                if (pawn != null)
+                if (thing is Pawn pawn)
                 {
                     PawnComponentsUtility.AddComponentsForSpawn(pawn);
                 }
             }
-            if (!base.Destroyed && this.innerContainer.Any())
+            if (!Destroyed && innerContainer.Any())
             {
-                SoundDefOf.CryptosleepCasket_Eject.PlayOneShot(SoundInfo.InMap(new TargetInfo(base.Position, base.Map, false), MaintenanceType.None));
+                SoundDefOf.CryptosleepCasket_Eject.PlayOneShot(SoundInfo.InMap(new TargetInfo(Position, Map, false), MaintenanceType.None));
             }
 
-            this.innerContainer.TryDropAll(this.InteractionCell, base.Map, ThingPlaceMode.Near, null, null);
-            this.contentsKnown = true;
+            innerContainer.TryDropAll(InteractionCell, Map, ThingPlaceMode.Near, null, null);
+            contentsKnown = true;
         }
 
         private void ForceEndJobState()
         {
-            this.JobState = PS_Conditioning_JobState.Waiting;
-            this.CurrentTicksLeft = 0f;
+            JobState = PS_Conditioning_JobState.Waiting;
+            CurrentTicksLeft = 0f;
             if (ProgressBarEffector != null)
             {
                 ProgressBarEffector.Cleanup();
@@ -361,33 +374,40 @@ namespace PS_ReconPod
             //}
             if (Prefs.DevMode)
             {
-                var toggleCheat = new Command_Toggle();
-                toggleCheat.defaultLabel = "Cheat Mode";
-                toggleCheat.defaultDesc = "PS_CheatModeString".Translate();
-                toggleCheat.icon = ContentFinder<Texture2D>.Get("UI/CheatMode", true);
-                toggleCheat.isActive = (() => this.CheatMod);
-                toggleCheat.toggleAction = delegate (){ this.CheatMod = !this.CheatMod; };
+                var toggleCheat = new Command_Toggle
+                {
+                    defaultLabel = "Cheat Mode",
+                    defaultDesc = "PS_CheatModeString".Translate(),
+                    icon = ContentFinder<Texture2D>.Get("UI/CheatMode", true),
+                    isActive = () => CheatMod,
+                    toggleAction = delegate () { CheatMod = !CheatMod; }
+                };
                 yield return toggleCheat;
 
-                if(this.JobState != PS_Conditioning_JobState.Waiting)
+                if(JobState != PS_Conditioning_JobState.Waiting)
+                {
                     yield return new Command_Action
                     {
                         defaultLabel = "Dev: Insta Complete",
                         action = delegate ()
                         {
-                            if (this.JobState != PS_Conditioning_JobState.Waiting)
-                                this.CurrentTicksLeft = 0;
+                            if (JobState != PS_Conditioning_JobState.Waiting)
+                            {
+                                CurrentTicksLeft = 0;
+                            }
                         },
                         icon = ContentFinder<Texture2D>.Get("UI/DevInstComplete", true)
                     };
-                if (this.PodOwner != null)
+                }
+
+                if (PodOwner != null)
                 {
                     yield return new Command_Action
                     {
                         defaultLabel = "Dev: Down Pawn Need",
                         action = delegate ()
                         {
-                            PS_ConditioningHelper.SetCurrentNeedLevel(this.PodOwner, this.PodOwner.ConditioningLevel() - 0.1f);
+                            PS_ConditioningHelper.SetCurrentNeedLevel(PodOwner, PodOwner.ConditioningLevel() - 0.1f);
                         },
                         icon = ContentFinder<Texture2D>.Get("UI/DevDown", true)
                     };
@@ -396,7 +416,7 @@ namespace PS_ReconPod
                         defaultLabel = "Dev: Fill Pawn Need",
                         action = delegate ()
                         {
-                            PS_ConditioningHelper.SetCurrentNeedLevel(this.PodOwner, 1f);
+                            PS_ConditioningHelper.SetCurrentNeedLevel(PodOwner, 1f);
                         },
                         icon = ContentFinder<Texture2D>.Get("UI/DevFull", true)
                     };
@@ -405,7 +425,7 @@ namespace PS_ReconPod
                         defaultLabel = "Dev: Half Pawn Need",
                         action = delegate ()
                         {
-                            PS_ConditioningHelper.SetCurrentNeedLevel(this.PodOwner, 0.5f);
+                            PS_ConditioningHelper.SetCurrentNeedLevel(PodOwner, 0.5f);
                         },
                         icon = ContentFinder<Texture2D>.Get("UI/DevHalf", true)
                     };
@@ -416,42 +436,44 @@ namespace PS_ReconPod
 
         public override void DrawGUIOverlay()
         {
-            if (this.CheatMod)
+            if (CheatMod)
+            {
                 GenMapUI.DrawThingLabel(this, "Cheat Mode", Color.red);
+            }
             else if (Find.CameraDriver.CurrentZoom == CameraZoomRange.Closest)
             {
                 Color defaultThingLabelColor = GenMapUI.DefaultThingLabelColor;
-                if (this.PodOwner == null)
+                if (PodOwner == null)
                 {
                     GenMapUI.DrawThingLabel(this, "Unowned".Translate(), defaultThingLabelColor);
                 }
-                else if(this.JobState != PS_Conditioning_JobState.Waiting)
+                else if(JobState != PS_Conditioning_JobState.Waiting)
                 {
                     // Draw nothing because the progress bar will be there
                 }
                 else
                 {
-                    GenMapUI.DrawThingLabel(this, this.PodOwner.LabelShort, defaultThingLabelColor);
+                    GenMapUI.DrawThingLabel(this, PodOwner.LabelShort, defaultThingLabelColor);
                 }
             }
         }
         
         public void StartReconditioning(Pawn pawn, PS_Conditioning_Data conData)
         {
-            if (this.PodOwner != null && this.PodOwner != pawn)//!string.IsNullOrEmpty(this.PodOwnerId) && pawn.ThingID != this.PodOwnerId)
+            if (PodOwner != null && PodOwner != pawn)//!string.IsNullOrEmpty(this.PodOwnerId) && pawn.ThingID != this.PodOwnerId)
             {
                 Log.Error("PS_Buildings_ReconPod: Tried to start conditioning on a pawn that was not the owner");
                 return;
             }
-            this.SaveNeeds(pawn.needs.AllNeeds);
+            SaveNeeds(pawn.needs.AllNeeds);
             pawn.DeSpawn(DestroyMode.Vanish);
-            if (this.TryAcceptThing(pawn))
+            if (TryAcceptThing(pawn))
             {
-                this.ConditioningData = conData;
-                this.CurrentMaxTicks = PS_ConditioningHelper.DaysToCondition(pawn) * this.TicksPerDay;
-                this.CurrentTicksLeft = CurrentMaxTicks;
-                this.JobState = PS_Conditioning_JobState.Reconditioning;
-                this.TryAssignPawn(pawn);
+                ConditioningData = conData;
+                CurrentMaxTicks = PS_ConditioningHelper.DaysToCondition(pawn) * TicksPerDay;
+                CurrentTicksLeft = CurrentMaxTicks;
+                JobState = PS_Conditioning_JobState.Reconditioning;
+                TryAssignPawn(pawn);
 
                 EffecterDef progressBar = EffecterDefOf.ProgressBar;
                 ProgressBarEffector = progressBar.Spawn();
@@ -464,19 +486,22 @@ namespace PS_ReconPod
         public void StartRefreshing(Pawn pawn, LocalTargetInfo targetInfo)
         {
             //if (pawn.ThingID != this.PodOwnerId)
-            if(this.PodOwner != pawn)
-                return;
-            this.SaveNeeds(pawn.needs.AllNeeds);
-            pawn.DeSpawn(DestroyMode.Vanish);
-            if(this.TryAcceptThing(pawn))
+            if(PodOwner != pawn)
             {
-                this.CurrentTicksLeft = this.CurrentMaxTicks = this.TotalTicksPerAction;
-                this.JobState = PS_Conditioning_JobState.Refreshing;
+                return;
+            }
+
+            SaveNeeds(pawn.needs.AllNeeds);
+            pawn.DeSpawn(DestroyMode.Vanish);
+            if(TryAcceptThing(pawn))
+            {
+                CurrentTicksLeft = CurrentMaxTicks = TotalTicksPerAction;
+                JobState = PS_Conditioning_JobState.Refreshing;
 
 
                 EffecterDef progressBar = EffecterDefOf.ProgressBar;
                 ProgressBarEffector = progressBar.Spawn();
-                ProgressBarEffector.EffectTick(targetInfo.ToTargetInfo(this.Map), TargetInfo.Invalid);
+                ProgressBarEffector.EffectTick(targetInfo.ToTargetInfo(Map), TargetInfo.Invalid);
             }
 
         }
@@ -484,15 +509,17 @@ namespace PS_ReconPod
         public void StartFixingBotched(Pawn pawn)
         {
             //if (pawn.ThingID != this.PodOwnerId)
-            if (this.PodOwner != null && this.PodOwner != pawn)
-                return;
-
-            this.SaveNeeds(pawn.needs.AllNeeds);
-            pawn.DeSpawn(DestroyMode.Vanish);
-            if (this.TryAcceptThing(pawn))
+            if (PodOwner != null && PodOwner != pawn)
             {
-                this.CurrentTicksLeft = this.CurrentMaxTicks = this.TicksPerDay;
-                this.JobState = PS_Conditioning_JobState.FixingBotch;
+                return;
+            }
+
+            SaveNeeds(pawn.needs.AllNeeds);
+            pawn.DeSpawn(DestroyMode.Vanish);
+            if (TryAcceptThing(pawn))
+            {
+                CurrentTicksLeft = CurrentMaxTicks = TicksPerDay;
+                JobState = PS_Conditioning_JobState.FixingBotch;
 
 
                 EffecterDef progressBar = EffecterDefOf.ProgressBar;
@@ -506,16 +533,19 @@ namespace PS_ReconPod
         public void StartDeconditioning(Pawn pawn, PS_Conditioning_Data conData)
         {
             //if (pawn.ThingID != this.PodOwnerId)
-            if (this.PodOwner != pawn)
-                return;
-            this.SaveNeeds(pawn.needs.AllNeeds);
-            pawn.DeSpawn(DestroyMode.Vanish);
-            if (this.TryAcceptThing(pawn))
+            if (PodOwner != pawn)
             {
-                this.CurrentMaxTicks = this.TicksPerDay;
-                this.CurrentTicksLeft = CurrentMaxTicks;
-                this.JobState = PS_Conditioning_JobState.Deconditioning;
-                this.ConditioningData = conData;
+                return;
+            }
+
+            SaveNeeds(pawn.needs.AllNeeds);
+            pawn.DeSpawn(DestroyMode.Vanish);
+            if (TryAcceptThing(pawn))
+            {
+                CurrentMaxTicks = TicksPerDay;
+                CurrentTicksLeft = CurrentMaxTicks;
+                JobState = PS_Conditioning_JobState.Deconditioning;
+                ConditioningData = conData;
 
                 EffecterDef progressBar = EffecterDefOf.ProgressBar;
                 ProgressBarEffector = progressBar.Spawn();
@@ -529,65 +559,69 @@ namespace PS_ReconPod
         {
             base.Tick();
 
-            if (this.PodOwner != null && this.PodOwner.Dead)
+            if (PodOwner != null && PodOwner.Dead)
             {
                 ForceEndJobState();
-                this.PodOwner = null;
+                PodOwner = null;
             }
 
-            if(this.PodOwner != null && this.JobState == PS_Conditioning_JobState.Waiting && !PS_ConditioningHelper.IsReconditioned(this.PodOwner))
+            if(PodOwner != null && JobState == PS_Conditioning_JobState.Waiting && !PS_ConditioningHelper.IsReconditioned(PodOwner))
             {
                 ForceEndJobState();
-                this.PodOwner = null;
+                PodOwner = null;
             }
 
-            if (this.JobState == PS_Conditioning_JobState.Waiting) // Do nothing if waiting
+            if (JobState == PS_Conditioning_JobState.Waiting) // Do nothing if waiting
+            {
                 return;
+            }
 
-            if(!this.TryGetComp<CompPowerTrader>().PowerOn && this.HasAnyContents) // Boot pawn if lose power
+            if (!this.TryGetComp<CompPowerTrader>().PowerOn && HasAnyContents) // Boot pawn if lose power
             {
-                this.ForceEndJobState();
-                this.EjectContents();
+                ForceEndJobState();
+                EjectContents();
                 return;
             }
 
             var pawn = (Pawn)innerContainer.FirstOrDefault();
             if(pawn != null)
             {
-                this.ResetNeeds(pawn);
+                ResetNeeds(pawn);
             }
 
             
             if (ProgressBarEffector != null)
             {
-                MoteProgressBar mote = ((SubEffecter_ProgressBar)this.ProgressBarEffector?.children[0]).mote;
+                MoteProgressBar mote = ((SubEffecter_ProgressBar)ProgressBarEffector?.children[0]).mote;
                 if (mote != null)
                 {
-                    mote.progress = Mathf.Clamp01(1f - (this.CurrentTicksLeft / this.CurrentMaxTicks));
+                    mote.progress = Mathf.Clamp01(1f - (CurrentTicksLeft / CurrentMaxTicks));
                     mote.offsetZ = -0.5f;
                 }
             }
 
-            if (this.JobState != PS_Conditioning_JobState.Waiting)
+            if (JobState != PS_Conditioning_JobState.Waiting)
             {
-                this.CurrentTicksLeft--;
-                if (this.CurrentTicksLeft <= 0)
-                    this.FinishConditioning();
+                CurrentTicksLeft--;
+                if (CurrentTicksLeft <= 0)
+                {
+                    FinishConditioning();
+                }
             }
         }
 
         private void FinishConditioning()
         {
-            var pawn = (Pawn)this.innerContainer.FirstOrDefault();
+            var pawn = (Pawn)innerContainer.FirstOrDefault();
             if(pawn == null)
             {
                 Log.Error("PS_Bulding_ReconPod: Finsihed conditioning put held pawn is null");
-                this.EjectContents();
-                this.ForceEndJobState();
+                EjectContents();
+                ForceEndJobState();
                 return;
             }
 
-            switch (this.JobState)
+            switch (JobState)
             {
                 case PS_Conditioning_JobState.Waiting:
                     return;
@@ -595,38 +629,38 @@ namespace PS_ReconPod
                 case PS_Conditioning_JobState.Reconditioning:
                     if (RoleForSucessOrHandleFail(pawn))
                     {
-                        PS_ConditioningHelper.DoConditioning(pawn, this, this.ConditioningData);
-                        this.TryAssignPawn(pawn);
+                        PS_ConditioningHelper.DoConditioning(pawn, this, ConditioningData);
+                        TryAssignPawn(pawn);
                         pawn.needs.mood.thoughts.memories.TryGainMemory(DefDatabase<ThoughtDef>.GetNamed("PS_Thoughts_Memory_Reconditioned"));
                         PS_ConditioningHelper.DirtyNeedFall(pawn);
                         PS_ConditioningHelper.SetCurrentNeedLevel(pawn, PS_ConditioningHelper.GetCurrentNeedLevel(pawn) + 1f);
                         Messages.Message(string.Format("PS_Messages_CompletedReconditioning".Translate(), pawn.LabelShort), new LookTargets(pawn), MessageTypeDefOf.TaskCompletion);
                     }
-                    this.Open();
+                    Open();
                     break;
 
                 case PS_Conditioning_JobState.Refreshing:
                     PS_ConditioningHelper.SetCurrentNeedLevel(pawn, PS_ConditioningHelper.GetCurrentNeedLevel(pawn) +  0.6f);
                     PS_ConditioningHelper.DirtyNeedFall(pawn);
-                    this.Open();
+                    Open();
                     break;
 
                 case PS_Conditioning_JobState.Deconditioning:
                     var lastConditioning = (PS_ConditioningHelper.GetConditioningDataFromHediff(pawn)?.Count() ?? 0) <= 1;
-                    PS_ConditioningHelper.UndoConditioning(pawn, this, this.ConditioningData);
+                    PS_ConditioningHelper.UndoConditioning(pawn, this, ConditioningData);
                     if (lastConditioning)
                     {
                         pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDef(DefDatabase<ThoughtDef>.GetNamed("PS_Thoughts_Memory_Reconditioned"));
                         pawn.needs.mood.thoughts.memories.TryGainMemory(DefDatabase<ThoughtDef>.GetNamed("PS_Thoughts_Memory_Deconditioned"));
 
-                        this.TryUnassignPawn(pawn);
+                        TryUnassignPawn(pawn);
                     }
                     else
                     {
                         PS_ConditioningHelper.DirtyNeedFall(pawn);
                         PS_ConditioningHelper.SetCurrentNeedLevel(pawn, PS_ConditioningHelper.GetCurrentNeedLevel(pawn) + 1f);
                     }
-                    this.Open();
+                    Open();
                     Messages.Message(string.Format("PS_Messages_CompletedDeconditioning".Translate(), pawn.LabelShort), new LookTargets(pawn), MessageTypeDefOf.TaskCompletion);
                     break;
 
@@ -638,7 +672,7 @@ namespace PS_ReconPod
                         PS_ConditioningHelper.DirtyNeedFall(pawn);
                         PS_ConditioningHelper.SetCurrentNeedLevel(pawn, PS_ConditioningHelper.GetCurrentNeedLevel(pawn) + 1f);
                     }
-                    this.Open();
+                    Open();
                     Messages.Message(string.Format("PS_Messages_CompletedFixingBotched".Translate(), pawn.LabelShort), new LookTargets(pawn), MessageTypeDefOf.TaskCompletion);
                     break;
             }
@@ -648,10 +682,10 @@ namespace PS_ReconPod
                 ProgressBarEffector.Cleanup();
                 ProgressBarEffector = null;
             }
-            this.JobState = PS_Conditioning_JobState.Waiting;
+            JobState = PS_Conditioning_JobState.Waiting;
 
             // Move hediff to brain if it's not, fix for old version
-            if (!this.CheckedHediffPart)
+            if (!CheckedHediffPart)
             {
                 var hediff = pawn.health.hediffSet.GetHediffs<PS_Hediff_Reconditioned>().FirstOrDefault();
                 if (hediff != null)
@@ -659,34 +693,42 @@ namespace PS_ReconPod
                     var currentPart = hediff.Part;
                     var brain = pawn.RaceProps.body.AllParts.Where(x => x.def.defName == "Brain").FirstOrDefault();
                     if (brain != null && currentPart != brain)
+                    {
                         hediff.Part = brain;
+                    }
                 }
-                this.CheckedHediffPart = true;
+                CheckedHediffPart = true;
             }
         }
 
         private void SaveNeeds(List<Need> needs)
         {
-            if (this.StartingNeedLevels == null)
-                this.StartingNeedLevels = new List<NeedValuePair>();
+            if (StartingNeedLevels == null)
+            {
+                StartingNeedLevels = new List<NeedValuePair>();
+            }
 
-            this.StartingNeedLevels.Clear();
+            StartingNeedLevels.Clear();
 
             foreach (var need in needs)
-                this.StartingNeedLevels.Add(new NeedValuePair { DefName = need.def.defName, Value = need.CurLevel });
+            {
+                StartingNeedLevels.Add(new NeedValuePair { DefName = need.def.defName, Value = need.CurLevel });
+            }
         }
 
         private void ResetNeeds(Pawn pawn)
         {
-            if(this.StartingNeedLevels == null)
+            if(StartingNeedLevels == null)
             {
                 Log.Message(string.Format("PS_Buildings_ReconPod: Tried to reset needs for {0}, but starting needs list is null.", pawn.LabelShort));
             }
-            foreach (var need in this.StartingNeedLevels)
+            foreach (var need in StartingNeedLevels)
             {
                 var pawnNeed = pawn.needs.TryGetNeed(DefDatabase<NeedDef>.GetNamed(need.DefName));
                 if (pawnNeed != null)
+                {
                     pawnNeed.CurLevel = need.Value;
+                }
             }
         }
 
@@ -702,7 +744,9 @@ namespace PS_ReconPod
 
             // Sucess
             if (roll < successChance)
+            {
                 return true;
+            }
 
             roll = Rand.Range(0f, 1f);
             // Fail with no coniquence

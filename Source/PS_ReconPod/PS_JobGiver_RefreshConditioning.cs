@@ -21,23 +21,33 @@ namespace PS_ReconPod
         {
             var currentLevel = PS_ConditioningHelper.GetCurrentNeedLevel(pawn);
             if (currentLevel < 0)
+            {
                 return 0f;
+            }
 
             if (currentLevel < 0.5f)
+            {
                 return 11.5f;
+            }
             else
+            {
                 return 0f;
+            }
         }
 
         // Token: 0x06000026 RID: 38 RVA: 0x000028AC File Offset: 0x00000AAC
         protected override Job TryGiveJob(Pawn pawn)
         {
             if (pawn.Downed)
+            {
                 return null;
+            }
 
             var currentLevel = PS_ConditioningHelper.GetCurrentNeedLevel(pawn);
             if (currentLevel < 0f || currentLevel > 0.5f)
+            {
                 return null;
+            }
 
             var myPod = PS_PodFinder.FindMyPod(pawn);
             if (myPod != null && PS_PodFinder.CanGetToPod(pawn, myPod) && pawn.CanReserve(new LocalTargetInfo(myPod)) && myPod.IsUseable(pawn))
@@ -80,12 +90,21 @@ namespace PS_ReconPod
         private bool IsConditionallAvalible(Thing conditionall, Pawn pawn)
         {
             if (conditionall.IsForbidden(pawn))
+            {
                 return false;
+            }
+
             if (!conditionall.Position.InAllowedArea(pawn))
+            {
                 return false;
+            }
+
             var localTarget = new LocalTargetInfo(conditionall);
             if (!pawn.CanReach(localTarget, PathEndMode.ClosestTouch, Danger.Deadly))
+            {
                 return false;
+            }
+
             return true;
         }
 
@@ -93,7 +112,7 @@ namespace PS_ReconPod
         {
             var index = 0;
             var minDist = float.MaxValue;
-            for(int n = 0; n < things.Count(); n++)
+            for(var n = 0; n < things.Count(); n++)
             {
                 var tempDist = pawn.Position.DistanceTo(things[n].Position);
                 if (tempDist < minDist)

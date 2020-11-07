@@ -12,9 +12,9 @@ namespace PS_ReconPod
         // Token: 0x06002C2E RID: 11310 RVA: 0x0014B3CC File Offset: 0x001497CC
         public PS_Alert_ConditioningFailing()
         {
-            this.defaultLabel = "PS_AlertConditioningFailingLab".Translate();
-            this.defaultExplanation = "PS_AlertConditioningFailingDes".Translate();
-            this.defaultPriority = AlertPriority.Critical;
+            defaultLabel = "PS_AlertConditioningFailingLab".Translate();
+            defaultExplanation = "PS_AlertConditioningFailingDes".Translate();
+            defaultPriority = AlertPriority.Critical;
         }
 
         // Token: 0x170006DB RID: 1755
@@ -29,7 +29,9 @@ namespace PS_ReconPod
                     {
                         var conditionLevel = PS_ConditioningHelper.GetCurrentNeedLevel(p);
                         if(conditionLevel <= 0.25f)
+                        {
                             yield return p;
+                        }
                     }
                 }
                 yield break;
@@ -39,7 +41,7 @@ namespace PS_ReconPod
         // Token: 0x06002C30 RID: 11312 RVA: 0x0014B418 File Offset: 0x00149818
         public override AlertReport GetReport()
         {
-            return AlertReport.CulpritsAre(this.ConditionedAndSlipping.ToList());
+            return AlertReport.CulpritsAre(ConditionedAndSlipping.ToList());
         }
     }
 }

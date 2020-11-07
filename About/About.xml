@@ -20,43 +20,48 @@
   <loadAfter>
     <li>Mlie.PlasteelSurgery</li>
   </loadAfter>
-  <description>Update of Neon1028s mod for RimWorld 1.1
+  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+Update of Neon1028s mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1588408365
 
-[img]https://raw.githubusercontent.com/emipa606/RimWorld-Wrapper/master/Notice.png[/img]
+[img]https://i.imgur.com/7Gzt3Rg.png[/img]
 
-Support-chat:
-https://discord.gg/SuhwVpM
-
-Non-steam version:
-https://github.com/emipa606/PSReconditioningPod
+[table]
+	[tr]
+		[td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
+		[td][url=https://github.com/emipa606/PSReconditioningPod][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+	[/tr]
+[/table]
 	
---- Original Description ---
+[img]https://i.imgur.com/NOW7jU1.png[/img]
+
+***This mod has not been updated to 1.1 and will not be in the foreseeable future. See comments for details. Apologies for the inconvenience.***
+
 Add, remove, or change traits in game, at the cost of daily upkeep. No trait limit. Now with multiple conditionings, permanent conditioning, and cheat mode option for cheaters.
 
-Pyromaniacs setting your rice fields on fire? Chemical Fascination depleting your yayo supply? Or what about that guy who keeps getting punched in the face because he�s so Abrasive? Well no more! Further advances in plasteel study have resulted in new alteration technology. This time not in the body, but in the mind. Though the combination of neural transmitter manipulation, suggestive stimulus, and a digital psychologist AI, scientist have found a way to change the core components of a patient's personality.
+Pyromaniacs setting your rice fields on fire? Chemical Fascination depleting your yayo supply? Or what about that guy who keeps getting punched in the face because he’s so Abrasive? Well no more! Further advances in plasteel study have resulted in new alteration technology. This time not in the body, but in the mind. Though the combination of neural transmitter manipulation, suggestive stimulus, and a digital psychologist AI, scientist have found a way to change the core components of a patient's personality.
 
 Introducing the Plasteel Surgery Reconditioning Pod. Just one relaxing day(s) long session in this modified crytosleep casket will leave colonists feeling like a whole new person! Unwanted traits can be removed, or better traits can be added. Want someone to have the opposite trait they do now? Well no problem, traits in the same spectrum can be swapped out for one another, so trade that slothful nature for a more industrious attitude. Upon first use the pod will be biometrically encoded to the user, ensuring they always have a pod just for them.
 
-Why stop at just one? With the newest improvements to the digital psychologist�s shrinking algorithms, patients can now survive enjoy multiple conditionings simultaneously.
+Why stop at just one? With the newest improvements to the digital psychologist’s shrinking algorithms, patients can now [strike]survive[/strike] enjoy multiple conditionings simultaneously.  
 
-But watch out, the effects aren�t permanent, at least not to start. Those stubborn neural pathways like to work themselves back over time. At base, users will need to refresh their new, better way of thinking about once every 4 days. Subsequent conditioning will double this rate. But those clever plasteel researches have got you covered, offering several ways to meet your refreshing needs.
+But watch out, the effects aren’t permanent, at least not to start. Those stubborn neural pathways like to work themselves back over time. At base, users will need to refresh their new, better way of thinking about once every 4 days. Subsequent conditioning will double this rate. But those clever plasteel researches have got you covered, offering several ways to meet your refreshing needs.
 
-Automated return sub-conditioning: Each recondition comes with a free maintenance regulating sub-conditioning. Should their conditioning ever fall below 50%, the user will instinctively try to return to their designated pod for a relaxing 30 procedure.
+[b]Automated return sub-conditioning:[/b] Each recondition comes with a free maintenance regulating sub-conditioning. Should their conditioning ever fall below 50%, the user will instinctively try to return to their designated pod for a relaxing 30 procedure. 
 
-Conditionall: The fast acting, gluten free, reconditioning supplement. Light and portable, it�s perfect for those on the traveling, stuck in bed, or otherwise unable to reach a pod. One dose has half the effect as a normal refreshing session so it must be taken more frequently depending on number of active conditioning. Long term use of Conditionall is not recommended and should only be used when your pod is not available. Conditionall contains chemicals known to the State of California to cause cancer or other harm. Ask your doctor is Conditionall is right for you.
+[b]Conditionall:[/b] The fast acting, gluten free, reconditioning supplement. Light and portable, it’s perfect for those on the traveling, stuck in bed, or otherwise unable to reach a pod. One dose has half the effect as a normal refreshing session so it must be taken more frequently depending on number of active conditioning. Long term use of Conditionall is not recommended and should only be used when your pod is not available. Conditionall contains chemicals known to the State of California to cause cancer or other harm. Ask your doctor is Conditionall is right for you.
 
-Neural Cementing: Once you find that perfect way of thinking why ever let it change? Our new highly experimental plasteel based mental adhesive locks neural pathways in place permanently, removing the need to maintain conditioning. Once a user has undergone the neural cementing procedure they will be unable to receive any further reconditioning. This surgery is extremely risky and should only be performed by skilled surgeons with the best medicine available. Failure may result in permanent brain damage or death.
+[b]Neural Cementing:[/b] Once you find that perfect way of thinking why ever let it change? Our new highly experimental plasteel based mental adhesive locks neural pathways in place permanently, removing the need to maintain conditioning. Once a user has undergone the neural cementing procedure they will be unable to receive any further reconditioning. This surgery is extremely risky and should only be performed by skilled surgeons with the best medicine available. Failure may result in permanent brain damage or death.
 
-How to use:
+[h1]How to use:[/h1]
 The reconditioning pod, found under misc buildings after completing the research, gives 3 options for reconditioning a pawn.
-Add- adds a new trait to the pawn, this can be used to pass the 3 trait limit in the game.
-Remove- removes a trait that the pawn currently has
-Change- switch the trait for another one in it�s spectrum, ie. Lazy to Hard Worker
+[b]Add-[/b] adds a new trait to the pawn, this can be used to pass the 3 trait limit in the game.
+[b]Remove-[/b] removes a trait that the pawn currently has
+[b]Change-[/b] switch the trait for another one in it’s spectrum, ie. Lazy to Hard Worker
 
-There is no limit on traits, but the game assumes you will stick to 3. If you go above that the traits will still take effect, but may not show up in the UI. Reconditioning pod can not change traits in the family of Beauty, Immunity, Creepy Breathing, or Annoying Voice. Because those are physical traits. My other mod Plasteel Surgery can add or remove them.
+There is no limit on traits, but the game assumes you will stick to 3. If you go above that the traits will still take effect, but may not show up in the UI. Reconditioning pod can not change traits in the family of Beauty, Immunity, Creepy Breathing, or Annoying Voice. Because those are physical traits. My other mod [url=https://steamcommunity.com/workshop/filedetails/?id=1569056149]Plasteel Surgery[/url] can add or remove them.
 
-Once selection is done the pawn will enter the pod and all their needs will be frozen, ie. they won�t starve inside the pod. Reconditioning will take one or more days and has a chance to fail. The time required and chance to fail will increase for each active conditioning they have.
+Once selection is done the pawn will enter the pod and all their needs will be frozen, ie. they won’t starve inside the pod. Reconditioning will take one or more days and has a chance to fail. The time required and chance to fail will increase for each active conditioning they have.
 
 On failure no change will take place but there is a chance the reconditioning will be botched. This leaves the pawn with a trait that reduces learning speed and movement. Botched conditioning can be fixed at a reconditioning pod.
 
@@ -64,29 +69,29 @@ On success the pawn will have their traits changed and will be linked with the p
 
 After conditioning the pawn can be sent back to their pod to add more conditionings or remove existing ones. Removing a conditioning has a 100% success chance and will always take 1 day.
 
-Reconditioning adds a need with has 4 stages:
-100%-75% Fresh: No negative side effects
-74% - 50% Strong: -3% mental break threshold
-49% - 25% Weakened: -10% mental break threshold
-24% - 1% Slipping: -20% mental break threshold
-0% reconditioning is lost, traits revert, and a mental break will be triggered
+[b]Reconditioning adds a need with has 4 stages:[/b]
+  100%-75% Fresh: No negative side effects
+  74% - 50% Strong: -3% mental break threshold
+  49% - 25% Weakened: -10% mental break threshold
+  24% - 1% Slipping: -20% mental break threshold
+  0% reconditioning is lost, traits revert, and a mental break will be triggered
 
 At base the conditioning falls at a rate of 12.5% per day, meaning it will fail after 8 days without maintenance. Each conditioning that you add will double this rate.
 
-Ways to maintain conditioning:
-The Pod: At 50% a pawn will start trying to go back to their pod refresh. The pod needs to be powered, reachable and in their allowed area. They will do this automatically, like trying to eat when they get hungry. Refreshing will bring there need up a little over 50% ans takes about 30 minutes.
+[h1]Ways to maintain conditioning:[/h1]
+[b]The Pod:[/b] At 50% a pawn will start trying to go back to their pod refresh. The pod needs to be powered, reachable and in their allowed area. They will do this automatically, like trying to eat when they get hungry. Refreshing will bring there need up a little over 50% ans takes about 30 minutes.
 
-Conditionall: After research, it can be made at a drug lab for 5 psychoid leaves and 2 neutroamine. It works like other drugs, but if you added this to an existing save see the compatibility notes. It is intended for pawns that are traveling, downed, or otherwise can not get to a pod. You should just let your pawns use the pod to refresh, keeping them jacked up on Conditionall will get very expensive. It will raise their need level 25%.
+[b]Conditionall:[/b] After research, it can be made at a drug lab for 5 psychoid leaves and 2 neutroamine. It works like other drugs, but if you added this to an existing save see the compatibility notes. It is intended for pawns that are traveling, downed, or otherwise can not get to a pod. You should just let your pawns use the pod to refresh, keeping them jacked up on Conditionall will get very expensive. It will raise their need level 25%.
 
-Neural Cement: Requires a medical skill of 15, 20 plasteel, and 5 glitterworld medicine. It will remove the conditioning hediff and replace it with neural cement. The pawn will no longer have the conditioning need, but they also can never be reconditioned again. Nothing can remove neural cement (maybe, honestly haven�t tried all the hediff removing items on it)
+[b]Neural Cement:[/b] Requires a medical skill of 15, 20 plasteel, and 5 glitterworld medicine. It will remove the conditioning hediff and replace it with neural cement. The pawn will no longer have the conditioning need, but they also can never be reconditioned again. Nothing can remove neural cement (maybe, honestly haven’t tried all the hediff removing items on it)
 
-Cheat Mode:
-I made this for testing, but though others would enjoy it. If you are in dev mode and select a pod there will be a toggle for cheat mode. When a pawn is sent to a pod in cheat mode you get the same UI as the normal mode, but when a trait is selected to add or remove it�s done instantly for no cost. Ignore the fact it is called cheat mode, do not use this to cheat. Only villians do that.
+[h1]Cheat Mode:[/h1]
+I made this for testing, but though others would enjoy it. If you are in dev mode and select a pod there will be a toggle for cheat mode. When a pawn is sent to a pod in cheat mode you get the same UI as the normal mode, but when a trait is selected to add or remove it’s done instantly for no cost. Ignore the fact it is called cheat mode, do not use this to cheat. Only villians do that.
 
-Compatibility:
+[h1]Compatibility:[/h1]
 This mod will work with existing saves, BUT existing drug policies will not include Conditionall. To fix this, just make a new drug policy and it should be on there.
 
 Problems have been reported with multiple UI mods. No support it provided for UI mods at the moment. Some my work, some may not.
 
-Traits from other mods will still show up. Normal traits work fine, but a lot of other mods use traits to do cool stuff like add magic or the force. If you remove these some things might break.</description>
+Traits from other mods will still show up. Normal traits work fine, but a lot of other mods use traits to do cool stuff like add [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1201382956]magic[/url] or [url=https://steamcommunity.com/sharedfiles/filedetails/?id=918226861]the force[/url]. If you remove these some things might break.</description>
 </ModMetaData>

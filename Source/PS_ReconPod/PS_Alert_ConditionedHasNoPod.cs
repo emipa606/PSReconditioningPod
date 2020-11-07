@@ -12,9 +12,9 @@ namespace PS_ReconPod
         // Token: 0x06002C2E RID: 11310 RVA: 0x0014B3CC File Offset: 0x001497CC
         public PS_Alert_ConditionedHasNoPod()
         {
-            this.defaultLabel = "PS_AlertConditionedHasNoPodLab".Translate();
-            this.defaultExplanation = "PS_AlertConditionedHasNoPodDes".Translate();
-            this.defaultPriority = AlertPriority.High;
+            defaultLabel = "PS_AlertConditionedHasNoPodLab".Translate();
+            defaultExplanation = "PS_AlertConditionedHasNoPodDes".Translate();
+            defaultPriority = AlertPriority.High;
         }
 
         // Token: 0x170006DB RID: 1755
@@ -28,7 +28,9 @@ namespace PS_ReconPod
                     if (p.Map.IsPlayerHome && PS_ConditioningHelper.IsReconditioned(p))
                     {
                         if(!PS_PodFinder.HasAccessablePod(p))
+                        {
                             yield return p;
+                        }
                     }
                 }
                 yield break;
@@ -38,7 +40,7 @@ namespace PS_ReconPod
         // Token: 0x06002C30 RID: 11312 RVA: 0x0014B418 File Offset: 0x00149818
         public override AlertReport GetReport()
         {
-            return AlertReport.CulpritsAre(this.ConditionedWithoutPod.ToList());
+            return AlertReport.CulpritsAre(ConditionedWithoutPod.ToList());
         }
     }
 }

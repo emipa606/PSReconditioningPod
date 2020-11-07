@@ -11,7 +11,7 @@ namespace PS_ReconPod
     // Token: 0x02000039 RID: 57
     public class PS_Needs_Reconditioning : Need
     {
-        private bool CheckedForBadSave;
+        private readonly bool CheckedForBadSave;
         private float _fallPerDay;
         public bool FallPerDayIsDirty = true;
         public float FallPerDay
@@ -20,69 +20,57 @@ namespace PS_ReconPod
             {
                 if(FallPerDayIsDirty)
                 {
-                    this._fallPerDay = PS_ConditioningHelper.GetNeedFallPerDay(this.pawn);
-                    this.FallPerDayIsDirty = false;
+                    _fallPerDay = PS_ConditioningHelper.GetNeedFallPerDay(pawn);
+                    FallPerDayIsDirty = false;
                 }
-                return this._fallPerDay;
+                return _fallPerDay;
             }
         }
 
-        private float FallPerTic
-        {
-            get
-            {
-                return this.FallPerDay / 60000f;
-            }
-        }
+        private float FallPerTic => FallPerDay / 60000f;
 
         // Token: 0x060000DC RID: 220 RVA: 0x00007B7B File Offset: 0x00005D7B
         public PS_Needs_Reconditioning(Pawn pawn)
         {
             this.pawn = pawn;
-            this.FallPerDayIsDirty = true;
+            FallPerDayIsDirty = true;
         }
 
         // Token: 0x17000016 RID: 22
         // (get) Token: 0x060000DD RID: 221 RVA: 0x00007B8C File Offset: 0x00005D8C
-        public override float MaxLevel
-        {
-            get
-            {
-                return 1f;
-            }
-        }
+        public override float MaxLevel => 1f;
 
         // Token: 0x060000DE RID: 222 RVA: 0x00007B93 File Offset: 0x00005D93
         public override void SetInitialLevel()
         {
-            this.CurLevel = 1f;
+            CurLevel = 1f;
         }
 
         // Token: 0x060000DF RID: 223 RVA: 0x00007BA4 File Offset: 0x00005DA4
         public override void DrawOnGUI(Rect rect, int maxThresholdMarkers = 2147483647, float customMargin = -1f, bool drawArrows = true, bool doTooltip = true)
         {
-            bool flag = this.threshPercents == null;
+            var flag = threshPercents == null;
             if (flag)
             {
-                this.threshPercents = new List<float>();
+                threshPercents = new List<float>();
             }
-            this.threshPercents.Clear();
-            this.threshPercents.Add(0.25f);
-            this.threshPercents.Add(0.5f);
-            this.threshPercents.Add(0.75f);
+            threshPercents.Clear();
+            threshPercents.Add(0.25f);
+            threshPercents.Add(0.5f);
+            threshPercents.Add(0.75f);
             base.DrawOnGUI(rect, maxThresholdMarkers, customMargin, drawArrows, doTooltip);
         }
 
         // Token: 0x060000E0 RID: 224 RVA: 0x00007C08 File Offset: 0x00005E08
         public override void NeedInterval()
         {
-            var inPod = (this.pawn.ParentHolder != null) && (this.pawn.ParentHolder.GetType() == typeof(PS_Buildings_ReconPod));
+            var inPod = (pawn.ParentHolder != null) && (pawn.ParentHolder.GetType() == typeof(PS_Buildings_ReconPod));
             if (!inPod && !base.IsFrozen)
             {
-                this.CurLevel -= this.FallPerTic * 150f;
+                CurLevel -= FallPerTic * 150f;
             }
 
-            var hediff = this.pawn.health.hediffSet.GetHediffs<PS_Hediff_Reconditioned>().FirstOrDefault();
+            var hediff = pawn.health.hediffSet.GetHediffs<PS_Hediff_Reconditioned>().FirstOrDefault();
             if (hediff == null)
             {
                 Log.Error("PS_Needs_Reconditioning: failed to find PS_Hediff_Reconditined");
@@ -96,29 +84,31 @@ namespace PS_ReconPod
             }
 
 
-            var map = this.pawn.Map;
-            if(!inPod && !this.pawn.IsCaravanMember() && map == null)
+            var map = pawn.Map;
+            if(!inPod && !pawn.IsCaravanMember() && map == null)
             {
-                Log.Message("PS_Needs_Reconditioning: " + this.pawn.LabelShort + " is not in a caravan or pod but map is null, not sure what this means but they can't find a pod");
+                Log.Message("PS_Needs_Reconditioning: " + pawn.LabelShort + " is not in a caravan or pod but map is null, not sure what this means but they can't find a pod");
                 return;
             }
 
             // Try to take conditionall in in caravan
-            if(this.CurLevel <= 0.5f && this.pawn.IsCaravanMember())
+            if(CurLevel <= 0.5f && pawn.IsCaravanMember())
             {
                 var caravan = pawn.GetCaravan();
                 var stack = caravan.Goods.Where(x => x.def.defName == "PS_Drugs_Conditionall").FirstOrDefault();
                 if(stack != null)
                 {
                     var pill = stack.SplitOff(1);
-                    this.CurLevel += 0.25f;
+                    CurLevel += 0.25f;
                     pill.Destroy(DestroyMode.Vanish);
                 }
             }
 
 
-            if (this.CurLevel > 0)
-                hediff.Severity = this.CurLevel;
+            if (CurLevel > 0)
+            {
+                hediff.Severity = CurLevel;
+            }
             else if (pawn.InMentalState )
             {
                 hediff.Severity = 0.0001f;
@@ -127,7 +117,10 @@ namespace PS_ReconPod
             {
                 var state = GetMentalState(pawn, hediff.ConditioningDataList);
                 if (!pawn.mindState.mentalStateHandler.TryStartMentalState(state, reason: "PS_ReconWoreOffMessage".Translate(), forceWake: true))
+                {
                     Log.Error("PS_Need_Recon: Failed to give mental state " + state.defName);
+                }
+
                 PS_PodFinder.FindMyPod(pawn).TryUnassignPawn(pawn);
                 PS_ConditioningHelper.UndoAllConditioning(pawn);
                 Messages.Message(string.Format("PS_Messages_CompletedDeconditioning".Translate(), pawn.LabelShort), new LookTargets(pawn), MessageTypeDefOf.TaskCompletion);
@@ -147,14 +140,18 @@ namespace PS_ReconPod
                     var degree = PS_TraitHelper.GetDegreeDate(orgTrait);
                     if (degree != null)
                     {
-                        int count = (degree.theOnlyAllowedMentalBreaks?.Count ?? 0);
+                        var count = degree.theOnlyAllowedMentalBreaks?.Count ?? 0;
                         if (count > 0)
+                        {
                             breaksFromRemoved.AddRange(degree.theOnlyAllowedMentalBreaks.Select(x => x.mentalState));
+                        }
                     }
                 }
             }
             if (breaksFromRemoved.Count() > 0)
+            {
                 return breaksFromRemoved[Rand.Range(0, breaksFromRemoved.Count() - 1)];
+            }
 
 
             // Check if added trait disallows break
@@ -167,15 +164,19 @@ namespace PS_ReconPod
                     var degree = PS_TraitHelper.GetDegreeDate(addTrait);
                     if (degree != null)
                     {
-                        int count = (degree.disallowedMentalStates?.Count ?? 0);
+                        var count = degree.disallowedMentalStates?.Count ?? 0;
                         if (count > 0)
+                        {
                             breaksFromAdded.AddRange(degree.disallowedMentalStates);
+                        }
                     }
 
                 }
             }
             if (breaksFromAdded.Count() > 0)
+            {
                 return breaksFromAdded[Rand.Range(0, breaksFromAdded.Count() - 1)];
+            }
 
             // Otherwise get all allowable mental traits
             var naturalTraits = PS_ConditioningHelper.GetNaturalTraits(pawn);

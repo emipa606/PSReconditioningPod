@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <!--<PS_Recipies_Surgery_NeuralCement.label>cement conditioning</PS_Recipies_Surgery_NeuralCement.label>-->
+  <!--<PS_Recipies_Surgery_NeuralCement.description>A high risk surgery involving the application of neural cement directly to the brain. This will permanently apply the effects of any conditioning, negating the need for maintenance, but prevents all future reconditioning.
 
-  <PS_Recipies_Surgery_NeuralCement.label>cement conditioning</PS_Recipies_Surgery_NeuralCement.label>
-  <PS_Recipies_Surgery_NeuralCement.description>A high risk surgery involving the application of neural cement directly to the brain. This will permanently apply the effects of any conditioning, negating the need for maintenance, but prevents all future reconditioning.
-
-Failure in this surgery can result in permanent brain damage, or death. Only attempt this procedure with a proper operating room and skilled surgeon.</PS_Recipies_Surgery_NeuralCement.description>
-  <PS_Recipies_Surgery_NeuralCement.jobString>Attempting neural cementing.</PS_Recipies_Surgery_NeuralCement.jobString>
-  <PS_Recipies_Surgery_NeuralCement.successfullyRemovedHediffMessage>{0} has successfully cemented {1}'s conditioning.</PS_Recipies_Surgery_NeuralCement.successfullyRemovedHediffMessage>
-
+Failure in this surgery can result in permanent brain damage, or death. Only attempt this procedure with a proper operating room and skilled surgeon.</PS_Recipies_Surgery_NeuralCement.description>-->
+  <!--<PS_Recipies_Surgery_NeuralCement.jobString>Attempting neural cementing.</PS_Recipies_Surgery_NeuralCement.jobString>-->
+  <!--<PS_Recipies_Surgery_NeuralCement.successfullyRemovedHediffMessage>{0} has successfully cemented {1}'s conditioning.</PS_Recipies_Surgery_NeuralCement.successfullyRemovedHediffMessage>-->
 
 </LanguageData>

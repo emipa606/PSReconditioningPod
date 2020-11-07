@@ -21,12 +21,12 @@ namespace PS_ReconPod
         {
             this.FailOnDespawnedOrNull(TargetIndex.A);
             yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.InteractionCell);
-            Toil openMissionSelect = new Toil();
+            var openMissionSelect = new Toil();
             openMissionSelect.initAction = delegate ()
             {
                 Pawn actor = openMissionSelect.actor;
-                PS_Buildings_ReconPod pod = (PS_Buildings_ReconPod)actor.jobs.curJob.GetTarget(TargetIndex.A).Thing;
-                this.StartPoding(pod, actor);
+                var pod = (PS_Buildings_ReconPod)actor.jobs.curJob.GetTarget(TargetIndex.A).Thing;
+                StartPoding(pod, actor);
             };
             yield return openMissionSelect;
             yield break;

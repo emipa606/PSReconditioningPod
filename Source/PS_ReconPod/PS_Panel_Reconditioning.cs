@@ -38,11 +38,11 @@ namespace PS_ReconPod
 
         public PS_Panel_Reconditioning()
         {
-            this.forcePause = true;
-            this.absorbInputAroundWindow = true;
-            this.Initalized = false;
-            this.draggable = true;
-            this.focusWhenOpened = false;
+            forcePause = true;
+            absorbInputAroundWindow = true;
+            Initalized = false;
+            draggable = true;
+            focusWhenOpened = false;
         }
 
         private void DebugLog(string s)
@@ -52,36 +52,38 @@ namespace PS_ReconPod
 
         public void SetPawnAndPod(Pawn pawn, PS_Buildings_ReconPod Pod)
         {
-            this.ToolTipFunc = (t => t);
+            ToolTipFunc = t => t;
             this.Pod = Pod;
-            this.Pawn = pawn;
+            Pawn = pawn;
 
-            this.StartTraits = pawn.story.traits.allTraits;
-            this.CurrentTraits = new List<Trait>();
+            StartTraits = pawn.story.traits.allTraits;
+            CurrentTraits = new List<Trait>();
             foreach (var t in StartTraits)
+            {
                 CurrentTraits.Add(t);
+            }
 
-            this.StartingConditioning = new List<PS_Conditioning_Data>();
+            StartingConditioning = new List<PS_Conditioning_Data>();
             if(PS_ConditioningHelper.IsReconditioned(pawn))
             {
                 var condata = PS_ConditioningHelper.GetConditioningDataFromHediff(pawn);
-                this.StartingConditioning = condata;
+                StartingConditioning = condata;
             }
 
 
-            this.CheatMode = Pod.CheatMod;
+            CheatMode = Pod.CheatMod;
         }
 
         public override void DoWindowContents(Rect inRect)
         {
-            if (!this.Initalized)
+            if (!Initalized)
             {
-                this.Init(inRect);
+                Init(inRect);
             }
 
-            Widgets.Label(new Rect(3f, CurrentTraitScrollView.DrawRect.y - 23f, this.windowRect.width, 20f), "PS_CurrentTraitsLab".Translate());
-            Widgets.Label(new Rect((this.windowRect.width - (this.Margin * 2f)) * 0.5f + 3f, CurrentTraitScrollView.DrawRect.y - 23f, this.windowRect.width, 20f), "PS_OptionalTraitsLab".Translate());
-            Widgets.Label(new Rect(3f, CurrentConditioningScrollView.DrawRect.y - 20f - 5f, this.windowRect.width, 20f), "PS_CurrentConditioningLab".Translate());
+            Widgets.Label(new Rect(3f, CurrentTraitScrollView.DrawRect.y - 23f, windowRect.width, 20f), "PS_CurrentTraitsLab".Translate());
+            Widgets.Label(new Rect(((windowRect.width - (Margin * 2f)) * 0.5f) + 3f, CurrentTraitScrollView.DrawRect.y - 23f, windowRect.width, 20f), "PS_OptionalTraitsLab".Translate());
+            Widgets.Label(new Rect(3f, CurrentConditioningScrollView.DrawRect.y - 20f - 5f, windowRect.width, 20f), "PS_CurrentConditioningLab".Translate());
 
             GUI.color = Color.gray;
             var addtempRect = new Rect(AddTraitScrollView.DrawRect.x - 3f, AddTraitScrollView.DrawRect.y - 3f, AddTraitScrollView.DrawRect.width + 6f, AddTraitScrollView.DrawRect.height + 6f);
@@ -92,41 +94,44 @@ namespace PS_ReconPod
             Widgets.DrawBox(curContempRect);
 
 
-            var labBox = new Rect(curContempRect.x, curContempRect.yMax + 3f, this.windowRect.width - this.Margin * 2f - 3f, 60f);
+            var labBox = new Rect(curContempRect.x, curContempRect.yMax + 3f, windowRect.width - (Margin * 2f) - 3f, 60f);
             Widgets.DrawBox(labBox);
 
 
             var refreshLabBox = new Rect(labBox.x, labBox.yMax + 3f, curContempRect.width, 26f);
-            TooltipHandler.TipRegion(refreshLabBox, this.ToolTipFunc("PS_ToolTips_ConditioningFallRate".Translate()));
+            TooltipHandler.TipRegion(refreshLabBox, ToolTipFunc("PS_ToolTips_ConditioningFallRate".Translate()));
             Widgets.DrawBox(refreshLabBox);
 
-            var daysBox = new Rect(addtempRect.x, labBox.yMax + 3f, addtempRect.width * 0.5f - 1.5f, 26f);
+            var daysBox = new Rect(addtempRect.x, labBox.yMax + 3f, (addtempRect.width * 0.5f) - 1.5f, 26f);
             Widgets.DrawBox(daysBox);
-            TooltipHandler.TipRegion(daysBox, this.ToolTipFunc("PS_ToolTips_ConditioningTime".Translate()));
+            TooltipHandler.TipRegion(daysBox, ToolTipFunc("PS_ToolTips_ConditioningTime".Translate()));
             var chanceBox = new Rect(daysBox.x + daysBox.width + 3f, daysBox.y, daysBox.width, daysBox.height);
-            TooltipHandler.TipRegion(chanceBox, this.ToolTipFunc("PS_ToolTips_SuccessChance".Translate()));
+            TooltipHandler.TipRegion(chanceBox, ToolTipFunc("PS_ToolTips_SuccessChance".Translate()));
             Widgets.DrawBox(chanceBox);
 
             GUI.color = Color.white;
-            Widgets.Label(new Rect(refreshLabBox.x + 3f, refreshLabBox.y + 2f, refreshLabBox.width - 6f, refreshLabBox.height - 2f), string.Format("PS_UILabels_ConditioningFallRate".Translate(), this.GetRefreshRate()));
-            Widgets.Label(new Rect(daysBox.x + 3f, daysBox.y + 2f, daysBox.width - 6f, daysBox.height -2f), string.Format("PS_UILabels_ConditioningTime".Translate(), this.GetDays()));
-            Widgets.Label(new Rect(chanceBox.x + 3f, chanceBox.y + 2f, chanceBox.width - 6f, chanceBox.height - 2f), string.Format("PS_UILabels_SuccessChance".Translate(), this.GetFailChance()));
+            Widgets.Label(new Rect(refreshLabBox.x + 3f, refreshLabBox.y + 2f, refreshLabBox.width - 6f, refreshLabBox.height - 2f), string.Format("PS_UILabels_ConditioningFallRate".Translate(), GetRefreshRate()));
+            Widgets.Label(new Rect(daysBox.x + 3f, daysBox.y + 2f, daysBox.width - 6f, daysBox.height -2f), string.Format("PS_UILabels_ConditioningTime".Translate(), GetDays()));
+            Widgets.Label(new Rect(chanceBox.x + 3f, chanceBox.y + 2f, chanceBox.width - 6f, chanceBox.height - 2f), string.Format("PS_UILabels_SuccessChance".Translate(), GetFailChance()));
             
-            Widgets.Label(new Rect(labBox.x + 3f, labBox.y + 2f, labBox.width - 6f, labBox.height - 2f), this.BuildInfoString());
+            Widgets.Label(new Rect(labBox.x + 3f, labBox.y + 2f, labBox.width - 6f, labBox.height - 2f), BuildInfoString());
             //Widgets.Label(labBox, (this.AddingTrait ? "Adding" : "Removeing") + ":\n " + (this.ToAlter != null ? this.ToAlter.LabelCap : "Unset"));
 
             AddTraitScrollView.Draw();
             CurrentTraitScrollView.Draw();
             CurrentConditioningScrollView.Draw();
 
-            if (this.ChangeType == TraitAlterType.Added && this.StartTraits.Count() >= 3)
+            if (ChangeType == TraitAlterType.Added && StartTraits.Count() >= 3)
             {
                 if (!PS_TextureLoader.Loaded)
+                {
                     PS_TextureLoader.Reset();
+                }
+
                 var warnBox = new Rect(labBox.xMax - 20f, labBox.y + 2, 18f, 18f);
                 Widgets.DrawAtlas(warnBox, PS_TextureLoader.Warning);
 
-                TooltipHandler.TipRegion(warnBox, this.ToolTipFunc("PS_3OrMoreWarning".Translate()));
+                TooltipHandler.TipRegion(warnBox, ToolTipFunc("PS_3OrMoreWarning".Translate()));
             }
 
 
@@ -139,7 +144,7 @@ namespace PS_ReconPod
             var cancelButton = Widgets.ButtonText(cancelButtonRectTrue, "PS_Cancel".Translate());
             if (cancelButton)
             {
-                this.Close(true);
+                Close(true);
             }
 
             // Submit Button
@@ -148,58 +153,65 @@ namespace PS_ReconPod
             var button = Widgets.ButtonText(submitButtonRectTrue, "PS_Accept".Translate());
             if (button)
             {
-                if (!this.CheatMode)
-                    this.ApplyNewTraits(this.Pawn);
-                this.Close(true);
+                if (!CheatMode)
+                {
+                    ApplyNewTraits(Pawn);
+                }
+
+                Close(true);
             }
         }
 
         private string BuildInfoString()
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            var stringBuilder = new StringBuilder();
 
             if (CheatMode)
-                return "PS_CheatModeString".Translate();
-
-            if(this.RemoveingConditioning)
             {
-                stringBuilder.AppendLine(string.Format("PS_SelectedTraitMessage".Translate(), this.ConditioningToRemove.ToPrettyString()));
-                stringBuilder.AppendLine(string.Format("PS_UIPreviewMessage_RemoveConditioning".Translate(), Pawn.LabelShort, this.ConditioningToRemove.ToShortPrettyString().ToLower()));
+                return "PS_CheatModeString".Translate();
+            }
+
+            if (RemoveingConditioning)
+            {
+                stringBuilder.AppendLine(string.Format("PS_SelectedTraitMessage".Translate(), ConditioningToRemove.ToPrettyString()));
+                stringBuilder.AppendLine(string.Format("PS_UIPreviewMessage_RemoveConditioning".Translate(), Pawn.LabelShort, ConditioningToRemove.ToShortPrettyString().ToLower()));
                 return stringBuilder.ToString().TrimEndNewlines();
             }
-            else if(this.FixingBotch)
+            else if(FixingBotch)
             {
                 stringBuilder.AppendLine(string.Format("PS_SelectedTraitMessage".Translate(), "PS_SelectionString_FixBotched".Translate()));
                 stringBuilder.AppendLine(string.Format("PS_UIPreviewMessage_FixBotch".Translate(), Pawn.LabelShort));
                 return stringBuilder.ToString().TrimEndNewlines();
             }
-            else if (this.ChangeType != TraitAlterType.UNSET && (this.ToAdd != null || this.ToRemove != null))
+            else if (ChangeType != TraitAlterType.UNSET && (ToAdd != null || ToRemove != null))
             {
-                switch(this.ChangeType)
+                switch(ChangeType)
                 {
                     case TraitAlterType.Added:
-                        stringBuilder.AppendLine(string.Format("PS_SelectedTraitMessage".Translate(), this.ToAdd.LabelCap));
-                        stringBuilder.AppendLine(string.Format("PS_UIPreviewMessage_Add".Translate(), Pawn.LabelShort, this.ToAdd?.Label ?? "PS_Unset".Translate()));
+                        stringBuilder.AppendLine(string.Format("PS_SelectedTraitMessage".Translate(), ToAdd.LabelCap));
+                        stringBuilder.AppendLine(string.Format("PS_UIPreviewMessage_Add".Translate(), Pawn.LabelShort, ToAdd?.Label ?? "PS_Unset".Translate()));
                         break;
                     case TraitAlterType.Removed:
-                        stringBuilder.AppendLine(string.Format("PS_SelectedTraitMessage".Translate(), this.ToRemove.LabelCap));
-                        stringBuilder.AppendLine(string.Format("PS_UIPreviewMessage_Remove".Translate(), Pawn.LabelShort, this.ToRemove?.Label ?? "PS_Unset".Translate()));
+                        stringBuilder.AppendLine(string.Format("PS_SelectedTraitMessage".Translate(), ToRemove.LabelCap));
+                        stringBuilder.AppendLine(string.Format("PS_UIPreviewMessage_Remove".Translate(), Pawn.LabelShort, ToRemove?.Label ?? "PS_Unset".Translate()));
                         break;
                     case TraitAlterType.Altered:
-                        stringBuilder.AppendLine(string.Format("PS_SelectedTraitMessage".Translate(), this.ToAdd.LabelCap));
-                        stringBuilder.AppendLine(string.Format("PS_UIPreviewMessage_Change".Translate(), Pawn.LabelShort, this.ToRemove?.Label ?? "PS_Unset".Translate(), this.ToAdd?.Label ?? "PS_Unset".Translate()));
+                        stringBuilder.AppendLine(string.Format("PS_SelectedTraitMessage".Translate(), ToAdd.LabelCap));
+                        stringBuilder.AppendLine(string.Format("PS_UIPreviewMessage_Change".Translate(), Pawn.LabelShort, ToRemove?.Label ?? "PS_Unset".Translate(), ToAdd?.Label ?? "PS_Unset".Translate()));
                         break;
                 }
                 return stringBuilder.ToString().TrimEndNewlines();
             }
             else
+            {
                 return "PS_UIPreviewMessageInit".Translate();
+            }
         }
 
         public void Init(Rect rect)
         {
-            this.ScrollPosition = new Vector2(0, 0);
-            this.Initalized = true;
+            ScrollPosition = new Vector2(0, 0);
+            Initalized = true;
 
             var addTraitDrawRect = GetRecForGridLocation(1, 0, width: 1, height: 4).Rounded();
             var paddedAdd = new Rect(addTraitDrawRect.x + 5f, addTraitDrawRect.y + 5f + 20f, addTraitDrawRect.width - 10f, addTraitDrawRect.height - 10f).Rounded();
@@ -213,15 +225,18 @@ namespace PS_ReconPod
             var paddedcurtcon = new Rect(curTraitDrawRect.x + 5f, curConDrawRect.y + 5f + 30f, curTraitDrawRect.width - 10f, curTraitDrawRect.height - 20f).Rounded();
             CurrentConditioningScrollView = new PS_ScrollView<PS_Conditioning_Data>(paddedcurtcon);
 
-            UpdateCurrentTraits(this.CurrentTraits);
-            UpdateAddableTraits(this.CurrentTraits);
+            UpdateCurrentTraits(CurrentTraits);
+            UpdateAddableTraits(CurrentTraits);
             UpdateCurrentConditioning();
         }
         
         public override void OnAcceptKeyPressed()
         {
-            if(!this.CheatMode)
-                this.ApplyNewTraits(this.Pawn);
+            if(!CheatMode)
+            {
+                ApplyNewTraits(Pawn);
+            }
+
             base.OnAcceptKeyPressed();
         }
 
@@ -232,45 +247,51 @@ namespace PS_ReconPod
         
         private void ApplyNewTraits(Pawn Pawn)
         {
-            if (this.RemoveingConditioning)
+            if (RemoveingConditioning)
             {
-                this.Pod.StartDeconditioning(Pawn, this.ConditioningToRemove);
+                Pod.StartDeconditioning(Pawn, ConditioningToRemove);
             }
-            else if(this.FixingBotch)
+            else if(FixingBotch)
             {
-                this.Pod.StartFixingBotched(Pawn);
+                Pod.StartFixingBotched(Pawn);
             }
-            else if (this.ChangeType != TraitAlterType.UNSET)
+            else if (ChangeType != TraitAlterType.UNSET)
             {
                 var conData = new PS_Conditioning_Data
                 {
-                    AlterType = this.ChangeType,
-                    OriginalTraitDefName = this.ToRemove?.def.defName,
-                    AddedTraitDefName = this.ToAdd?.def.defName,
-                    OriginalDegree = this.ToRemove?.Degree ?? 0,
-                    AddedDegree = this.ToAdd?.Degree ?? 0
+                    AlterType = ChangeType,
+                    OriginalTraitDefName = ToRemove?.def.defName,
+                    AddedTraitDefName = ToAdd?.def.defName,
+                    OriginalDegree = ToRemove?.Degree ?? 0,
+                    AddedDegree = ToAdd?.Degree ?? 0
                 };
-                this.Pod.StartReconditioning(Pawn, conData);
+                Pod.StartReconditioning(Pawn, conData);
             }
         }
 
         public string GetRefreshRate()
         {
             if(CheatMode)
-                return "CM";
-            
-            if (this.FixingBotch || (!this.RemoveingConditioning && this.ChangeType == TraitAlterType.UNSET))
             {
-                var days = PS_ConditioningHelper.GetRefreshPerDay(this.StartingConditioning?.Count() ?? 0);
+                return "CM";
+            }
+
+            if (FixingBotch || (!RemoveingConditioning && ChangeType == TraitAlterType.UNSET))
+            {
+                var days = PS_ConditioningHelper.GetRefreshPerDay(StartingConditioning?.Count() ?? 0);
                 return DayToSafeTime(days);
             }
             else
             {
-                var tempConCount = this.StartingConditioning?.Count() ?? 0;
-                if (this.RemoveingConditioning)
+                var tempConCount = StartingConditioning?.Count() ?? 0;
+                if (RemoveingConditioning)
+                {
                     tempConCount--;
-                else if (this.ChangeType != TraitAlterType.UNSET)
+                }
+                else if (ChangeType != TraitAlterType.UNSET)
+                {
                     tempConCount++;
+                }
 
                 var days = PS_ConditioningHelper.GetRefreshPerDay(tempConCount);
                 return DayToSafeTime(days);
@@ -280,22 +301,30 @@ namespace PS_ReconPod
         public string GetDays()
         {
             if (CheatMode)
+            {
                 return "CM";
+            }
 
-
-
-            if (!this.FixingBotch && !this.RemoveingConditioning && this.ChangeType == TraitAlterType.UNSET)
+            if (!FixingBotch && !RemoveingConditioning && ChangeType == TraitAlterType.UNSET)
+            {
                 return "NA";
+            }
 
-            if (this.FixingBotch)
+            if (FixingBotch)
+            {
                 return DayToSafeTime(1f);
+            }
 
-            if (this.RemoveingConditioning)
+            if (RemoveingConditioning)
+            {
                 return DayToSafeTime(1f);
+            }
 
-            var tempConCount = this.StartingConditioning?.Count() ?? 0;
-            if (this.RemoveingConditioning)
+            var tempConCount = StartingConditioning?.Count() ?? 0;
+            if (RemoveingConditioning)
+            {
                 tempConCount--;
+            }
 
             var days = PS_ConditioningHelper.DaysToCondition(tempConCount);
             return DayToSafeTime(days);
@@ -304,112 +333,146 @@ namespace PS_ReconPod
         public string GetSelectedString()
         {
             if (CheatMode)
+            {
                 return "CM";
+            }
 
-            if (this.RemoveingConditioning)
+            if (RemoveingConditioning)
+            {
                 return "PS_SelectionString_RemoveingConditioning".Translate();
-            else if (this.FixingBotch)
+            }
+            else if (FixingBotch)
+            {
                 return "PS_SelectionString_FixBotched".Translate();
-            else if (this.ChangeType == TraitAlterType.Added || this.ChangeType == TraitAlterType.Altered)
-                return this.ToAdd.Label;
-            else if (this.ChangeType == TraitAlterType.Removed)
-                return this.ToRemove.Label;
+            }
+            else if (ChangeType == TraitAlterType.Added || ChangeType == TraitAlterType.Altered)
+            {
+                return ToAdd.Label;
+            }
+            else if (ChangeType == TraitAlterType.Removed)
+            {
+                return ToRemove.Label;
+            }
             else
+            {
                 return "PS_Unset".Translate();
+            }
         }
 
         public string GetFailChance()
         {
 
             if (CheatMode)
+            {
                 return "CM";
-            if (!this.FixingBotch && !this.RemoveingConditioning && this.ChangeType == TraitAlterType.UNSET)
+            }
+
+            if (!FixingBotch && !RemoveingConditioning && ChangeType == TraitAlterType.UNSET)
+            {
                 return "NA";
+            }
 
             if (FixingBotch)
+            {
                 return "100";
-            if (this.RemoveingConditioning)
-                return "100";
+            }
 
-            var startConCount = this.StartingConditioning?.Count() ?? 0;
-            return ((PS_ConditioningHelper.GetSucessChance(startConCount) * 100f)).ToString("0");
+            if (RemoveingConditioning)
+            {
+                return "100";
+            }
+
+            var startConCount = StartingConditioning?.Count() ?? 0;
+            return (PS_ConditioningHelper.GetSucessChance(startConCount) * 100f).ToString("0");
         }
 
 
         public void AddTrait(Trait t)
         {
-            this.RemoveingConditioning = false;
-            this.FixingBotch = false;
-            this.ToAdd = t;
-            this.ToRemove = null;
-            this.ChangeType = TraitAlterType.Added;
+            RemoveingConditioning = false;
+            FixingBotch = false;
+            ToAdd = t;
+            ToRemove = null;
+            ChangeType = TraitAlterType.Added;
 
-            if (this.CheatMode)
+            if (CheatMode)
+            {
                 DoCheatModeChange();
+            }
         }
 
         public void RemoveTrait(Trait t)
         {
-            this.RemoveingConditioning = false;
-            this.FixingBotch = false;
-            this.ToRemove = t;
-            this.ToAdd = null;
-            this.ChangeType = TraitAlterType.Removed;
+            RemoveingConditioning = false;
+            FixingBotch = false;
+            ToRemove = t;
+            ToAdd = null;
+            ChangeType = TraitAlterType.Removed;
 
-            if (this.CheatMode)
+            if (CheatMode)
+            {
                 DoCheatModeChange();
+            }
         }
 
         public void AlterTrait(Trait t1, Trait t2)
         {
-            this.RemoveingConditioning = false;
-            this.FixingBotch = false;
-            this.FixingBotch = false;
-            this.ToRemove = t1;
-            this.ToAdd = t2;
-            this.ChangeType = TraitAlterType.Altered;
+            RemoveingConditioning = false;
+            FixingBotch = false;
+            FixingBotch = false;
+            ToRemove = t1;
+            ToAdd = t2;
+            ChangeType = TraitAlterType.Altered;
 
-            if (this.CheatMode)
+            if (CheatMode)
+            {
                 DoCheatModeChange();
+            }
         }
 
         public void DoCheatModeChange()
         {
             var conData = new PS_Conditioning_Data
             {
-                AlterType = this.ChangeType,
-                OriginalTraitDefName = this.ToRemove?.def.defName,
-                AddedTraitDefName = this.ToAdd?.def.defName,
-                OriginalDegree = this.ToRemove?.Degree ?? 0,
-                AddedDegree = this.ToAdd?.Degree ?? 0
+                AlterType = ChangeType,
+                OriginalTraitDefName = ToRemove?.def.defName,
+                AddedTraitDefName = ToAdd?.def.defName,
+                OriginalDegree = ToRemove?.Degree ?? 0,
+                AddedDegree = ToAdd?.Degree ?? 0
             };
-            PS_ConditioningHelper.DoTraitChange(this.Pawn, conData);
+            PS_ConditioningHelper.DoTraitChange(Pawn, conData);
             if(conData.AlterType == TraitAlterType.Added || conData.AlterType == TraitAlterType.Altered)
-                this.CurrentTraits.Add(this.ToAdd);
-            if(conData.AlterType == TraitAlterType.Removed || conData.AlterType == TraitAlterType.Altered)
-                this.CurrentTraits.Remove(this.ToRemove);
-            UpdateAddableTraits(this.CurrentTraits);
-            UpdateCurrentTraits(this.CurrentTraits);
+            {
+                CurrentTraits.Add(ToAdd);
+            }
+
+            if (conData.AlterType == TraitAlterType.Removed || conData.AlterType == TraitAlterType.Altered)
+            {
+                CurrentTraits.Remove(ToRemove);
+            }
+
+            UpdateAddableTraits(CurrentTraits);
+            UpdateCurrentTraits(CurrentTraits);
         }
 
         public void SetConditioningToRemove(PS_Conditioning_Data data)
         {
-            this.RemoveingConditioning = true;
-            this.FixingBotch = false;
-            this.ConditioningToRemove = data;
-            this.ToRemove = null;
-            this.ToAdd = null;
-            this.ChangeType = TraitAlterType.UNSET;
+            RemoveingConditioning = true;
+            FixingBotch = false;
+            ConditioningToRemove = data;
+            ToRemove = null;
+            ToAdd = null;
+            ChangeType = TraitAlterType.UNSET;
         }
 
         public void SetFixingBotch()
         {
-            this.FixingBotch = true;
-            this.RemoveingConditioning = false;
+            FixingBotch = true;
+            RemoveingConditioning = false;
             //this.ConditioningToRemove = data;
-            this.ToRemove = null;
-            this.ToAdd = null;
-            this.ChangeType = TraitAlterType.UNSET;
+            ToRemove = null;
+            ToAdd = null;
+            ChangeType = TraitAlterType.UNSET;
         }
 
         public void UpdateAddableTraits(List<Trait> currentTraits)
@@ -422,9 +485,9 @@ namespace PS_ReconPod
                     Index = 0,
                     Value = trait,
                     Label = trait.LabelCap,
-                    ToolTip = trait.TipString(this.Pawn),
+                    ToolTip = trait.TipString(Pawn),
                     ButtonText = "PS_Add".Translate(),
-                    ButtonAction = delegate { this.AddTrait(trait); }
+                    ButtonAction = delegate { AddTrait(trait); }
                 }).ToList();
             AddTraitScrollView.TrySetOptions(options);
         }
@@ -434,32 +497,35 @@ namespace PS_ReconPod
             var options = traits.Select(trait =>
             {
                 var black = PS_TraitHelper.IsBlacklisted(trait);
-                var wasAdded = this.StartingConditioning?.Where(x => x.AddedTraitDefName == trait.def.defName).Any() ?? false;
+                var wasAdded = StartingConditioning?.Where(x => x.AddedTraitDefName == trait.def.defName).Any() ?? false;
                 var valid = !(black || wasAdded);
                 if (CheatMode)
+                {
                     valid = true;
+                }
+
                 var opt = new PS_ScrollView<Trait>.ScrollOption<Trait>
                 {
                     Index = 0,
                     Value = trait,
                     Label = trait.LabelCap,
-                    ToolTip = trait.TipString(this.Pawn),
+                    ToolTip = trait.TipString(Pawn),
                     HasButton = valid
                 };
                 if(trait.def.defName == "PS_Trait_BotchedConditioning" && trait.Degree == -1)
                 {
-                    opt.ButtonAction = delegate { this.SetFixingBotch(); };
+                    opt.ButtonAction = delegate { SetFixingBotch(); };
                     opt.ButtonText = "PS_Fix".Translate();
                     opt.HasButton = true;
                 }
                 if (valid && trait.def.degreeDatas.Count < 2)
                 {
-                    opt.ButtonAction = delegate { this.RemoveTrait(trait); };
+                    opt.ButtonAction = delegate { RemoveTrait(trait); };
                     opt.ButtonText = "PS_Remove".Translate();
                 }
                 else if(valid)
                 {
-                    opt.ButtonAction = delegate { this.ShowDegreeOptions(trait); };
+                    opt.ButtonAction = delegate { ShowDegreeOptions(trait); };
                     opt.ButtonText = "PS_Change".Translate();
                 }
                 return opt;
@@ -469,7 +535,7 @@ namespace PS_ReconPod
 
         public void UpdateCurrentConditioning()
         {
-            var options = this.StartingConditioning.Where(x => x.IsValid()).Select(con =>
+            var options = StartingConditioning.Where(x => x.IsValid()).Select(con =>
             {
                 var opt = new PS_ScrollView<PS_Conditioning_Data>.ScrollOption<PS_Conditioning_Data>
                 {
@@ -478,7 +544,7 @@ namespace PS_ReconPod
                     Label = con.ToShortPrettyString(),
                     ToolTip = con.ToPrettyString()
                 };
-                opt.ButtonAction = delegate { this.SetConditioningToRemove(con); };
+                opt.ButtonAction = delegate { SetConditioningToRemove(con); };
                 opt.ButtonText = "PS_Remove".Translate();
                 return opt;
             }).ToList();
@@ -490,7 +556,7 @@ namespace PS_ReconPod
             var dropDownActions = new List<Action>();
             var dropDownList = new List<FloatMenuOption>();
             
-            dropDownActions.Add(delegate { this.RemoveTrait(trait); });
+            dropDownActions.Add(delegate { RemoveTrait(trait); });
             dropDownList.Add(new FloatMenuOption("PS_Remove".Translate(), dropDownActions.Last(), MenuOptionPriority.Default, null, null, 0f, null, null));
 
             foreach (var degree in trait.def.degreeDatas)
@@ -498,7 +564,7 @@ namespace PS_ReconPod
                 if (degree.degree != trait.Degree)
                 {
                     var label = degree.label;
-                    dropDownActions.Add(delegate { this.AlterTrait(trait, new Trait(trait.def, degree: degree.degree)); });
+                    dropDownActions.Add(delegate { AlterTrait(trait, new Trait(trait.def, degree: degree.degree)); });
                     dropDownList.Add(new FloatMenuOption("PS_ChangeTo".Translate() + label, dropDownActions.Last(), MenuOptionPriority.Default, null, null, 0f, null, null));
                 }
             }
@@ -507,10 +573,10 @@ namespace PS_ReconPod
 
         private Rect GetRecForGridLocation(float x, float y, float width = 1f, float height = 1f, float MaxWidth = 2f, float MaxHeight = 6f)
         {
-            var drawRect = new Rect(0, 0, this.windowRect.width - (this.Margin * 2f), this.windowRect.height - (this.Margin * 2f));
+            var drawRect = new Rect(0, 0, windowRect.width - (Margin * 2f), windowRect.height - (Margin * 2f));
 
-            float gridBoxWidth = drawRect.width / MaxWidth;
-            float gridBoxHeight = drawRect.height / MaxHeight;
+            var gridBoxWidth = drawRect.width / MaxWidth;
+            var gridBoxHeight = drawRect.height / MaxHeight;
 
             return new Rect(gridBoxWidth * x, gridBoxHeight * y, gridBoxWidth * width, gridBoxHeight * height);
         }
@@ -518,19 +584,31 @@ namespace PS_ReconPod
         private string DayToSafeTime(float days)
         {
             if (days > 1f)
+            {
                 return days.ToString("0.0") + " " + "PS_Time_Days".Translate();
-            if(days == 1f)
+            }
+
+            if (days == 1f)
+            {
                 return days.ToString("0") + " " + "PS_Time_Day".Translate();
-            
+            }
+
             var hours = days * 24f;
             if(hours > 1f)
+            {
                 return hours.ToString("0.0") + " " + "PS_Time_Hours".Translate();
+            }
+
             if (hours == 1f)
+            {
                 return hours.ToString("0") + " " + "PS_Time_Hour".Translate();
+            }
 
             var minutes = hours * 24f;
             if (minutes == 1f)
+            {
                 return minutes.ToString("0") + " " + "PS_Time_Minute".Translate();
+            }
 
             return minutes.ToString("0.0") + " " + "PS_Time_Minutes".Translate();
 

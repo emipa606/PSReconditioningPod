@@ -10,13 +10,7 @@ namespace PS_ReconPod
 {
     public class PS_TraitHelper
     {
-        private static List<string> BlackList
-        {
-            get
-            {
-                return new List<string> { "Beauty", "Immunity", "AnnoyingVoice", "PS_Trait_BotchedConditioning", "CreepyBreathing" };
-            }
-        }
+        private static List<string> BlackList => new List<string> { "Beauty", "Immunity", "AnnoyingVoice", "PS_Trait_BotchedConditioning", "CreepyBreathing" };
 
         private static List<TraitDef> _AllTraitDefs;
 
@@ -25,7 +19,10 @@ namespace PS_ReconPod
             get
             {
                 if (_AllTraitDefs == null)
+                {
                     _AllTraitDefs = DefDatabase<TraitDef>.AllDefs.ToList();
+                }
+
                 return _AllTraitDefs.ToList();
             }
         }
@@ -37,7 +34,10 @@ namespace PS_ReconPod
             get
             {
                 if (_AllTraits == null)
+                {
                     LoadTraits();
+                }
+
                 return _AllTraits;
             }
         }

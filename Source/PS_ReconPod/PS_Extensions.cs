@@ -12,7 +12,9 @@ namespace PS_ReconPod
         {
 
             if (!PS_ConditioningHelper.IsReconditioned(pawn))
+            {
                 return -1f;
+            }
 
             var need = pawn.needs.TryGetNeed<PS_Needs_Reconditioning>();
             if (need == null)

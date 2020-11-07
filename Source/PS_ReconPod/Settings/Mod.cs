@@ -34,10 +34,7 @@ namespace PS_ReconPod
                 }
                 return settings;
             }
-            set
-            {
-                settings = value;
-            }
+            set => settings = value;
         }
 
         /// <summary>
@@ -56,11 +53,16 @@ namespace PS_ReconPod
         /// <param name="rect"></param>
         public override void DoSettingsWindowContents(Rect rect)
         {
-            Listing_Standard listing_Standard = new Listing_Standard();
+            var listing_Standard = new Listing_Standard();
             listing_Standard.Begin(rect);
             listing_Standard.CheckboxLabeled("Count 'reconditioned' as bad", ref Settings.RecondIsBad, "This makes it possible to remove with mods that remove bad Hediffs, such as MedPod");
             listing_Standard.End();
             Settings.Write();
+        }
+
+        public override void WriteSettings()
+        {
+            base.WriteSettings();
             RecondApplyer.Apply();
         }
 

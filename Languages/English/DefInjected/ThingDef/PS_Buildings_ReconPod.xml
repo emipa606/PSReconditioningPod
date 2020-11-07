@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-
-  <PS_Buildings_ReconPod.label>reconditioning pod</PS_Buildings_ReconPod.label>
-  <PS_Buildings_ReconPod.description>A modified cryptosleep casket containing a digital psychologist capable of reconditioning a colonist</PS_Buildings_ReconPod.description>
-  <PS_Buildings_ReconPod_Blueprint.label>reconditioning pod (blueprint)</PS_Buildings_ReconPod_Blueprint.label>
-  <PS_Buildings_ReconPod_Blueprint_Install.label>reconditioning pod (blueprint)</PS_Buildings_ReconPod_Blueprint_Install.label>
-  <PS_Buildings_ReconPod_Frame.label>reconditioning pod (building)</PS_Buildings_ReconPod_Frame.label>
-  <PS_Buildings_ReconPod_Frame.description>A modified cryptosleep casket containing a digital psychologist capable of reconditioning a colonist</PS_Buildings_ReconPod_Frame.description>
-
+  <!--<PS_Buildings_ReconPod.label>reconditioning pod</PS_Buildings_ReconPod.label>-->
+  <!--<PS_Buildings_ReconPod.description>A modified cryptosleep casket containing a digital psychologist capable of reconditioning a colonist</PS_Buildings_ReconPod.description>-->
+  <!--<PS_Buildings_ReconPod_Blueprint.label>reconditioning pod (blueprint)</PS_Buildings_ReconPod_Blueprint.label>-->
+  <!--<PS_Buildings_ReconPod_Blueprint_Install.label>reconditioning pod (blueprint)</PS_Buildings_ReconPod_Blueprint_Install.label>-->
+  <!--<PS_Buildings_ReconPod_Frame.label>reconditioning pod (building)</PS_Buildings_ReconPod_Frame.label>-->
+  <!--<PS_Buildings_ReconPod_Frame.description>A modified cryptosleep casket containing a digital psychologist capable of reconditioning a colonist</PS_Buildings_ReconPod_Frame.description>-->
 
 </LanguageData>
