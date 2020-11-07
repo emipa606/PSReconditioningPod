@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <ThoughtDef>
-    <defName>NeedFood</defName>
+    <defName>PS_Thought_Conditioning_Need</defName>
     <workerClass>PS_ReconPod.PS_ThoughtWorker_Conditioning</workerClass>
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
