@@ -4,5 +4,4 @@
   <!--<PS_Needs_Reconditioning.description>The current stregnth of this pawn's reconditioning. At lower values they have a chance of reverting back to how they were. If it reaches zero the conditioning will be lost completly. 
     
 Falls at a rate of 25% per day, doubled for each additional conditioning.</PS_Needs_Reconditioning.description>-->
-
 </LanguageData>

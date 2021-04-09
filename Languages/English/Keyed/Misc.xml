@@ -64,5 +64,4 @@ Warning: A failed conditioning could result in damage to the patient's psyci.</P
   <PS_Messages_BotchedConditioning>Something went wrong with {0}'s reconditioning!</PS_Messages_BotchedConditioning>
   <PS_Messages_LuckyConditioning>Something went  wrong with {0}'s reconditioning! Wait, maybe not...</PS_Messages_LuckyConditioning>
   <PS_CheatModeString>Cheat Mode: Changes will take place instantly with no cost. This is intended for testing. Ignore the fact it's call cheat mode.</PS_CheatModeString>
-
 </LanguageData>
