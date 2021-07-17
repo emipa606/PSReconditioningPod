@@ -1,8 +1,4 @@
-﻿using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Verse;
+﻿using System.Collections.Generic;
 using Verse.AI;
 
 namespace PS_ReconPod
@@ -11,10 +7,10 @@ namespace PS_ReconPod
     {
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            Pawn pawn = this.pawn;
-            LocalTargetInfo targetA = this.job.targetA;
-            Job job = this.job;
-            return pawn.Reserve(targetA, job, 1, -1, null, errorOnFailed);
+            var pawn1 = pawn;
+            var targetA = job.targetA;
+            var job1 = job;
+            return pawn1.Reserve(targetA, job1, 1, -1, null, errorOnFailed);
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
@@ -22,15 +18,13 @@ namespace PS_ReconPod
             this.FailOnDespawnedOrNull(TargetIndex.A);
             yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.InteractionCell);
             var enterPodToil = new Toil();
-            enterPodToil.initAction = delegate ()
+            enterPodToil.initAction = delegate
             {
-                Pawn actor = enterPodToil.actor;
-                var pod = (PS_Buildings_ReconPod)actor.jobs.curJob.GetTarget(TargetIndex.A).Thing;
+                var actor = enterPodToil.actor;
+                var pod = (PS_Buildings_ReconPod) actor.jobs.curJob.GetTarget(TargetIndex.A).Thing;
                 pod.StartRefreshing(actor, actor.jobs.curJob.GetTarget(TargetIndex.A));
             };
             yield return enterPodToil;
-            yield break;
         }
-        
     }
 }

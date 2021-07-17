@@ -13,7 +13,7 @@ namespace PS_ReconPod
         // Token: 0x06000024 RID: 36 RVA: 0x00002840 File Offset: 0x00000A40
         public override ThinkNode DeepCopy(bool resolve = true)
         {
-            return (PS_JobGiver_RefreshConditioning)base.DeepCopy(resolve);
+            return (PS_JobGiver_RefreshConditioning) base.DeepCopy(resolve);
         }
 
         // Token: 0x06000025 RID: 37 RVA: 0x00002860 File Offset: 0x00000A60
@@ -29,10 +29,8 @@ namespace PS_ReconPod
             {
                 return 11.5f;
             }
-            else
-            {
-                return 0f;
-            }
+
+            return 0f;
         }
 
         // Token: 0x06000026 RID: 38 RVA: 0x000028AC File Offset: 0x00000AAC
@@ -50,41 +48,47 @@ namespace PS_ReconPod
             }
 
             var myPod = PS_PodFinder.FindMyPod(pawn);
-            if (myPod != null && PS_PodFinder.CanGetToPod(pawn, myPod) && pawn.CanReserve(new LocalTargetInfo(myPod)) && myPod.IsUseable(pawn))
+            if (myPod != null && PS_PodFinder.CanGetToPod(pawn, myPod) && pawn.CanReserve(new LocalTargetInfo(myPod)) &&
+                myPod.IsUseable(pawn))
             {
                 return new Job(PS_ReconPodDefsOf.PS_RefreshConditioning, new LocalTargetInfo(myPod));
             }
-            else if (pawn.Map != null)
+
+            if (pawn.Map == null)
             {
-                var condionallList = pawn.Map.listerThings.ThingsOfDef(DefDatabase<ThingDef>.GetNamed("PS_Drugs_Conditionall"));
-                if (condionallList?.Any() ?? false)
-                {
-                    var avalible = condionallList.Where(x => IsConditionallAvalible(x, pawn)).ToList();
-                    if (avalible?.Any() ?? false)
-                    {
-                        var closest = GetClostest(pawn, avalible);
-                        if (closest != null)
-                        {
-                            try
-                            {
-                                var job = DrugAIUtility.IngestAndTakeToInventoryJob(closest, pawn, maxNumToCarry: 1);// new Job(JobDefOf.Ingest, new LocalTargetInfo(closest));
-                                return job;
-                            }
-                            catch(ArgumentException ex)
-                            {
-                                Log.Error("PS_BadDrugPolicyError".Translate());
-                                throw ex;
-                            }
-                            catch(Exception ex)
-                            {
-                                throw ex;
-                            }
-                        }
-                    }
-                }
+                return null;
             }
 
-            return null;
+            var condionallList =
+                pawn.Map.listerThings.ThingsOfDef(DefDatabase<ThingDef>.GetNamed("PS_Drugs_Conditionall"));
+            if (!(condionallList?.Any() ?? false))
+            {
+                return null;
+            }
+
+            var avalible = condionallList.Where(x => IsConditionallAvalible(x, pawn)).ToList();
+            if (avalible.Any())
+            {
+                return null;
+            }
+
+            var closest = GetClostest(pawn, avalible);
+            if (closest == null)
+            {
+                return null;
+            }
+
+            try
+            {
+                var job = DrugAIUtility.IngestAndTakeToInventoryJob(closest, pawn,
+                    1); // new Job(JobDefOf.Ingest, new LocalTargetInfo(closest));
+                return job;
+            }
+            catch (ArgumentException)
+            {
+                Log.Error("PS_BadDrugPolicyError".Translate());
+                throw;
+            }
         }
 
         private bool IsConditionallAvalible(Thing conditionall, Pawn pawn)
@@ -112,15 +116,18 @@ namespace PS_ReconPod
         {
             var index = 0;
             var minDist = float.MaxValue;
-            for(var n = 0; n < things.Count(); n++)
+            for (var n = 0; n < things.Count; n++)
             {
                 var tempDist = pawn.Position.DistanceTo(things[n].Position);
-                if (tempDist < minDist)
+                if (!(tempDist < minDist))
                 {
-                    minDist = tempDist;
-                    index = n;
+                    continue;
                 }
+
+                minDist = tempDist;
+                index = n;
             }
+
             return things[index];
         }
     }
@@ -182,6 +189,6 @@ namespace PS_ReconPod
 //            return result;
 //        }
 
-        
+
 //    }
 //}

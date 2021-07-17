@@ -1,7 +1,4 @@
-﻿using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 
@@ -11,10 +8,10 @@ namespace PS_ReconPod
     {
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            Pawn pawn = this.pawn;
-            LocalTargetInfo targetA = this.job.targetA;
-            Job job = this.job;
-            return pawn.Reserve(targetA, job, 1, -1, null, errorOnFailed);
+            var pawn1 = pawn;
+            var targetA = job.targetA;
+            var job1 = job;
+            return pawn1.Reserve(targetA, job1, 1, -1, null, errorOnFailed);
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
@@ -22,24 +19,25 @@ namespace PS_ReconPod
             this.FailOnDespawnedOrNull(TargetIndex.A);
             yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.InteractionCell);
             var openMissionSelect = new Toil();
-            openMissionSelect.initAction = delegate ()
+            openMissionSelect.initAction = delegate
             {
-                Pawn actor = openMissionSelect.actor;
-                var pod = (PS_Buildings_ReconPod)actor.jobs.curJob.GetTarget(TargetIndex.A).Thing;
+                var actor = openMissionSelect.actor;
+                var pod = (PS_Buildings_ReconPod) actor.jobs.curJob.GetTarget(TargetIndex.A).Thing;
                 StartPoding(pod, actor);
             };
             yield return openMissionSelect;
-            yield break;
         }
 
-        public void StartPoding(PS_Buildings_ReconPod pod, Pawn pawn)
+        public void StartPoding(PS_Buildings_ReconPod pod, Pawn podPawn)
         {
-            if (pod.IsUseable(pawn))
+            if (!pod.IsUseable(podPawn))
             {
-                var window = new PS_Panel_Reconditioning();
-                window.SetPawnAndPod(pawn, pod);
-                Find.WindowStack.Add(window);
+                return;
             }
+
+            var window = new PS_Panel_Reconditioning();
+            window.SetPawnAndPod(podPawn, pod);
+            Find.WindowStack.Add(window);
         }
     }
 }

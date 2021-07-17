@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using RimWorld;
+﻿using RimWorld;
 using Verse;
 
 namespace PS_ReconPod
@@ -16,7 +14,7 @@ namespace PS_ReconPod
         //    else
         //        yield break;
         //}
-        
+
         //public override void ApplyOnPawn(Pawn pawn, BodyPartRecord part, Pawn billDoer, List<Thing> ingredients, Bill bill)
         //{
         //    if (!PS_ConditioningHelper.IsReconditioned(pawn))
@@ -33,7 +31,8 @@ namespace PS_ReconPod
                 return;
             }
 
-            if (!PS_ConditioningHelper.SetCurrentNeedLevel(pawn, PS_ConditioningHelper.GetCurrentNeedLevel(pawn) + 0.25f))
+            if (!PS_ConditioningHelper.SetCurrentNeedLevel(pawn,
+                PS_ConditioningHelper.GetCurrentNeedLevel(pawn) + 0.25f))
             {
                 Log.Error("PS_Recipes_AdministerConditionall: Failed to set need level for unknown reason.");
             }

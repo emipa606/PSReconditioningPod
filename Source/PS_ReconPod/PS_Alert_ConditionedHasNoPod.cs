@@ -1,13 +1,12 @@
-﻿using RimWorld;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using RimWorld;
 using Verse;
 
 namespace PS_ReconPod
 {
     // Token: 0x020007C8 RID: 1992
-    public class PS_Alert_ConditionedHasNoPod: Alert
+    public class PS_Alert_ConditionedHasNoPod : Alert
     {
         // Token: 0x06002C2E RID: 11310 RVA: 0x0014B3CC File Offset: 0x001497CC
         public PS_Alert_ConditionedHasNoPod()
@@ -23,17 +22,18 @@ namespace PS_ReconPod
         {
             get
             {
-                foreach (Pawn p in PawnsFinder.AllMaps_FreeColonistsSpawned)
+                foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned)
                 {
-                    if (p.Map.IsPlayerHome && PS_ConditioningHelper.IsReconditioned(p))
+                    if (!p.Map.IsPlayerHome || !PS_ConditioningHelper.IsReconditioned(p))
                     {
-                        if(!PS_PodFinder.HasAccessablePod(p))
-                        {
-                            yield return p;
-                        }
+                        continue;
+                    }
+
+                    if (!PS_PodFinder.HasAccessablePod(p))
+                    {
+                        yield return p;
                     }
                 }
-                yield break;
             }
         }
 

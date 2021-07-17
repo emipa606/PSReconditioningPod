@@ -1,6 +1,6 @@
-﻿using RimWorld;
-using System;
+﻿using System;
 using System.Linq;
+using RimWorld;
 using Verse;
 
 namespace PS_ReconPod
@@ -11,7 +11,8 @@ namespace PS_ReconPod
         // Token: 0x06000A5C RID: 2652 RVA: 0x00050834 File Offset: 0x0004EC34
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
-            var need = (PS_Needs_Reconditioning)p.needs.AllNeeds.Where(x => x.def.defName == "PS_Needs_Reconditioning").FirstOrDefault();
+            var need = (PS_Needs_Reconditioning) p.needs.AllNeeds
+                .FirstOrDefault(x => x.def.defName == "PS_Needs_Reconditioning");
             if (need == null)
             {
                 return ThoughtState.Inactive;

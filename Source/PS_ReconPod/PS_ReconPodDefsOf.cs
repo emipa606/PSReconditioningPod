@@ -1,5 +1,4 @@
-﻿using System;
-using RimWorld;
+﻿using RimWorld;
 using Verse;
 
 namespace PS_ReconPod
@@ -17,5 +16,4 @@ namespace PS_ReconPod
 
         public static JobDef PS_ManageConditioning;
     }
-
 }
