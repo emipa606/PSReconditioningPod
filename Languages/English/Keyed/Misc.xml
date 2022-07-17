@@ -4,6 +4,7 @@
   <PS_Cancel>Cancel</PS_Cancel>
   <PS_Accept>Accept</PS_Accept>
   <PS_Status>Status</PS_Status>
+  <PS_Search>Search</PS_Search>
   <PS_PodOption_Condition>Enter reconditioning pod</PS_PodOption_Condition>
   <PS_PodOption_RefreshConditioning>Refresh conditioning</PS_PodOption_RefreshConditioning>
   <PS_PodOption_Decondition>Manage conditioning</PS_PodOption_Decondition>

@@ -1,25 +1,24 @@
 ﻿using Verse;
 
-namespace PS_ReconPod
+namespace PS_ReconPod;
+
+[StaticConstructorOnStartup]
+public class RecondApplyer
 {
-    [StaticConstructorOnStartup]
-    public class RecondApplyer
+    static RecondApplyer()
     {
-        static RecondApplyer()
+        Apply();
+    }
+
+    public static void Apply()
+    {
+        var def = DefDatabase<HediffDef>.GetNamed("PS_Hediff_Reconditioned");
+        if (def.isBad == LoadedModManager.GetMod<PS_ReconPodMod>().GetSettings<PS_ReconPodSettings>().RecondIsBad)
         {
-            Apply();
+            return;
         }
 
-        public static void Apply()
-        {
-            var def = DefDatabase<HediffDef>.GetNamed("PS_Hediff_Reconditioned");
-            if (def.isBad == LoadedModManager.GetMod<PS_ReconPodMod>().GetSettings<PS_ReconPodSettings>().RecondIsBad)
-            {
-                return;
-            }
-
-            def.isBad = LoadedModManager.GetMod<PS_ReconPodMod>().GetSettings<PS_ReconPodSettings>().RecondIsBad;
-            Log.Message("PS Reconditioning Pod: reconditioning counts as bad: " + def.isBad);
-        }
+        def.isBad = LoadedModManager.GetMod<PS_ReconPodMod>().GetSettings<PS_ReconPodSettings>().RecondIsBad;
+        Log.Message("PS Reconditioning Pod: reconditioning counts as bad: " + def.isBad);
     }
 }

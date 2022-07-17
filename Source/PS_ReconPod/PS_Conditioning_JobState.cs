@@ -1,12 +1,11 @@
-﻿namespace PS_ReconPod
+﻿namespace PS_ReconPod;
+
+public enum PS_Conditioning_JobState
 {
-    public enum PS_Conditioning_JobState
-    {
-        UNSET = -1,
-        Waiting = 0,
-        Reconditioning = 2,
-        Refreshing = 3,
-        Deconditioning = 4,
-        FixingBotch = 5
-    }
+    UNSET = -1,
+    Waiting = 0,
+    Reconditioning = 2,
+    Refreshing = 3,
+    Deconditioning = 4,
+    FixingBotch = 5
 }

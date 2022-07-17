@@ -2,71 +2,53 @@
 using System.Linq;
 using Verse;
 
-namespace PS_ReconPod
+namespace PS_ReconPod;
+
+public class PS_Hediff_Reconditioned : Hediff
 {
-    public class PS_Hediff_Reconditioned : Hediff
+    private bool CheckedConData;
+    //public TraitAlterType ChangeType;
+    //public TraitDef OrigonalTraitDef;
+    //public TraitDef AddedTraitDef;
+
+    // Old: to support pre-multi-conditioning
+    public PS_Conditioning_Data ConditioningData;
+    public List<PS_Conditioning_Data> ConditioningDataList;
+
+    public PS_Hediff_Reconditioned()
     {
-        private bool CheckedConData;
-        //public TraitAlterType ChangeType;
-        //public TraitDef OrigonalTraitDef;
-        //public TraitDef AddedTraitDef;
+        def = DefDatabase<HediffDef>.GetNamed("PS_Hediff_Reconditioned");
+        CheckedConData = false;
+        ConditioningDataList = new List<PS_Conditioning_Data>();
+    }
 
-        // Old: to support pre-multi-conditioning
-        public PS_Conditioning_Data ConditioningData;
-        public List<PS_Conditioning_Data> ConditioningDataList;
+    public override string LabelBase =>
+        "Reconditioned"; //switch (this.ConditioningData.AlterType)//{//    case TraitAlterType.Added://        return "PS_HediffReconditionedAddedLab".Translate() + " " + this.ConditioningData.AddedTraitLabel;//    case TraitAlterType.Removed://        return "PS_HediffReconditionedRemovedLab".Translate() + " " + this.ConditioningData.OrigonalTraitLabel;//    case TraitAlterType.Altered://        return "PS_HediffReconditionedAlteredLab".Translate() + " " + this.ConditioningData.OrigonalTraitLabel;//    case TraitAlterType.UNSET://        Log.Error("PS_Hediff_Reconditioned: Tried to get label of hediff with ChangeType = UNSET.");//        return "ERROR";//    default://        Log.Error("PS_Hediff_Reconditioned: Tried to get label of hediff with unknown ChangeType.");//        return "ERROR";//}
 
-        public PS_Hediff_Reconditioned()
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Deep.Look(ref ConditioningData, "ConditionData");
+        Scribe_Collections.Look(ref ConditioningDataList, "ConditionDataList");
+        //Scribe_Values.Look<TraitAlterType>(ref this.ChangeType, "ChangeType", TraitAlterType.UNSET, false);
+        //Scribe_Defs.Look<TraitDef>(ref this.OrigonalTraitDef, "OrigonalTraitDef");
+        //Scribe_Defs.Look<TraitDef>(ref this.AddedTraitDef, "AddedTraitDef");
+    }
+
+    private void CheckForOldConData()
+    {
+        if (ConditioningData == null)
         {
-            def = DefDatabase<HediffDef>.GetNamed("PS_Hediff_Reconditioned");
-            CheckedConData = false;
-            ConditioningDataList = new List<PS_Conditioning_Data>();
+            return;
         }
 
-        public override string LabelBase =>
-            "Reconditioned"; //switch (this.ConditioningData.AlterType)//{//    case TraitAlterType.Added://        return "PS_HediffReconditionedAddedLab".Translate() + " " + this.ConditioningData.AddedTraitLabel;//    case TraitAlterType.Removed://        return "PS_HediffReconditionedRemovedLab".Translate() + " " + this.ConditioningData.OrigonalTraitLabel;//    case TraitAlterType.Altered://        return "PS_HediffReconditionedAlteredLab".Translate() + " " + this.ConditioningData.OrigonalTraitLabel;//    case TraitAlterType.UNSET://        Log.Error("PS_Hediff_Reconditioned: Tried to get label of hediff with ChangeType = UNSET.");//        return "ERROR";//    default://        Log.Error("PS_Hediff_Reconditioned: Tried to get label of hediff with unknown ChangeType.");//        return "ERROR";//}
-
-        public override void ExposeData()
+        if (ConditioningDataList == null || !ConditioningDataList.Any())
         {
-            base.ExposeData();
-            Scribe_Deep.Look(ref ConditioningData, "ConditionData");
-            Scribe_Collections.Look(ref ConditioningDataList, "ConditionDataList");
-            //Scribe_Values.Look<TraitAlterType>(ref this.ChangeType, "ChangeType", TraitAlterType.UNSET, false);
-            //Scribe_Defs.Look<TraitDef>(ref this.OrigonalTraitDef, "OrigonalTraitDef");
-            //Scribe_Defs.Look<TraitDef>(ref this.AddedTraitDef, "AddedTraitDef");
-        }
-
-        private void CheckForOldConData()
-        {
-            if (ConditioningData == null)
+            Log.Message(
+                $"PS_Hediff_Reconditoning: Condition data for {pawn.LabelShort} found as single and not list. This is due to multi-condition update. Building list now.");
+            ConditioningDataList = new List<PS_Conditioning_Data>
             {
-                return;
-            }
-
-            if (ConditioningDataList == null || !ConditioningDataList.Any())
-            {
-                Log.Message(
-                    $"PS_Hediff_Reconditoning: Condition data for {pawn.LabelShort} found as single and not list. This is due to multi-condition update. Building list now.");
-                ConditioningDataList = new List<PS_Conditioning_Data>
-                {
-                    new PS_Conditioning_Data
-                    {
-                        PawnId = ConditioningData.PawnId,
-                        AddedTraitDefName = ConditioningData.AddedTraitDefName,
-                        OriginalTraitDefName = ConditioningData.OriginalTraitDefName,
-                        AddedDegree = ConditioningData.AddedDegree,
-                        OriginalDegree = ConditioningData.OriginalDegree,
-                        AlterType = ConditioningData.AlterType
-                    }
-                };
-                ConditioningData = null;
-                return;
-            }
-
-            if (!ConditioningDataList.Any(x => x.IsSame(ConditioningData)))
-            {
-                Log.Message(
-                    $"PS_Hediff_Reconditoning: Condition data for {pawn.LabelShort} found as single and not list due to update. But list was already occupied.");
-                ConditioningDataList.Add(new PS_Conditioning_Data
+                new PS_Conditioning_Data
                 {
                     PawnId = ConditioningData.PawnId,
                     AddedTraitDefName = ConditioningData.AddedTraitDefName,
@@ -74,25 +56,42 @@ namespace PS_ReconPod
                     AddedDegree = ConditioningData.AddedDegree,
                     OriginalDegree = ConditioningData.OriginalDegree,
                     AlterType = ConditioningData.AlterType
-                });
-                ConditioningData = null;
-            }
-
-            var tempList = ConditioningDataList.Where(x => x.IsValid()).ToList();
-            ConditioningDataList.Clear();
-            ConditioningDataList = tempList;
+                }
+            };
+            ConditioningData = null;
+            return;
         }
 
-        public override void Tick()
+        if (!ConditioningDataList.Any(x => x.IsSame(ConditioningData)))
         {
-            base.Tick();
-            if (CheckedConData)
+            Log.Message(
+                $"PS_Hediff_Reconditoning: Condition data for {pawn.LabelShort} found as single and not list due to update. But list was already occupied.");
+            ConditioningDataList.Add(new PS_Conditioning_Data
             {
-                return;
-            }
-
-            CheckForOldConData();
-            CheckedConData = true;
+                PawnId = ConditioningData.PawnId,
+                AddedTraitDefName = ConditioningData.AddedTraitDefName,
+                OriginalTraitDefName = ConditioningData.OriginalTraitDefName,
+                AddedDegree = ConditioningData.AddedDegree,
+                OriginalDegree = ConditioningData.OriginalDegree,
+                AlterType = ConditioningData.AlterType
+            });
+            ConditioningData = null;
         }
+
+        var tempList = ConditioningDataList.Where(x => x.IsValid()).ToList();
+        ConditioningDataList.Clear();
+        ConditioningDataList = tempList;
+    }
+
+    public override void Tick()
+    {
+        base.Tick();
+        if (CheckedConData)
+        {
+            return;
+        }
+
+        CheckForOldConData();
+        CheckedConData = true;
     }
 }

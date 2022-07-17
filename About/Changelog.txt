@@ -1,5 +1,8 @@
 # Changelog for PSReconditioningPod
 
+1.3.1 - Added searchbar, sorted the traits alphabetically
+
+
 1.0.6.0 - Mod updated for 1.3 and passed autotests
 
 

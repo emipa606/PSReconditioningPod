@@ -1,10 +1,9 @@
-﻿namespace PS_ReconPod
+﻿namespace PS_ReconPod;
+
+public enum TraitAlterType
 {
-    public enum TraitAlterType
-    {
-        UNSET = -1,
-        Added = 0,
-        Removed = 1,
-        Altered = 2
-    }
+    UNSET = -1,
+    Added = 0,
+    Removed = 1,
+    Altered = 2
 }

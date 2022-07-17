@@ -1,6 +1,6 @@
 # PSReconditioningPod
 
-![Image](https://i.imgur.com/WAEzk68.png)
+![Image](https://i.imgur.com/buuPQel.png)
 
 Update of Neon1028s mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1588408365
@@ -9,22 +9,13 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1588408365
 - Should no longer overwrite vanilla, thanks pinguin!
 - Added support for https://steamcommunity.com/sharedfiles/filedetails/?id=2451324814][SYR] Trait Value
 
-![Image](https://i.imgur.com/7Gzt3Rg.png)
+![Image](https://i.imgur.com/pufA0kM.png)
 
-
-[table]
-    [tr]
-        [td]https://invite.gg/Mlie]![Image](https://i.imgur.com/zdzzBrc.png)
-[/td]
-        [td]https://github.com/emipa606/PSReconditioningPod]![Image](https://i.imgur.com/kTkpTOE.png)
-[/td]
-    [/tr]
-[/table]
 	
-![Image](https://i.imgur.com/NOW7jU1.png)
+![Image](https://i.imgur.com/Z4GOv8H.png)
 
 
-Pyromaniacs setting your rice fields on fire? Chemical Fascination depleting your yayo supply? Or what about that guy who keeps getting punched in the face because he’s so Abrasive? Well no more! Further advances in plasteel study have resulted in new alteration technology. This time not in the body, but in the mind. Though the combination of neural transmitter manipulation, suggestive stimulus, and a digital psychologist AI, scientist have found a way to change the core components of a patient&apos;s personality.
+Pyromaniacs setting your rice fields on fire? Chemical Fascination depleting your yayo supply? Or what about that guy who keeps getting punched in the face because he’s so Abrasive? Well no more! Further advances in plasteel study have resulted in new alteration technology. This time not in the body, but in the mind. Though the combination of neural transmitter manipulation, suggestive stimulus, and a digital psychologist AI, scientist have found a way to change the core components of a patient's personality.
 
 Introducing the Plasteel Surgery Reconditioning Pod. Just one relaxing day(s) long session in this modified crytosleep casket will leave colonists feeling like a whole new person! Unwanted traits can be removed, or better traits can be added. Want someone to have the opposite trait they do now? Well no problem, traits in the same spectrum can be swapped out for one another, so trade that slothful nature for a more industrious attitude. Upon first use the pod will be biometrically encoded to the user, ensuring they always have a pod just for them.
 
@@ -70,17 +61,7 @@ Conditionall: After research, it can be made at a drug lab for 5 psychoid leaves
 
 Neural Cement: Requires a medical skill of 15, 20 plasteel, and 5 glitterworld medicine. It will remove the conditioning hediff and replace it with neural cement. The pawn will no longer have the conditioning need, but they also can never be reconditioned again. Nothing can remove neural cement (maybe, honestly haven’t tried all the hediff removing items on it)
 
-Cheat Mode:
-I made this for testing, but though others would enjoy it. If you are in dev mode and select a pod there will be a toggle for cheat mode. When a pawn is sent to a pod in cheat mode you get the same UI as the normal mode, but when a trait is selected to add or remove it’s done instantly for no cost. Ignore the fact it is called cheat mode, do not use this to cheat. Only villians do that.
-
-Compatibility:
-This mod will work with existing saves, BUT existing drug policies will not include Conditionall. To fix this, just make a new drug policy and it should be on there.
-
-Problems have been reported with multiple UI mods. No support it provided for UI mods at the moment. Some my work, some may not.
-
-Traits from other mods will still show up. Normal traits work fine, but a lot of other mods use traits to do cool stuff like add magic or the force. If you remove these some things might break.
-
-![Image](https://i.imgur.com/Rs6T6cr.png)
+![Image](https://i.imgur.com/PwoNOj4.png)
 
 
 
