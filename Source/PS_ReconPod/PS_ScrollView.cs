@@ -39,7 +39,6 @@ public class PS_ScrollView<T>
         OptionHeight = Text.CalcHeight("Test", 500f);
 
         var trueDrawRect = DrawRect;
-        // new Rect(this.DrawRect.x + Padding, this.DrawRect.y + Padding, this.DrawRect.width - (this.Padding * 2f), this.DrawRect.height - (this.Padding * 2f));
         if (Options == null)
         {
             Log.Error("PS_ReconPod.PS_ScrollView: Tired to draw scroll view with no options");

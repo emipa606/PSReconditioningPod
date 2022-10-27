@@ -223,7 +223,7 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
     public override string GetInspectString()
     {
         string result;
-        if (ParentHolder != null && !(ParentHolder is Map))
+        if (ParentHolder != null && ParentHolder is not Verse.Map)
         {
             result = base.GetInspectString();
         }
@@ -253,7 +253,7 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
 
             if (Prefs.DevMode && PodOwner != null)
             {
-                stringBuilder.AppendLine("(Dev) Pawn need: " + PS_ConditioningHelper.GetCurrentNeedLevel(PodOwner));
+                stringBuilder.AppendLine($"(Dev) Pawn need: {PS_ConditioningHelper.GetCurrentNeedLevel(PodOwner)}");
             }
 
             result = stringBuilder.ToString().TrimEndNewlines();
@@ -605,14 +605,11 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
         }
 
 
-        if (ProgressBarEffector != null)
+        var mote = ((SubEffecter_ProgressBar)ProgressBarEffector?.children[0])?.mote;
+        if (mote != null)
         {
-            var mote = ((SubEffecter_ProgressBar)ProgressBarEffector?.children[0])?.mote;
-            if (mote != null)
-            {
-                mote.progress = Mathf.Clamp01(1f - (CurrentTicksLeft / CurrentMaxTicks));
-                mote.offsetZ = -0.5f;
-            }
+            mote.progress = Mathf.Clamp01(1f - (CurrentTicksLeft / CurrentMaxTicks));
+            mote.offsetZ = -0.5f;
         }
 
         if (JobState == PS_Conditioning_JobState.Waiting)
@@ -724,7 +721,7 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
             return;
         }
 
-        var hediff = pawn.health.hediffSet.GetHediffs<PS_Hediff_Reconditioned>().FirstOrDefault();
+        var hediff = pawn.health.hediffSet.GetFirstHediff<PS_Hediff_Reconditioned>();
         if (hediff != null)
         {
             var currentPart = hediff.Part;
@@ -781,7 +778,7 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
         var conCount = PS_ConditioningHelper.GetConditioningDataFromHediff(pawn, false)?.Count ?? 0;
         var successChance = PS_ConditioningHelper.GetSucessChance(conCount);
         var roll = Rand.Range(0f, 1f);
-        Log.Message($"PS_Buildings_ReconPod: Rolled for sucess Chance: {successChance}, Roll: {roll}");
+        //Log.Message($"PS_Buildings_ReconPod: Rolled for sucess Chance: {successChance}, Roll: {roll}");
 
         //roll = 1.00f;
 
@@ -792,43 +789,47 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
         }
 
         roll = Rand.Range(0f, 1f);
-        // Fail with no coniquence
-        if (roll > 0.3f)
+        switch (roll)
         {
-            pawn.needs.mood.thoughts.memories.TryGainMemory(
-                DefDatabase<ThoughtDef>.GetNamed("PS_Thoughts_Memory_FailedConditioned"));
-            Messages.Message(string.Format("PS_Messages_FailConditioning".Translate(), pawn.LabelShort),
-                new LookTargets(pawn), MessageTypeDefOf.NegativeEvent);
-        }
-        // Botched
-        else if (roll > 0.01f)
-        {
-            var bothedcondata = new PS_Conditioning_Data
+            // Fail with no coniquence
+            case > 0.3f:
+                pawn.needs.mood.thoughts.memories.TryGainMemory(
+                    DefDatabase<ThoughtDef>.GetNamed("PS_Thoughts_Memory_FailedConditioned"));
+                Messages.Message(string.Format("PS_Messages_FailConditioning".Translate(), pawn.LabelShort),
+                    new LookTargets(pawn), MessageTypeDefOf.NegativeEvent);
+                break;
+            // Botched
+            case > 0.01f:
             {
-                AlterType = TraitAlterType.Added,
-                AddedTraitDefName = "PS_Trait_BotchedConditioning",
-                AddedDegree = -1
-            };
-            pawn.needs.mood.thoughts.memories.TryGainMemory(
-                DefDatabase<ThoughtDef>.GetNamed("PS_Thoughts_Memory_BotchedConditioned"));
-            Messages.Message(string.Format("PS_Messages_BotchedConditioning".Translate(), pawn.LabelShort),
-                new LookTargets(pawn), MessageTypeDefOf.ThreatBig);
-            PS_ConditioningHelper.DoTraitChange(pawn, bothedcondata);
-        }
-        // Lucky Botched
-        else
-        {
-            var condata = new PS_Conditioning_Data
+                var bothedcondata = new PS_Conditioning_Data
+                {
+                    AlterType = TraitAlterType.Added,
+                    AddedTraitDefName = "PS_Trait_BotchedConditioning",
+                    AddedDegree = -1
+                };
+                pawn.needs.mood.thoughts.memories.TryGainMemory(
+                    DefDatabase<ThoughtDef>.GetNamed("PS_Thoughts_Memory_BotchedConditioned"));
+                Messages.Message(string.Format("PS_Messages_BotchedConditioning".Translate(), pawn.LabelShort),
+                    new LookTargets(pawn), MessageTypeDefOf.ThreatBig);
+                PS_ConditioningHelper.DoTraitChange(pawn, bothedcondata);
+                break;
+            }
+            // Lucky Botched
+            default:
             {
-                AlterType = TraitAlterType.Added,
-                AddedTraitDefName = "PS_Trait_BotchedConditioning",
-                AddedDegree = 1
-            };
-            pawn.needs.mood.thoughts.memories.TryGainMemory(
-                DefDatabase<ThoughtDef>.GetNamed("PS_Thoughts_Memory_LuckyConditioned"));
-            Messages.Message(string.Format("PS_Messages_LuckyConditioning".Translate(), pawn.LabelShort),
-                new LookTargets(pawn), MessageTypeDefOf.ThreatBig);
-            PS_ConditioningHelper.DoTraitChange(pawn, condata);
+                var condata = new PS_Conditioning_Data
+                {
+                    AlterType = TraitAlterType.Added,
+                    AddedTraitDefName = "PS_Trait_BotchedConditioning",
+                    AddedDegree = 1
+                };
+                pawn.needs.mood.thoughts.memories.TryGainMemory(
+                    DefDatabase<ThoughtDef>.GetNamed("PS_Thoughts_Memory_LuckyConditioned"));
+                Messages.Message(string.Format("PS_Messages_LuckyConditioning".Translate(), pawn.LabelShort),
+                    new LookTargets(pawn), MessageTypeDefOf.ThreatBig);
+                PS_ConditioningHelper.DoTraitChange(pawn, condata);
+                break;
+            }
         }
 
         return false;

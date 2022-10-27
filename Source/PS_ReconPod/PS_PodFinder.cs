@@ -9,18 +9,10 @@ internal static class PS_PodFinder
 {
     public static PS_Buildings_ReconPod FindMyPod(Pawn pawn, bool exspectToFind = true)
     {
-        //var map = pawn.Map;
-        //if (map == null)
-        //{
-        //    Log.Error("PS_PodFinder: Tried to FindMyPod for pawn: " + pawn.LabelShort + " but map is null");
-        //    return null;
-        //}
-
         var pods = Find.Maps.SelectMany(m =>
             m.listerBuildings.allBuildingsColonist.Where(x => x.def.defName == "PS_Buildings_ReconPod").ToList());
         if (exspectToFind && !pods.Any())
         {
-            //Log.Error("PS_PodFinder: Tried to FindMyPod for pawn: " + pawn.LabelShort + " but no pods found");
             return null;
         }
 
@@ -39,17 +31,7 @@ internal static class PS_PodFinder
         }
 
         var possition = pod.Position;
-        if (!possition.InAllowedArea(pawn))
-        {
-            return false;
-        }
-
-        if (!possition.Walkable(pawn.Map))
-        {
-            return false;
-        }
-
-        return true;
+        return possition.InAllowedArea(pawn) && possition.Walkable(pawn.Map);
     }
 
     public static bool HasAccessablePod(Pawn pawn)
@@ -60,16 +42,6 @@ internal static class PS_PodFinder
             return false;
         }
 
-        if (!pod.IsUseable(pawn))
-        {
-            return false;
-        }
-
-        if (!CanGetToPod(pawn, pod))
-        {
-            return false;
-        }
-
-        return true;
+        return pod.IsUseable(pawn) && CanGetToPod(pawn, pod);
     }
 }

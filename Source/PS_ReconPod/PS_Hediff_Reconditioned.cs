@@ -22,8 +22,7 @@ public class PS_Hediff_Reconditioned : Hediff
         ConditioningDataList = new List<PS_Conditioning_Data>();
     }
 
-    public override string LabelBase =>
-        "Reconditioned"; //switch (this.ConditioningData.AlterType)//{//    case TraitAlterType.Added://        return "PS_HediffReconditionedAddedLab".Translate() + " " + this.ConditioningData.AddedTraitLabel;//    case TraitAlterType.Removed://        return "PS_HediffReconditionedRemovedLab".Translate() + " " + this.ConditioningData.OrigonalTraitLabel;//    case TraitAlterType.Altered://        return "PS_HediffReconditionedAlteredLab".Translate() + " " + this.ConditioningData.OrigonalTraitLabel;//    case TraitAlterType.UNSET://        Log.Error("PS_Hediff_Reconditioned: Tried to get label of hediff with ChangeType = UNSET.");//        return "ERROR";//    default://        Log.Error("PS_Hediff_Reconditioned: Tried to get label of hediff with unknown ChangeType.");//        return "ERROR";//}
+    public override string LabelBase => "Reconditioned";
 
     public override void ExposeData()
     {

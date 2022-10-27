@@ -121,8 +121,8 @@ public static class PS_ConditioningHelper
         var hasNeed = need != null;
         if (hasHediff != hasNeed)
         {
-            Log.Error("PS_ConditioningHelper: hasNeed hasHediff miss match. Pawn: " + pawn.LabelShort +
-                      " hasNeed: " + hasNeed + " has hediff: " + hasHediff);
+            Log.Error(
+                $"PS_ConditioningHelper: hasNeed hasHediff miss match. Pawn: {pawn.LabelShort} hasNeed: {hasNeed} has hediff: {hasHediff}");
         }
 
         return hasHediff && hasNeed;
@@ -135,7 +135,7 @@ public static class PS_ConditioningHelper
 
     public static List<PS_Conditioning_Data> GetConditioningDataFromHediff(Pawn pawn, bool ThrowError = true)
     {
-        var hediff = pawn.health.hediffSet.GetHediffs<PS_Hediff_Reconditioned>().FirstOrDefault();
+        var hediff = pawn.health.hediffSet.GetFirstHediff<PS_Hediff_Reconditioned>();
         if (hediff != null)
         {
             return hediff.ConditioningDataList?.Where(x => x?.IsValid() ?? false).ToList();
@@ -152,7 +152,7 @@ public static class PS_ConditioningHelper
 
     public static float GetHediffSeverity(Pawn pawn)
     {
-        var hediff = pawn.health.hediffSet.GetHediffs<PS_Hediff_Reconditioned>().FirstOrDefault();
+        var hediff = pawn.health.hediffSet.GetFirstHediff<PS_Hediff_Reconditioned>();
         if (hediff != null)
         {
             return hediff.Severity;
@@ -164,7 +164,7 @@ public static class PS_ConditioningHelper
 
     public static bool SetHediffSeverity(Pawn pawn, float severity)
     {
-        var hediff = pawn.health.hediffSet.GetHediffs<PS_Hediff_Reconditioned>().FirstOrDefault();
+        var hediff = pawn.health.hediffSet.GetFirstHediff<PS_Hediff_Reconditioned>();
         if (hediff == null)
         {
             Log.Error("PS_Hediff_Giver: Tried to SetReconServerity but failed to find hediff");
@@ -214,9 +214,8 @@ public static class PS_ConditioningHelper
     {
         if (Prefs.DevMode)
         {
-            Log.Message("PS_ConditioningHelper: Doing Conditioning Pawn: " + pawn.LabelShort + " AddedTrait: " +
-                        conData.AddedTraitDefName + " OrigonalTrait: " + conData.OriginalTraitDefName +
-                        " AlterType: " + conData.AlterType);
+            Log.Message(
+                $"PS_ConditioningHelper: Doing Conditioning Pawn: {pawn.LabelShort} AddedTrait: {conData.AddedTraitDefName} OrigonalTrait: {conData.OriginalTraitDefName} AlterType: {conData.AlterType}");
         }
 
         if (!IsReconditioned(pawn))
@@ -233,7 +232,7 @@ public static class PS_ConditioningHelper
         }
         else
         {
-            var hediff = pawn.health.hediffSet.GetHediffs<PS_Hediff_Reconditioned>().FirstOrDefault();
+            var hediff = pawn.health.hediffSet.GetFirstHediff<PS_Hediff_Reconditioned>();
             if (hediff == null)
             {
                 Log.Error(
@@ -249,7 +248,7 @@ public static class PS_ConditioningHelper
     public static void UndoConditioning(Pawn pawn, PS_Buildings_ReconPod pod, PS_Conditioning_Data conData)
     {
         UndoTraitChange(pawn, conData);
-        var hediff = pawn.health.hediffSet.GetHediffs<PS_Hediff_Reconditioned>().FirstOrDefault();
+        var hediff = pawn.health.hediffSet.GetFirstHediff<PS_Hediff_Reconditioned>();
         hediff?.ConditioningDataList.Remove(conData);
         if (hediff != null && !hediff.ConditioningDataList.Any(x => x.IsValid()))
         {
@@ -259,7 +258,7 @@ public static class PS_ConditioningHelper
 
     public static void UndoAllConditioning(Pawn pawn)
     {
-        var hediff = pawn.health.hediffSet.GetHediffs<PS_Hediff_Reconditioned>().FirstOrDefault();
+        var hediff = pawn.health.hediffSet.GetFirstHediff<PS_Hediff_Reconditioned>();
         if (hediff == null)
         {
             Log.Error(
@@ -304,7 +303,7 @@ public static class PS_ConditioningHelper
 
     public static void TryRemoveConditioning(Pawn pawn)
     {
-        var hediff = pawn.health.hediffSet.GetHediffs<PS_Hediff_Reconditioned>().FirstOrDefault();
+        var hediff = pawn.health.hediffSet.GetFirstHediff<PS_Hediff_Reconditioned>();
         if (hediff == null)
         {
             Log.Error("PS_ConditioningHelper: Tried to remove conditioning hediff but failed to find hediff");
@@ -347,10 +346,7 @@ public static class PS_ConditioningHelper
                 conData.AddedDegree));
         }
 
-        if (pawn.workSettings != null)
-        {
-            pawn.workSettings.Notify_DisabledWorkTypesChanged();
-        }
+        pawn.workSettings?.Notify_DisabledWorkTypesChanged();
 
         //pawn.story.Notify_TraitChanged(); <- Internal method, need to use reflection
         if (Prefs.DevMode)
@@ -369,10 +365,7 @@ public static class PS_ConditioningHelper
             // ignored
         }
 
-        if (pawn.skills != null)
-        {
-            pawn.skills.Notify_SkillDisablesChanged();
-        }
+        pawn.skills?.Notify_SkillDisablesChanged();
 
         if (!pawn.Dead && pawn.RaceProps.Humanlike)
         {
@@ -393,10 +386,7 @@ public static class PS_ConditioningHelper
 
         pawn.story.traits.allTraits = traitList;
 
-        if (pawn.workSettings != null)
-        {
-            pawn.workSettings.Notify_DisabledWorkTypesChanged();
-        }
+        pawn.workSettings?.Notify_DisabledWorkTypesChanged();
 
         //pawn.story.Notify_TraitChanged(); <- Internal method, need to use reflection
         try
@@ -410,10 +400,7 @@ public static class PS_ConditioningHelper
             // ignored
         }
 
-        if (pawn.skills != null)
-        {
-            pawn.skills.Notify_SkillDisablesChanged();
-        }
+        pawn.skills?.Notify_SkillDisablesChanged();
 
         if (!pawn.Dead && pawn.RaceProps.Humanlike)
         {
@@ -446,10 +433,7 @@ public static class PS_ConditioningHelper
             //Log.Message("PS_ConditoningHelper: UndoTraitChange added trait " + conData.OrigonalTraitDefName + " degree: " + conData.OrigonalDegree);
         }
 
-        if (pawn.workSettings != null)
-        {
-            pawn.workSettings.Notify_DisabledWorkTypesChanged();
-        }
+        pawn.workSettings?.Notify_DisabledWorkTypesChanged();
 
         //pawn.story.Notify_TraitChanged(); <- Internal method, need to use reflection
         try
@@ -463,10 +447,7 @@ public static class PS_ConditioningHelper
             // ignored
         }
 
-        if (pawn.skills != null)
-        {
-            pawn.skills.Notify_SkillDisablesChanged();
-        }
+        pawn.skills?.Notify_SkillDisablesChanged();
 
         if (!pawn.Dead && pawn.RaceProps.Humanlike)
         {
@@ -508,7 +489,7 @@ public static class PS_ConditioningHelper
 
     public static void ClearBuggedConditioning(Pawn pawn)
     {
-        var hediffs = pawn?.health?.hediffSet?.GetHediffs<PS_Hediff_Reconditioned>();
+        var hediffs = pawn?.health?.hediffSet?.hediffs.Where(hediff => hediff is PS_Hediff_Reconditioned);
         if (hediffs == null || !hediffs.Any())
         {
             return;
@@ -522,11 +503,7 @@ public static class PS_ConditioningHelper
         pawn.needs.AddOrRemoveNeedsAsAppropriate();
 
         var pod = PS_PodFinder.FindMyPod(pawn);
-        if (pod == null)
-        {
-            return;
-        }
 
-        pod.ForceUnassignPawn(pawn);
+        pod?.ForceUnassignPawn(pawn);
     }
 }

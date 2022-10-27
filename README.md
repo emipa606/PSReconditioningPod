@@ -8,6 +8,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1588408365
 - Added option to set if conditioned should count as bad
 - Should no longer overwrite vanilla, thanks pinguin!
 - Added support for https://steamcommunity.com/sharedfiles/filedetails/?id=2451324814][SYR] Trait Value
+- Sorted the traits window and added a searchbar.
 
 ![Image](https://i.imgur.com/pufA0kM.png)
 

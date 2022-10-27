@@ -133,7 +133,6 @@ public class PS_Panel_Reconditioning : Window
 
         Widgets.Label(new Rect(labBox.x + 3f, labBox.y + 2f, labBox.width - 6f, labBox.height - 2f),
             BuildInfoString());
-        //Widgets.Label(labBox, (this.AddingTrait ? "Adding" : "Removeing") + ":\n " + (this.ToAlter != null ? this.ToAlter.LabelCap : "Unset"));
 
         AddTraitScrollView.Draw(searchString);
         CurrentTraitScrollView.Draw();
@@ -158,8 +157,7 @@ public class PS_Panel_Reconditioning : Window
         Text.Font = GameFont.Medium;
         // Cancel Button
         var cancelButtonRecGrid =
-            GetRecForGridLocation(0, 5.5f, 1,
-                0.5f); // new Rect(inRect.width * 0.5f, inRect.height - inRect.height * 0.1f, inRect.width * 0.5f, inRect.height * 0.1f);
+            GetRecForGridLocation(0, 5.5f, 1, 0.5f);
         var cancelButtonRectTrue = new Rect(cancelButtonRecGrid.x + 5, cancelButtonRecGrid.y,
             cancelButtonRecGrid.width - 10f, cancelButtonRecGrid.height);
         var cancelButton = Widgets.ButtonText(cancelButtonRectTrue, "PS_Cancel".Translate());
@@ -170,8 +168,7 @@ public class PS_Panel_Reconditioning : Window
 
         // Submit Button
         var submitButtonRecGrid =
-            GetRecForGridLocation(1, 5.5f, 1,
-                0.5f); // new Rect(0, inRect.height - inRect.height * 0.1f, inRect.width * 0.5f, inRect.height * 0.1f);
+            GetRecForGridLocation(1, 5.5f, 1, 0.5f);
         var submitButtonRectTrue = new Rect(submitButtonRecGrid.x + 5, submitButtonRecGrid.y,
             submitButtonRecGrid.width - 10f, submitButtonRecGrid.height);
         var button = Widgets.ButtonText(submitButtonRectTrue, "PS_Accept".Translate());
@@ -514,7 +511,6 @@ public class PS_Panel_Reconditioning : Window
     {
         FixingBotch = true;
         RemoveingConditioning = false;
-        //this.ConditioningToRemove = data;
         ToRemove = null;
         ToAdd = null;
         ChangeType = TraitAlterType.UNSET;
@@ -631,33 +627,29 @@ public class PS_Panel_Reconditioning : Window
 
     private string DayToSafeTime(float days)
     {
-        if (days > 1f)
+        switch (days)
         {
-            return days.ToString("0.0") + " " + "PS_Time_Days".Translate();
-        }
-
-        if (days == 1f)
-        {
-            return days.ToString("0") + " " + "PS_Time_Day".Translate();
+            case > 1f:
+                return $"{days:0.0} " + "PS_Time_Days".Translate();
+            case 1f:
+                return $"{days:0} " + "PS_Time_Day".Translate();
         }
 
         var hours = days * 24f;
-        if (hours > 1f)
+        switch (hours)
         {
-            return hours.ToString("0.0") + " " + "PS_Time_Hours".Translate();
-        }
-
-        if (hours == 1f)
-        {
-            return hours.ToString("0") + " " + "PS_Time_Hour".Translate();
+            case > 1f:
+                return $"{hours:0.0} " + "PS_Time_Hours".Translate();
+            case 1f:
+                return $"{hours:0} " + "PS_Time_Hour".Translate();
         }
 
         var minutes = hours * 24f;
         if (minutes == 1f)
         {
-            return minutes.ToString("0") + " " + "PS_Time_Minute".Translate();
+            return $"{minutes:0} " + "PS_Time_Minute".Translate();
         }
 
-        return minutes.ToString("0.0") + " " + "PS_Time_Minutes".Translate();
+        return $"{minutes:0.0} " + "PS_Time_Minutes".Translate();
     }
 }

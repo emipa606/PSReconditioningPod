@@ -63,7 +63,7 @@ public class PS_Needs_Reconditioning : Need
     }
 
     public override void DrawOnGUI(Rect rect, int maxThresholdMarkers = 2147483647, float customMargin = -1f,
-        bool drawArrows = true, bool doTooltip = true, Rect? rectForTooltip = null)
+        bool drawArrows = true, bool doTooltip = true, Rect? rectForTooltip = null, bool drawLabel = true)
     {
         if (threshPercents == null)
         {
@@ -85,7 +85,7 @@ public class PS_Needs_Reconditioning : Need
             CurLevel -= FallPerTic * 150f;
         }
 
-        var hediff = pawn.health.hediffSet.GetHediffs<PS_Hediff_Reconditioned>().FirstOrDefault();
+        var hediff = pawn.health.hediffSet.GetFirstHediff<PS_Hediff_Reconditioned>();
         if (hediff == null)
         {
             Log.Error("PS_Needs_Reconditioning: failed to find PS_Hediff_Reconditined");
@@ -104,8 +104,8 @@ public class PS_Needs_Reconditioning : Need
         var map = pawn.Map;
         if (!inPod && !pawn.IsCaravanMember() && map == null)
         {
-            Log.Message("PS_Needs_Reconditioning: " + pawn.LabelShort +
-                        " is not in a caravan or pod but map is null, not sure what this means but they can't find a pod");
+            Log.Message(
+                $"PS_Needs_Reconditioning: {pawn.LabelShort} is not in a caravan or pod but map is null, not sure what this means but they can't find a pod");
             return;
         }
 
@@ -140,7 +140,7 @@ public class PS_Needs_Reconditioning : Need
         if (!pawn.mindState.mentalStateHandler.TryStartMentalState(state, "PS_ReconWoreOffMessage".Translate(),
                 true))
         {
-            Log.Error("PS_Need_Recon: Failed to give mental state " + state.defName);
+            Log.Error($"PS_Need_Recon: Failed to give mental state {state.defName}");
         }
 
         PS_PodFinder.FindMyPod(pawn).TryUnassignPawn(pawn);

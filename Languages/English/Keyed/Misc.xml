@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <PS_ModVersion>Installed mod-version: {0}</PS_ModVersion>
+  <PS_IsBad>Count 'reconditioned' as bad</PS_IsBad>
+  <PS_IsBadInfo>This makes it possible to remove with mods that remove bad Hediffs, such as MedPod</PS_IsBadInfo>
   <PS_ReconWoreOffMessage>This happened because conditioning wore off.</PS_ReconWoreOffMessage>
   <PS_Cancel>Cancel</PS_Cancel>
   <PS_Accept>Accept</PS_Accept>

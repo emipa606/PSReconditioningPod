@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using RimWorld;
 using Verse;
 
@@ -26,7 +25,7 @@ public class PS_Recipes_Surgery_NeuralCement : Recipe_Surgery
     {
         if (PS_ConditioningHelper.IsReconditioned(pawn))
         {
-            yield return pawn.health.hediffSet.GetHediffs<PS_Hediff_Reconditioned>().First().Part;
+            yield return pawn.health.hediffSet.GetFirstHediff<PS_Hediff_Reconditioned>().Part;
         }
     }
 
@@ -55,9 +54,6 @@ public class PS_Recipes_Surgery_NeuralCement : Recipe_Surgery
             HediffMaker.MakeHediff(DefDatabase<HediffDef>.GetNamed("PS_Hediff_NeuralCement"), pawn,
                 brainPart));
         var pod = PS_PodFinder.FindMyPod(pawn);
-        if (pod != null)
-        {
-            pod.TryUnassignPawn(pawn);
-        }
+        pod?.TryUnassignPawn(pawn);
     }
 }

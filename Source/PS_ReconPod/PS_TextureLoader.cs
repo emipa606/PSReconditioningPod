@@ -24,8 +24,6 @@ public static class PS_TextureLoader
     {
         Loaded = false;
         Warning = ContentFinder<Texture2D>.Get("UI/Warning");
-        //Textures.TextureAlternateRow = SolidColorMaterials.NewSolidColorTexture(new Color(1f, 1f, 1f, 0.05f));
-        //Textures.TextureSkillBarFill = SolidColorMaterials.NewSolidColorTexture(new Color(1f, 1f, 1f, 0.1f));
         Loaded = true;
     }
 }
