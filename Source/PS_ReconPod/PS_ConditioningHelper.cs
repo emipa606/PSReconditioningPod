@@ -119,13 +119,24 @@ public static class PS_ConditioningHelper
         var hasHediff = pawn.health.hediffSet.hediffs.Any(x => x.def.defName == "PS_Hediff_Reconditioned");
         var need = pawn.needs.TryGetNeed<PS_Needs_Reconditioning>();
         var hasNeed = need != null;
-        if (hasHediff != hasNeed)
+        if (hasHediff == hasNeed)
         {
-            Log.Error(
-                $"PS_ConditioningHelper: hasNeed hasHediff miss match. Pawn: {pawn.LabelShort} hasNeed: {hasNeed} has hediff: {hasHediff}");
+            return hasHediff;
         }
 
-        return hasHediff && hasNeed;
+        if (!hasHediff)
+        {
+            pawn.needs.AllNeeds.Remove(need);
+            Log.Message(
+                "PS_ConditioningHelper: Need is still there but hediff is gone. Assuming something removed the hediff. Removing need.");
+        }
+        else
+        {
+            Log.Error(
+                $"PS_ConditioningHelper: hasNeed hasHediff miss match. Pawn: {pawn.LabelShort} hasNeed: {false} has hediff: {true}");
+        }
+
+        return false;
     }
 
     public static bool IsCemented(Pawn pawn)

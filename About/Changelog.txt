@@ -1,5 +1,8 @@
 # Changelog for PSReconditioningPod
 
+1.4.2 - Fixed MedPod compatibility since they changed the requirements for using the medpod
+
+
 1.4.1 - Mod updated for 1.4 and passed autotests.
 Used DeepL to update translations for ChineseSimplified, French, German, Russian
 

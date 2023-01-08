@@ -19,6 +19,7 @@ public class RecondApplyer
         }
 
         def.isBad = LoadedModManager.GetMod<PS_ReconPodMod>().GetSettings<PS_ReconPodSettings>().RecondIsBad;
+        def.makesSickThought = LoadedModManager.GetMod<PS_ReconPodMod>().GetSettings<PS_ReconPodSettings>().RecondIsBad;
         Log.Message($"PS Reconditioning Pod: reconditioning counts as bad: {def.isBad}");
     }
 }
