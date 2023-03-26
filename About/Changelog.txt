@@ -1,5 +1,8 @@
 # Changelog for PSReconditioningPod
 
+1.4.3 - Deathresting pawns should not get increased reconditioning-need
+
+
 1.4.2 - Fixed MedPod compatibility since they changed the requirements for using the medpod
 
 

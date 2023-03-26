@@ -74,5 +74,4 @@ Neural Cement: Requires a medical skill of 15, 20 plasteel, and 5 glitterworld m
 -  If you have the solution for a problem, please post it to the GitHub repository.
 
 
-
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2044003955]Last updated 2023-01-08
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2044003955]Last updated 2023-03-26

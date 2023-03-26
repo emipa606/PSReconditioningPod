@@ -74,13 +74,13 @@ public class PS_Needs_Reconditioning : Need
         threshPercents.Add(0.25f);
         threshPercents.Add(0.5f);
         threshPercents.Add(0.75f);
-        base.DrawOnGUI(rect, maxThresholdMarkers, customMargin, drawArrows, doTooltip, rectForTooltip);
+        base.DrawOnGUI(rect, maxThresholdMarkers, customMargin, drawArrows, doTooltip, rectForTooltip, drawLabel);
     }
 
     public override void NeedInterval()
     {
         var inPod = pawn.ParentHolder != null && pawn.ParentHolder.GetType() == typeof(PS_Buildings_ReconPod);
-        if (!inPod && !base.IsFrozen)
+        if (!inPod && !base.IsFrozen && !pawn.Deathresting)
         {
             CurLevel -= FallPerTic * 150f;
         }

@@ -17,7 +17,7 @@ internal class PS_ReconPodMod : Mod
     /// <summary>
     ///     The private settings
     /// </summary>
-    private PS_ReconPodSettings settings;
+    public readonly PS_ReconPodSettings Settings;
 
     /// <summary>
     ///     Cunstructor
@@ -27,29 +27,12 @@ internal class PS_ReconPodMod : Mod
     {
         instance = this;
         currentVersion =
-            VersionFromManifest.GetVersionFromModMetaData(
-                ModLister.GetActiveModWithIdentifier("Mlie.PSReconditioningPod"));
+            VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
+        Settings = GetSettings<PS_ReconPodSettings>();
         //var hediff = DefDatabase<HediffDef>.GetNamedSilentFail("PS_Hediff_Reconditioned");
         //Log.Message(hediff.label + ". IsBad: " + hediff.isBad);
         //hediff.isBad = LoadedModManager.GetMod<PS_ReconPodMod>().GetSettings<PS_ReconPodSettings>().RecondIsBad;
         //Log.Message(hediff.label + ". IsBad: " + hediff.isBad);
-    }
-
-    /// <summary>
-    ///     The instance-settings for the mod
-    /// </summary>
-    internal PS_ReconPodSettings Settings
-    {
-        get
-        {
-            if (settings == null)
-            {
-                settings = GetSettings<PS_ReconPodSettings>();
-            }
-
-            return settings;
-        }
-        set => settings = value;
     }
 
     /// <summary>
