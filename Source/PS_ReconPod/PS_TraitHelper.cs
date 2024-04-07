@@ -11,8 +11,10 @@ public class PS_TraitHelper
 
     private static List<Trait> _AllTraits;
 
-    private static List<string> BlackList => new List<string>
-        { "Beauty", "Immunity", "AnnoyingVoice", "PS_Trait_BotchedConditioning", "CreepyBreathing" };
+    private static List<string> BlackList =>
+    [
+        "Beauty", "Immunity", "AnnoyingVoice", "PS_Trait_BotchedConditioning", "CreepyBreathing"
+    ];
 
     public static List<TraitDef> AllTraitDefs
     {
@@ -47,7 +49,7 @@ public class PS_TraitHelper
 
     private static void LoadTraits()
     {
-        _AllTraits = new List<Trait>();
+        _AllTraits = [];
         foreach (var traitDef in AllTraitDefs)
         {
             if (traitDef.degreeDatas.Count > 0)

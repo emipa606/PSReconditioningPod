@@ -5,7 +5,7 @@ namespace PS_ReconPod;
 
 public class PS_Recipes_AdministerConditionall : IngestionOutcomeDoer
 {
-    protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
+    protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested, int ingestedCount)
     {
         if (!PS_ConditioningHelper.IsReconditioned(pawn))
         {

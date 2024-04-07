@@ -19,7 +19,7 @@ public class PS_Hediff_Reconditioned : Hediff
     {
         def = DefDatabase<HediffDef>.GetNamed("PS_Hediff_Reconditioned");
         CheckedConData = false;
-        ConditioningDataList = new List<PS_Conditioning_Data>();
+        ConditioningDataList = [];
     }
 
     public override string LabelBase => "Reconditioned";
@@ -45,8 +45,8 @@ public class PS_Hediff_Reconditioned : Hediff
         {
             Log.Message(
                 $"PS_Hediff_Reconditoning: Condition data for {pawn.LabelShort} found as single and not list. This is due to multi-condition update. Building list now.");
-            ConditioningDataList = new List<PS_Conditioning_Data>
-            {
+            ConditioningDataList =
+            [
                 new PS_Conditioning_Data
                 {
                     PawnId = ConditioningData.PawnId,
@@ -56,7 +56,7 @@ public class PS_Hediff_Reconditioned : Hediff
                     OriginalDegree = ConditioningData.OriginalDegree,
                     AlterType = ConditioningData.AlterType
                 }
-            };
+            ];
             ConditioningData = null;
             return;
         }

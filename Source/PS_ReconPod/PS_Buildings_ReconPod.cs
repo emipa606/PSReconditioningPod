@@ -98,15 +98,15 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
             var jobDef = PS_ReconPodDefsOf.PS_DoConditioning;
             string jobStr = "PS_PodOption_CheatMode".Translate();
 
+            yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(jobStr, jobAction), pawn,
+                this);
+            yield break;
+
             void jobAction()
             {
                 var job = new Job(jobDef, this);
                 pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
             }
-
-            yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(jobStr, jobAction), pawn,
-                this);
-            yield break;
         }
 
         if (!this.TryGetComp<CompPowerTrader>().PowerOn)
@@ -132,7 +132,7 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
             else if (PS_ConditioningHelper.IsReconditioned(pawn) && PS_PodFinder.FindMyPod(pawn) == null &&
                      PodOwner == null)
             {
-                var unused = PS_ReconPodDefsOf.PS_RefreshConditioning;
+                _ = PS_ReconPodDefsOf.PS_RefreshConditioning;
                 var jobStr = string.Format("PS_PodOption_ClaimPod".Translate(), pawn.LabelShort);
 
                 void jobAction()
@@ -202,7 +202,7 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
         }
     }
 
-    //public bool TryStartConditioning(Pawn pawn, PS_Conditioning_JobState ConditionType)
+    //public bool TryStartConditioning(Pawn, PS_Conditioning_JobState ConditionType)
     //{
     //    if(this.JobState != PS_Conditioning_JobState.Waiting || !this.IsUseable(pawn))
     //    {
@@ -739,7 +739,7 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
     {
         if (StartingNeedLevels == null)
         {
-            StartingNeedLevels = new List<NeedValuePair>();
+            StartingNeedLevels = [];
         }
 
         StartingNeedLevels.Clear();

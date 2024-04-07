@@ -8,7 +8,7 @@ public class PS_Recipes_Surgery_NeuralCement : Recipe_Surgery
 {
     protected virtual List<int> AllowedDegrees()
     {
-        return new List<int> { 0 };
+        return [0];
     }
 
     protected virtual int GetChange()

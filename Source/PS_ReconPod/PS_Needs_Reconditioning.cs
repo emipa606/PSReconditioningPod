@@ -67,7 +67,7 @@ public class PS_Needs_Reconditioning : Need
     {
         if (threshPercents == null)
         {
-            threshPercents = new List<float>();
+            threshPercents = [];
         }
 
         threshPercents.Clear();
@@ -109,7 +109,7 @@ public class PS_Needs_Reconditioning : Need
             return;
         }
 
-        // Try to take conditionall in in caravan
+        // Try to take conditionall in caravan
         if (CurLevel <= 0.5f && pawn.IsCaravanMember())
         {
             var caravan = pawn.GetCaravan();

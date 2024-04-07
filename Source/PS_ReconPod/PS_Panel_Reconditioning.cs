@@ -55,13 +55,13 @@ public class PS_Panel_Reconditioning : Window
         Pawn = pawn;
 
         StartTraits = pawn.story.traits.allTraits;
-        CurrentTraits = new List<Trait>();
+        CurrentTraits = [];
         foreach (var t in StartTraits.OrderBy(trait => trait.LabelCap))
         {
             CurrentTraits.Add(t);
         }
 
-        StartingConditioning = new List<PS_Conditioning_Data>();
+        StartingConditioning = [];
         if (PS_ConditioningHelper.IsReconditioned(pawn))
         {
             var condata = PS_ConditioningHelper.GetConditioningDataFromHediff(pawn);

@@ -289,7 +289,7 @@ public static class PS_ConditioningHelper
     {
         var diff = (PS_Hediff_Reconditioned)HediffMaker.MakeHediff(ReconHefiffDef, pawn);
         diff.Severity = 1f;
-        diff.ConditioningDataList = new List<PS_Conditioning_Data> { conData };
+        diff.ConditioningDataList = [conData];
         var brain = pawn.RaceProps.body.AllParts.FirstOrDefault(x => x.def.defName == "Brain");
         if (brain != null)
         {
