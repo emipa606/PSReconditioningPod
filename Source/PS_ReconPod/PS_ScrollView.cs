@@ -12,7 +12,7 @@ public class PS_ScrollView<T>
 
     private readonly float Padding;
 
-    public readonly Func<ScrollOption<T>, string> ToolTipFunc;
+    private readonly Func<ScrollOption<T>, string> ToolTipFunc;
     public Rect DrawRect;
     private float OptionHeight;
     private List<ScrollOption<T>> Options;
@@ -27,10 +27,9 @@ public class PS_ScrollView<T>
         this.OptionSpacing = OptionSpacing;
     }
 
-    public bool TrySetOptions(List<ScrollOption<T>> newOptions)
+    public void TrySetOptions(List<ScrollOption<T>> newOptions)
     {
         Options = newOptions;
-        return true;
     }
 
     public void Draw(string filter = null)

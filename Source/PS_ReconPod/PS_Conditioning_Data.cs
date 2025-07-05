@@ -12,10 +12,10 @@ public class PS_Conditioning_Data : IExposable
     public string OriginalTraitDefName;
     public string PawnId;
 
-    public string AddedTraitLabel =>
+    private string AddedTraitLabel =>
         new Trait(DefDatabase<TraitDef>.GetNamed(AddedTraitDefName), AddedDegree).Label;
 
-    public string OriginalTraitLabel =>
+    private string OriginalTraitLabel =>
         new Trait(DefDatabase<TraitDef>.GetNamed(OriginalTraitDefName), OriginalDegree).Label;
 
     public void ExposeData()

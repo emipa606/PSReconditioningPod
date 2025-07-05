@@ -1,0 +1,6 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Release" />
+  </Configurations>
+  <Project Path="PS_ReconPod/PS_ReconPod.csproj" />
+</Solution>

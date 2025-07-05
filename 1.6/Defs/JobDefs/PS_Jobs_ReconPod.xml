@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <JobDef>
+    <defName>PS_DoConditioning</defName>
+    <driverClass>PS_ReconPod.PS_JobDriver_UseReconPod</driverClass>
+    <reportString>entering reconditioning pod.</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+  <JobDef>
+    <defName>PS_RefreshConditioning</defName>
+    <driverClass>PS_ReconPod.PS_JobDriver_RefreshConditioning</driverClass>
+    <reportString>reinforceing conditioning.</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+  <JobDef>
+    <defName>PS_DoDeconditioning</defName>
+    <driverClass>PS_ReconPod.PS_JobDriver_Decondition</driverClass>
+    <reportString>entering reconditioning pod.</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+  <JobDef>
+    <defName>PS_ManageConditioning</defName>
+    <driverClass>PS_ReconPod.PS_JobDriver_ManageConditioning</driverClass>
+    <reportString>entering reconditioning pod.</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+</Defs>

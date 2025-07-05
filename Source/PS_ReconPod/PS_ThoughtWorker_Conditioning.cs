@@ -18,7 +18,6 @@ public class PS_ThoughtWorker_Conditioning : ThoughtWorker
         switch (need.CurCategory)
         {
             case ConditioningCategory.Fresh:
-                return ThoughtState.Inactive;
             case ConditioningCategory.Strong:
                 return ThoughtState.Inactive;
             case ConditioningCategory.Weakened:

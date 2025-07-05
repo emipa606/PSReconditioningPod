@@ -189,17 +189,14 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
         }
     }
 
-    public void TryAssignPawn(Pawn pawn)
+    private void TryAssignPawn(Pawn pawn)
     {
         //if (string.IsNullOrEmpty(this.PodOwnerId))
         //{
         //    this._Owner = null;
         //    this.PodOwnerId = pawn.ThingID;
         //}
-        if (PodOwner == null)
-        {
-            PodOwner = pawn;
-        }
+        PodOwner ??= pawn;
     }
 
     //public bool TryStartConditioning(Pawn, PS_Conditioning_JobState ConditionType)
@@ -569,7 +566,7 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
         ProgressBarEffector.EffectTick(target, TargetInfo.Invalid);
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
 
@@ -737,10 +734,7 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
 
     private void SaveNeeds(List<Need> needs)
     {
-        if (StartingNeedLevels == null)
-        {
-            StartingNeedLevels = [];
-        }
+        StartingNeedLevels ??= [];
 
         StartingNeedLevels.Clear();
 

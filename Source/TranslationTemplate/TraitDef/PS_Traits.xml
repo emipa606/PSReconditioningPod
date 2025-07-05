@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: botched conditioning -->
+  <PS_Trait_BotchedConditioning.degreeDatas.botched_conditioning.label>botched conditioning</PS_Trait_BotchedConditioning.degreeDatas.botched_conditioning.label>
+  <!-- EN: {PAWN_nameDef} under went reconditioning at some point but something went wrong. The failed procedure left them with reduced brain fuction. Good thing they can be reconditioned to forget about all that. -->
+  <PS_Trait_BotchedConditioning.degreeDatas.botched_conditioning.description>{PAWN_nameDef} under went reconditioning at some point but something went wrong. The failed procedure left them with reduced brain fuction. Good thing they can be reconditioned to forget about all that.</PS_Trait_BotchedConditioning.degreeDatas.botched_conditioning.description>
+  <!-- EN: lucky botched conditioning -->
+  <PS_Trait_BotchedConditioning.degreeDatas.lucky_botched_conditioning.label>lucky botched conditioning</PS_Trait_BotchedConditioning.degreeDatas.lucky_botched_conditioning.label>
+  <!-- EN: {PAWN_nameDef} under went reconditioning at some point but something went wrong, in a good way. What ever happened seemed to have positive effects on they, improveing brain functions. Guess this is just one of those happy accidents. -->
+  <PS_Trait_BotchedConditioning.degreeDatas.lucky_botched_conditioning.description>{PAWN_nameDef} under went reconditioning at some point but something went wrong, in a good way. What ever happened seemed to have positive effects on they, improveing brain functions. Guess this is just one of those happy accidents.</PS_Trait_BotchedConditioning.degreeDatas.lucky_botched_conditioning.description>
+</LanguageData>

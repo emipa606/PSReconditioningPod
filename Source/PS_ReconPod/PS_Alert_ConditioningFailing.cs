@@ -19,7 +19,7 @@ public class PS_Alert_ConditioningFailing : Alert_Critical
         get
         {
             foreach (var p in PawnsFinder
-                         .AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners_NoCryptosleep)
+                         .AllMapsCaravansAndTravellingTransporters_Alive_FreeColonistsAndPrisoners_NoCryptosleep)
             {
                 if (!PS_ConditioningHelper.IsReconditioned(p))
                 {

@@ -16,20 +16,17 @@ public class PS_TraitHelper
         "Beauty", "Immunity", "AnnoyingVoice", "PS_Trait_BotchedConditioning", "CreepyBreathing"
     ];
 
-    public static List<TraitDef> AllTraitDefs
+    private static List<TraitDef> AllTraitDefs
     {
         get
         {
-            if (_AllTraitDefs == null)
-            {
-                _AllTraitDefs = DefDatabase<TraitDef>.AllDefs.ToList();
-            }
+            _AllTraitDefs ??= DefDatabase<TraitDef>.AllDefs.ToList();
 
             return _AllTraitDefs.ToList();
         }
     }
 
-    public static List<Trait> AllTraits
+    private static List<Trait> AllTraits
     {
         get
         {

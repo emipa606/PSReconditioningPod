@@ -15,10 +15,7 @@ public static class PS_ConditioningHelper
     {
         get
         {
-            if (_ReconHediffDef == null)
-            {
-                _ReconHediffDef = DefDatabase<HediffDef>.GetNamed("PS_Hediff_Reconditioned");
-            }
+            _ReconHediffDef ??= DefDatabase<HediffDef>.GetNamed("PS_Hediff_Reconditioned");
 
             return _ReconHediffDef;
         }
@@ -103,7 +100,7 @@ public static class PS_ConditioningHelper
         return GetNeedFallPerDay(count);
     }
 
-    public static float GetNeedFallPerDay(int CurrentConCount)
+    private static float GetNeedFallPerDay(int CurrentConCount)
     {
         if (CurrentConCount == 0)
         {
@@ -299,7 +296,7 @@ public static class PS_ConditioningHelper
         pawn.health.AddHediff(diff);
         pawn.needs.AddOrRemoveNeedsAsAppropriate();
 
-        var need = pawn.needs.AllNeeds.FirstOrDefault(x => x.def.defName == diff.def.causesNeed.defName);
+        var need = pawn.needs.AllNeeds.FirstOrDefault(x => x.def.defName == diff.def.chemicalNeed.defName);
         if (need == null)
         {
             Log.Error("PS_ConditioningHelper: Failed to find added need after giving hediff");
@@ -500,18 +497,18 @@ public static class PS_ConditioningHelper
 
     public static void ClearBuggedConditioning(Pawn pawn)
     {
-        var hediffs = pawn?.health?.hediffSet?.hediffs.Where(hediff => hediff is PS_Hediff_Reconditioned);
-        if (hediffs == null || !hediffs.Any())
+        var hediffs = (pawn?.health?.hediffSet?.hediffs).Where(hediff => hediff is PS_Hediff_Reconditioned);
+        if (!hediffs.Any())
         {
             return;
         }
 
         foreach (var hediff in hediffs)
         {
-            pawn.health.RemoveHediff(hediff);
+            pawn?.health?.RemoveHediff(hediff);
         }
 
-        pawn.needs.AddOrRemoveNeedsAsAppropriate();
+        pawn?.needs.AddOrRemoveNeedsAsAppropriate();
 
         var pod = PS_PodFinder.FindMyPod(pawn);
 

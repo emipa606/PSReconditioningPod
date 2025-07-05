@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: reconditioning was botched -->
+  <PS_Thoughts_Memory_BotchedConditioned.stages.reconditioning_was_botched.label>reconditioning was botched</PS_Thoughts_Memory_BotchedConditioned.stages.reconditioning_was_botched.label>
+  <!-- EN: Pod was bad. Now brain hurts. -->
+  <PS_Thoughts_Memory_BotchedConditioned.stages.reconditioning_was_botched.description>Pod was bad. Now brain hurts.</PS_Thoughts_Memory_BotchedConditioned.stages.reconditioning_was_botched.description>
+  <!-- EN: was deconditioned -->
+  <PS_Thoughts_Memory_Deconditioned.stages.was_deconditioned.label>was deconditioned</PS_Thoughts_Memory_Deconditioned.stages.was_deconditioned.label>
+  <!-- EN: I feel like my old self again. -->
+  <PS_Thoughts_Memory_Deconditioned.stages.was_deconditioned.description>I feel like my old self again.</PS_Thoughts_Memory_Deconditioned.stages.was_deconditioned.description>
+  <!-- EN: attempted reconditioning fail -->
+  <PS_Thoughts_Memory_FailedConditioned.stages.attempted_reconditioning_fail.label>attempted reconditioning fail</PS_Thoughts_Memory_FailedConditioned.stages.attempted_reconditioning_fail.label>
+  <!-- EN: Why did they lock me in that pod? What were they trying to do to me? -->
+  <PS_Thoughts_Memory_FailedConditioned.stages.attempted_reconditioning_fail.description>Why did they lock me in that pod? What were they trying to do to me?</PS_Thoughts_Memory_FailedConditioned.stages.attempted_reconditioning_fail.description>
+  <!-- EN: happy reconditioning accident -->
+  <PS_Thoughts_Memory_LuckyConditioned.stages.happy_reconditioning_accident.label>happy reconditioning accident</PS_Thoughts_Memory_LuckyConditioned.stages.happy_reconditioning_accident.label>
+  <!-- EN: That pod was amazing. My mind is so clear now and everything seems so simple. -->
+  <PS_Thoughts_Memory_LuckyConditioned.stages.happy_reconditioning_accident.description>That pod was amazing. My mind is so clear now and everything seems so simple.</PS_Thoughts_Memory_LuckyConditioned.stages.happy_reconditioning_accident.description>
+  <!-- EN: was reconditioned -->
+  <PS_Thoughts_Memory_Reconditioned.stages.was_reconditioned.label>was reconditioned</PS_Thoughts_Memory_Reconditioned.stages.was_reconditioned.label>
+  <!-- EN: I don't know what that pod was about, but I feel different now. I'm not sure if I like it. -->
+  <PS_Thoughts_Memory_Reconditioned.stages.was_reconditioned.description>I don't know what that pod was about, but I feel different now. I'm not sure if I like it.</PS_Thoughts_Memory_Reconditioned.stages.was_reconditioned.description>
+</LanguageData>

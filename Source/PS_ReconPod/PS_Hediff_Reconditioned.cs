@@ -12,7 +12,7 @@ public class PS_Hediff_Reconditioned : Hediff
     //public TraitDef AddedTraitDef;
 
     // Old: to support pre-multi-conditioning
-    public PS_Conditioning_Data ConditioningData;
+    private PS_Conditioning_Data ConditioningData;
     public List<PS_Conditioning_Data> ConditioningDataList;
 
     public PS_Hediff_Reconditioned()

@@ -17,7 +17,7 @@ internal class PS_ReconPodMod : Mod
     /// <summary>
     ///     The private settings
     /// </summary>
-    public readonly PS_ReconPodSettings Settings;
+    private readonly PS_ReconPodSettings Settings;
 
     /// <summary>
     ///     Cunstructor

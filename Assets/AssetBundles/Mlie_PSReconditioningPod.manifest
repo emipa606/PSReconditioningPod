@@ -1,0 +1,33 @@
+ManifestFileVersion: 0
+CRC: 517529509
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 81e454a64cb9f78d02616ca63ab150d5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2612ac43db082a73502ee80f2eceb73f
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 81e454a64cb9f78d02616ca63ab150d5
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Data/Mlie.PSReconditioningPod/Textures/Things/Buildings/placeholder_east.png
+- Assets/Data/Mlie.PSReconditioningPod/Textures/UI/DevHalf.png
+- Assets/Data/Mlie.PSReconditioningPod/Textures/Things/Items/Conditionall/Conditionall_a.png
+- Assets/Data/Mlie.PSReconditioningPod/Textures/Things/Buildings/placeholder_north.png
+- Assets/Data/Mlie.PSReconditioningPod/Textures/UI/DevDown.png
+- Assets/Data/Mlie.PSReconditioningPod/Textures/UI/CheatMode.png
+- Assets/Data/Mlie.PSReconditioningPod/Textures/UI/Warning.png
+- Assets/Data/Mlie.PSReconditioningPod/Textures/Things/Buildings/placeholder_south.png
+- Assets/Data/Mlie.PSReconditioningPod/Textures/UI/DevInstComplete.png
+- Assets/Data/Mlie.PSReconditioningPod/Textures/Things/Buildings/PS_ReconPod_south.png
+- Assets/Data/Mlie.PSReconditioningPod/Textures/UI/DevFull.png
+- Assets/Data/Mlie.PSReconditioningPod/Textures/Things/Buildings/PS_ReconPod_east.png
+- Assets/Data/Mlie.PSReconditioningPod/Textures/Things/Buildings/PS_ReconPod_north.png
+- Assets/Data/Mlie.PSReconditioningPod/Textures/Things/Items/Conditionall/Conditionall_b.png
+Dependencies: []

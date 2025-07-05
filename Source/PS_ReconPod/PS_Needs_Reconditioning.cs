@@ -13,13 +13,12 @@ public class PS_Needs_Reconditioning : Need
     private float _fallPerDay;
     public bool FallPerDayIsDirty = true;
 
-    public PS_Needs_Reconditioning(Pawn pawn)
+    public PS_Needs_Reconditioning(Pawn pawn) : base(pawn)
     {
-        this.pawn = pawn;
         FallPerDayIsDirty = true;
     }
 
-    public float FallPerDay
+    private float FallPerDay
     {
         get
         {
@@ -65,10 +64,7 @@ public class PS_Needs_Reconditioning : Need
     public override void DrawOnGUI(Rect rect, int maxThresholdMarkers = 2147483647, float customMargin = -1f,
         bool drawArrows = true, bool doTooltip = true, Rect? rectForTooltip = null, bool drawLabel = true)
     {
-        if (threshPercents == null)
-        {
-            threshPercents = [];
-        }
+        threshPercents ??= [];
 
         threshPercents.Clear();
         threshPercents.Add(0.25f);
@@ -150,7 +146,7 @@ public class PS_Needs_Reconditioning : Need
         hediff.Severity = 0;
     }
 
-    public static MentalStateDef GetMentalState(Pawn pawn, List<PS_Conditioning_Data> conData)
+    private static MentalStateDef GetMentalState(Pawn pawn, List<PS_Conditioning_Data> conData)
     {
         // Check if removed trait has break
         var breaksFromRemoved = new List<MentalStateDef>();

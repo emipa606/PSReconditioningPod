@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: neural cement -->
+  <PS_Hediff_NeuralCement.label>neural cement</PS_Hediff_NeuralCement.label>
+  <!-- EN: neural cement -->
+  <PS_Hediff_NeuralCement.description>neural cement</PS_Hediff_NeuralCement.description>
+  <!-- EN: neural cement -->
+  <PS_Hediff_NeuralCement.labelNoun>neural cement</PS_Hediff_NeuralCement.labelNoun>
+  <!-- EN: reconditioned -->
+  <PS_Hediff_Reconditioned.label>reconditioned</PS_Hediff_Reconditioned.label>
+  <!-- EN: reconditioned -->
+  <PS_Hediff_Reconditioned.description>reconditioned</PS_Hediff_Reconditioned.description>
+  <!-- EN: reconditioned -->
+  <PS_Hediff_Reconditioned.labelNoun>reconditioned</PS_Hediff_Reconditioned.labelNoun>
+  <!-- EN: slipping -->
+  <PS_Hediff_Reconditioned.stages.slipping.label>slipping</PS_Hediff_Reconditioned.stages.slipping.label>
+  <!-- EN: weak -->
+  <PS_Hediff_Reconditioned.stages.weak.label>weak</PS_Hediff_Reconditioned.stages.weak.label>
+  <!-- EN: strong -->
+  <PS_Hediff_Reconditioned.stages.strong.label>strong</PS_Hediff_Reconditioned.stages.strong.label>
+  <!-- EN: fresh -->
+  <PS_Hediff_Reconditioned.stages.fresh.label>fresh</PS_Hediff_Reconditioned.stages.fresh.label>
+</LanguageData>

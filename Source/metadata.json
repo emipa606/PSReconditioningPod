@@ -2,6 +2,13 @@
   "Continued": true,
   "CanAdd": "0",
   "CanRemove": "2",
-  "PreviewVersion": "1.5",
-  "SocialImageSet": true
+  "PreviewVersion": "1.6",
+  "SocialImageSet": true,
+  "LastXmlCleaning": "2025-07-05T16:43:53.3938424+02:00",
+  "Patches": true,
+  "Defs": true,
+  "Assemblies": true,
+  "LinesOfCode": 106763.0,
+  "LinesOfXML": 20718.0,
+  "SearchTags": " alteration"
 }

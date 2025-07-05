@@ -14,7 +14,7 @@ public class PS_Panel_Reconditioning : Window
 
     private TraitAlterType ChangeType = TraitAlterType.UNSET;
 
-    public bool CheatMode;
+    private bool CheatMode;
     private PS_Conditioning_Data ConditioningToRemove;
     private PS_ScrollView<PS_Conditioning_Data> CurrentConditioningScrollView;
     private List<Trait> CurrentTraits;
@@ -31,7 +31,7 @@ public class PS_Panel_Reconditioning : Window
     private List<PS_Conditioning_Data> StartingConditioning;
     private List<Trait> StartTraits;
     private Trait ToAdd;
-    public Func<string, string> ToolTipFunc;
+    private Func<string, string> ToolTipFunc;
     private Trait ToRemove;
 
     public PS_Panel_Reconditioning()
@@ -76,7 +76,7 @@ public class PS_Panel_Reconditioning : Window
     {
         if (!Initalized)
         {
-            Init(inRect);
+            Init();
         }
 
         Widgets.Label(new Rect(3f, CurrentTraitScrollView.DrawRect.y - 23f, windowRect.width, 20f),
@@ -248,7 +248,7 @@ public class PS_Panel_Reconditioning : Window
         return stringBuilder.ToString().TrimEndNewlines();
     }
 
-    public void Init(Rect rect)
+    private void Init()
     {
         ScrollPosition = new Vector2(0, 0);
         Initalized = true;
@@ -309,7 +309,7 @@ public class PS_Panel_Reconditioning : Window
         }
     }
 
-    public string GetRefreshRate()
+    private string GetRefreshRate()
     {
         if (CheatMode)
         {
@@ -338,7 +338,7 @@ public class PS_Panel_Reconditioning : Window
         }
     }
 
-    public string GetDays()
+    private string GetDays()
     {
         if (CheatMode)
         {
@@ -400,7 +400,7 @@ public class PS_Panel_Reconditioning : Window
         return "PS_Unset".Translate();
     }
 
-    public string GetFailChance()
+    private string GetFailChance()
     {
         if (CheatMode)
         {
@@ -427,7 +427,7 @@ public class PS_Panel_Reconditioning : Window
     }
 
 
-    public void AddTrait(Trait t)
+    private void AddTrait(Trait t)
     {
         RemoveingConditioning = false;
         FixingBotch = false;
@@ -441,7 +441,7 @@ public class PS_Panel_Reconditioning : Window
         }
     }
 
-    public void RemoveTrait(Trait t)
+    private void RemoveTrait(Trait t)
     {
         RemoveingConditioning = false;
         FixingBotch = false;
@@ -455,7 +455,7 @@ public class PS_Panel_Reconditioning : Window
         }
     }
 
-    public void AlterTrait(Trait t1, Trait t2)
+    private void AlterTrait(Trait t1, Trait t2)
     {
         RemoveingConditioning = false;
         FixingBotch = false;
@@ -470,7 +470,7 @@ public class PS_Panel_Reconditioning : Window
         }
     }
 
-    public void DoCheatModeChange()
+    private void DoCheatModeChange()
     {
         var conData = new PS_Conditioning_Data
         {
@@ -497,7 +497,7 @@ public class PS_Panel_Reconditioning : Window
         UpdateCurrentTraits(CurrentTraits);
     }
 
-    public void SetConditioningToRemove(PS_Conditioning_Data data)
+    private void SetConditioningToRemove(PS_Conditioning_Data data)
     {
         RemoveingConditioning = true;
         FixingBotch = false;
@@ -507,7 +507,7 @@ public class PS_Panel_Reconditioning : Window
         ChangeType = TraitAlterType.UNSET;
     }
 
-    public void SetFixingBotch()
+    private void SetFixingBotch()
     {
         FixingBotch = true;
         RemoveingConditioning = false;
@@ -516,7 +516,7 @@ public class PS_Panel_Reconditioning : Window
         ChangeType = TraitAlterType.UNSET;
     }
 
-    public void UpdateAddableTraits(List<Trait> currentTraits)
+    private void UpdateAddableTraits(List<Trait> currentTraits)
     {
         var traits = PS_TraitHelper.AllTraitsCompadable(currentTraits, CheatMode);
 
@@ -533,7 +533,7 @@ public class PS_Panel_Reconditioning : Window
         AddTraitScrollView.TrySetOptions(options);
     }
 
-    public void UpdateCurrentTraits(List<Trait> traits)
+    private void UpdateCurrentTraits(List<Trait> traits)
     {
         var options = traits.Select(trait =>
         {
@@ -573,7 +573,7 @@ public class PS_Panel_Reconditioning : Window
         CurrentTraitScrollView.TrySetOptions(options);
     }
 
-    public void UpdateCurrentConditioning()
+    private void UpdateCurrentConditioning()
     {
         var options = StartingConditioning.Where(x => x.IsValid()).Select(con =>
         {
@@ -591,7 +591,7 @@ public class PS_Panel_Reconditioning : Window
         CurrentConditioningScrollView.TrySetOptions(options);
     }
 
-    public void ShowDegreeOptions(Trait trait)
+    private void ShowDegreeOptions(Trait trait)
     {
         var dropDownActions = new List<Action>();
         var dropDownList = new List<FloatMenuOption>();
