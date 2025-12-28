@@ -228,15 +228,16 @@ public static class PS_ConditioningHelper
 
         if (!IsReconditioned(pawn))
         {
-            var hediff = TryGiveReconditioning(pawn, conData);
-            if (hediff != null)
+            if (LoadedModManager.GetMod<PS_ReconPodMod>().GetSettings<PS_ReconPodSettings>().RecondDecays)
             {
-                DoTraitChange(pawn, conData);
+                var hediff = TryGiveReconditioning(pawn, conData);
+                if (hediff == null)
+                {
+                    Log.Error("PS_ConditioningHelper: Failed to create hediff");
+                }
+
             }
-            else
-            {
-                Log.Error("PS_ConditioningHelper: Failed to create hediff");
-            }
+            DoTraitChange(pawn, conData);
         }
         else
         {
