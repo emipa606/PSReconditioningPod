@@ -233,7 +233,7 @@ public static class PS_ConditioningHelper
                 var hediff = TryGiveReconditioning(pawn, conData);
                 if (hediff == null)
                 {
-                    Log.Error("PS_ConditioningHelper: Failed to create hediff");
+                    Log.Error("PS_ConditioningHelper: Reconditioning decay enabled, but failed to create hediff");
                 }
 
             }
