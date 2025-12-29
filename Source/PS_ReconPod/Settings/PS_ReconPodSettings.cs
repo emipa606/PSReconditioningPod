@@ -17,6 +17,6 @@ internal class PS_ReconPodSettings : ModSettings
     {
         base.ExposeData();
         Scribe_Values.Look(ref RecondIsBad, "RecondIsBad");
-        Scribe_Values.Look(ref RecondDecays, "RecondDecays");
+        Scribe_Values.Look(ref RecondDecays, "RecondDecays", true);
     }
 }
