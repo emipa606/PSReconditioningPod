@@ -69,4 +69,6 @@
   <PS_Messages_BotchedConditioning>{0}的修整出了问题!</PS_Messages_BotchedConditioning>
   <PS_Messages_LuckyConditioning>{0}的修整出了问题!等等，也许不是...</PS_Messages_LuckyConditioning>
   <PS_CheatModeString>欺骗模式。变化将立即发生，没有任何代价。这是为测试准备的。忽略它被称为作弊模式的事实。</PS_CheatModeString>
+  <PS_Decays>修复衰变</PS_Decays>
+  <PS_DecaysInfo>此功能可使修复效果衰减。禁用此功能可使修复永久生效，无需神经水泥。</PS_DecaysInfo>
 </LanguageData>

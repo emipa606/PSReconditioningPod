@@ -69,4 +69,6 @@ Avertissement : Un conditionnement raté peut entraîner des dommages au psychis
   <PS_Messages_BotchedConditioning>Quelque chose a mal tourné avec le reconditionnement de {0} !</PS_Messages_BotchedConditioning>
   <PS_Messages_LuckyConditioning>Quelque chose a mal tourné avec le reconditionnement de {0} ! Attends, peut-être pas...</PS_Messages_LuckyConditioning>
   <PS_CheatModeString>Mode tricheur : Les changements seront effectués instantanément et sans frais. Ceci est destiné aux tests. Ignorez le fait qu'il s'agit d'un mode de triche.</PS_CheatModeString>
+  <PS_Decays>Décroissance de reconditionnement</PS_Decays>
+  <PS_DecaysInfo>Ceci permet au reconditionnement de se dégrader. Le désactiver rend le reconditionnement permanent sans ciment neural.</PS_DecaysInfo>
 </LanguageData>

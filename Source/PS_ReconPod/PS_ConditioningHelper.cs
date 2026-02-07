@@ -9,15 +9,13 @@ namespace PS_ReconPod;
 
 public static class PS_ConditioningHelper
 {
-    private static HediffDef _ReconHediffDef;
-
-    public static HediffDef ReconHefiffDef
+    private static HediffDef ReconHefiffDef
     {
         get
         {
-            _ReconHediffDef ??= DefDatabase<HediffDef>.GetNamed("PS_Hediff_Reconditioned");
+            field ??= DefDatabase<HediffDef>.GetNamed("PS_Hediff_Reconditioned");
 
-            return _ReconHediffDef;
+            return field;
         }
     }
 
@@ -235,8 +233,8 @@ public static class PS_ConditioningHelper
                 {
                     Log.Error("PS_ConditioningHelper: Reconditioning decay enabled, but failed to create hediff");
                 }
-
             }
+
             DoTraitChange(pawn, conData);
         }
         else
@@ -283,7 +281,7 @@ public static class PS_ConditioningHelper
         TryRemoveConditioning(pawn);
     }
 
-    public static PS_Hediff_Reconditioned TryGiveReconditioning(Pawn pawn, PS_Conditioning_Data conData)
+    private static PS_Hediff_Reconditioned TryGiveReconditioning(Pawn pawn, PS_Conditioning_Data conData)
     {
         var diff = (PS_Hediff_Reconditioned)HediffMaker.MakeHediff(ReconHefiffDef, pawn);
         diff.Severity = 1f;
@@ -417,7 +415,7 @@ public static class PS_ConditioningHelper
         }
     }
 
-    public static void UndoTraitChange(Pawn pawn, PS_Conditioning_Data conData)
+    private static void UndoTraitChange(Pawn pawn, PS_Conditioning_Data conData)
     {
         //Log.Message(string.Format("PS_ReconPod: Undoing Trait Change Pawn: {0}, ConData: {1}", pawn.LabelShort, conData.ToString()));
         if (conData.AlterType is TraitAlterType.Added or TraitAlterType.Altered)

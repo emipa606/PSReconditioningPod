@@ -360,25 +360,7 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
         {
             yield return g;
         }
-        //if (this.def.building.bed_humanlike && base.Faction == Faction.OfPlayer)
-        //{
-        //    Command_Toggle pris = new Command_Toggle();
 
-        //    if (this.innerContainer != null)
-        //    {
-        //        Command_Action eject = new Command_Action();
-        //        eject.action = new Action(this.EjectContents);
-        //        eject.defaultLabel = "CommandPodEject".Translate();
-        //        eject.defaultDesc = "CommandPodEjectDesc".Translate();
-        //        if (this.innerContainer.Count == 0)
-        //        {
-        //            eject.Disable("CommandPodEjectFailEmpty".Translate());
-        //        }
-        //        eject.hotKey = KeyBindingDefOf.Misc1;
-        //        eject.icon = ContentFinder<Texture2D>.Get("UI/Commands/PodEject", true);
-        //        yield return eject;
-        //    }
-        //}
         if (!Prefs.DevMode)
         {
             yield break;
@@ -760,14 +742,11 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
         foreach (var need in StartingNeedLevels)
         {
             var pawnNeed = pawn.needs.TryGetNeed(DefDatabase<NeedDef>.GetNamed(need.DefName));
-            if (pawnNeed != null)
-            {
-                pawnNeed.CurLevel = need.Value;
-            }
+            pawnNeed?.CurLevel = need.Value;
         }
     }
 
-    private bool RoleForSucessOrHandleFail(Pawn pawn)
+    private static bool RoleForSucessOrHandleFail(Pawn pawn)
     {
         var conCount = PS_ConditioningHelper.GetConditioningDataFromHediff(pawn, false)?.Count ?? 0;
         var successChance = PS_ConditioningHelper.GetSucessChance(conCount);

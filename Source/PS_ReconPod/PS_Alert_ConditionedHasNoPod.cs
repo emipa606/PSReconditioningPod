@@ -14,7 +14,7 @@ public class PS_Alert_ConditionedHasNoPod : Alert
         defaultPriority = AlertPriority.High;
     }
 
-    private IEnumerable<Pawn> ConditionedWithoutPod
+    private static IEnumerable<Pawn> ConditionedWithoutPod
     {
         get
         {

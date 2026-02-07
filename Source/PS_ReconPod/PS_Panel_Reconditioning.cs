@@ -26,7 +26,6 @@ public class PS_Panel_Reconditioning : Window
     private PS_Buildings_ReconPod Pod;
 
     private bool RemoveingConditioning;
-    private Vector2 ScrollPosition;
     private string searchString;
     private List<PS_Conditioning_Data> StartingConditioning;
     private List<Trait> StartTraits;
@@ -250,7 +249,6 @@ public class PS_Panel_Reconditioning : Window
 
     private void Init()
     {
-        ScrollPosition = new Vector2(0, 0);
         Initalized = true;
 
         var addTraitDrawRect = GetRecForGridLocation(1, 0, 1, 4).Rounded();
@@ -350,12 +348,7 @@ public class PS_Panel_Reconditioning : Window
             return "NA";
         }
 
-        if (FixingBotch)
-        {
-            return DayToSafeTime(1f);
-        }
-
-        if (RemoveingConditioning)
+        if (FixingBotch || RemoveingConditioning)
         {
             return DayToSafeTime(1f);
         }
@@ -625,7 +618,7 @@ public class PS_Panel_Reconditioning : Window
         return new Rect(gridBoxWidth * x, gridBoxHeight * y, gridBoxWidth * width, gridBoxHeight * height);
     }
 
-    private string DayToSafeTime(float days)
+    private static string DayToSafeTime(float days)
     {
         switch (days)
         {

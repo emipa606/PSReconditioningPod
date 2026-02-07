@@ -7,8 +7,8 @@ namespace PS_ReconPod;
 /// </summary>
 internal class PS_ReconPodSettings : ModSettings
 {
-    public bool RecondIsBad;
     public bool RecondDecays;
+    public bool RecondIsBad;
 
     /// <summary>
     ///     Saving and loading the values

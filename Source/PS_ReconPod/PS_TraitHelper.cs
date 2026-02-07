@@ -7,8 +7,6 @@ namespace PS_ReconPod;
 
 public class PS_TraitHelper
 {
-    private static List<TraitDef> _AllTraitDefs;
-
     private static List<Trait> _AllTraits;
 
     private static List<string> BlackList =>
@@ -20,9 +18,9 @@ public class PS_TraitHelper
     {
         get
         {
-            _AllTraitDefs ??= DefDatabase<TraitDef>.AllDefs.ToList();
+            field ??= DefDatabase<TraitDef>.AllDefs.ToList();
 
-            return _AllTraitDefs.ToList();
+            return field.ToList();
         }
     }
 

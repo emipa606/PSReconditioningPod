@@ -69,4 +69,6 @@
   <PS_Messages_BotchedConditioning>Что-то пошло не так с восстановлением {0}!</PS_Messages_BotchedConditioning>
   <PS_Messages_LuckyConditioning>Что-то пошло не так с восстановлением {0}! Подождите, может быть, нет...</PS_Messages_LuckyConditioning>
   <PS_CheatModeString>Чит-режим: Изменения будут происходить мгновенно и без затрат. Он предназначен для тестирования. Не обращайте внимания на то, что это называется чит-режимом.</PS_CheatModeString>
+  <PS_Decays>Восстанавливающий распад</PS_Decays>
+  <PS_DecaysInfo>Это делает рекондиционирование распадающимся. Отключение этой функции делает рекондиционирование постоянным без нейроцемента.</PS_DecaysInfo>
 </LanguageData>

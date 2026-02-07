@@ -55,9 +55,9 @@ internal class PS_ReconPodMod : Mod
         listing_Standard.Begin(rect);
         listing_Standard.CheckboxLabeled("PS_Decays".Translate(), ref Settings.RecondDecays,
             "PS_DecaysInfo".Translate());
-        if (currentVersion != null)
         listing_Standard.CheckboxLabeled("PS_IsBad".Translate(), ref Settings.RecondIsBad,
             "PS_IsBadInfo".Translate());
+
         if (currentVersion != null)
         {
             listing_Standard.Gap();

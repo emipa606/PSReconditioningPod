@@ -14,7 +14,7 @@ public class PS_Alert_ConditioningFailing : Alert_Critical
         defaultPriority = AlertPriority.Critical;
     }
 
-    private IEnumerable<Pawn> ConditionedAndSlipping
+    private static IEnumerable<Pawn> ConditionedAndSlipping
     {
         get
         {

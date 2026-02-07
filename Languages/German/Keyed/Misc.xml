@@ -69,4 +69,6 @@ Warnung: Eine fehlgeschlagene Konditionierung kann zu Schäden an der Psyche des
   <PS_Messages_BotchedConditioning>Irgendetwas ist bei der Überholung von {0} schief gelaufen!</PS_Messages_BotchedConditioning>
   <PS_Messages_LuckyConditioning>Irgendetwas ist bei {0}s Wiederaufbereitung schief gelaufen! Moment, vielleicht doch nicht...</PS_Messages_LuckyConditioning>
   <PS_CheatModeString>Cheat-Modus: Änderungen werden sofort und ohne Kosten vorgenommen. Dies ist zum Testen gedacht. Ignorieren Sie die Tatsache, dass es sich um einen Cheat-Modus handelt.</PS_CheatModeString>
+  <PS_Decays>Rekonditionierung Verfall</PS_Decays>
+  <PS_DecaysInfo>Dies macht die Wiederaufbereitung vergänglich. Wenn Sie dies deaktivieren, wird die Rekonditionierung ohne neuralen Zement dauerhaft.</PS_DecaysInfo>
 </LanguageData>

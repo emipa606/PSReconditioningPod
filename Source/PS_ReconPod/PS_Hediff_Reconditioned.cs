@@ -29,9 +29,6 @@ public class PS_Hediff_Reconditioned : Hediff
         base.ExposeData();
         Scribe_Deep.Look(ref ConditioningData, "ConditionData");
         Scribe_Collections.Look(ref ConditioningDataList, "ConditionDataList");
-        //Scribe_Values.Look<TraitAlterType>(ref this.ChangeType, "ChangeType", TraitAlterType.UNSET, false);
-        //Scribe_Defs.Look<TraitDef>(ref this.OrigonalTraitDef, "OrigonalTraitDef");
-        //Scribe_Defs.Look<TraitDef>(ref this.AddedTraitDef, "AddedTraitDef");
     }
 
     private void CheckForOldConData()

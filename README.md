@@ -1,6 +1,6 @@
 # [[PS] Reconditioning Pod (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2044003955)
 
-![Image](https://i.imgur.com/buuPQel.png)
+![Image](https://img.litet.net/logos/Info.png)
 
 Update of Neon1028s mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1588408365
@@ -10,9 +10,9 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1588408365
 - Added support for [[SYR] Trait Value](https://steamcommunity.com/sharedfiles/filedetails/?id=2451324814)
 - Sorted the traits window and added a searchbar.
 
-![Image](https://i.imgur.com/pufA0kM.png)
+![Image](https://img.litet.net/logos/Notice.png)
 	
-![Image](https://i.imgur.com/Z4GOv8H.png)
+![Image](https://img.litet.net/logos/OriginalDescription.png)
 
 Pyromaniacs setting your rice fields on fire? Chemical Fascination depleting your yayo supply? Or what about that guy who keeps getting punched in the face because he’s so Abrasive? Well no more! Further advances in plasteel study have resulted in new alteration technology. This time not in the body, but in the mind. Though the combination of neural transmitter manipulation, suggestive stimulus, and a digital psychologist AI, scientist have found a way to change the core components of a patient's personality.
 
@@ -29,12 +29,12 @@ Conditionall: The fast acting, gluten free, reconditioning supplement. Light and
 Neural Cementing: Once you find that perfect way of thinking why ever let it change? Our new highly experimental plasteel based mental adhesive locks neural pathways in place permanently, removing the need to maintain conditioning. Once a user has undergone the neural cementing procedure they will be unable to receive any further reconditioning. This surgery is extremely risky and should only be performed by skilled surgeons with the best medicine available. Failure may result in permanent brain damage or death.
 
 How to use:
-The reconditioning pod, found under misc buildings after completing the research, gives 3 options for reconditioning a pawn.
+The reconditioning pod, under misc buildings, gives 3 options for reconditioning a pawn.
 Add- adds a new trait to the pawn, this can be used to pass the 3 trait limit in the game.
 Remove- removes a trait that the pawn currently has
 Change- switch the trait for another one in it’s spectrum, ie. Lazy to Hard Worker
 
-There is no limit on traits, but the game assumes you will stick to 3. If you go above that the traits will still take effect, but may not show up in the UI. Reconditioning pod can not change traits in the family of Beauty, Immunity, Creepy Breathing, or Annoying Voice. Because those are physical traits. My other mod Plasteel Surgery can add or remove them.
+There is no limit on traits, but the game assumes you will stick to 3. If you go above that the traits will still take effect, but may not show up in the UI. Reconditioning pod can not change traits in the family of Beauty, Immunity, Creepy Breathing, or Annoying Voice. My other mod Plasteel Surgery can add or remove them.
 
 Once selection is done the pawn will enter the pod and all their needs will be frozen, ie. they won’t starve inside the pod. Reconditioning will take one or more days and has a chance to fail. The time required and chance to fail will increase for each active conditioning they have.
 
@@ -58,20 +58,19 @@ The Pod: At 50% a pawn will start trying to go back to their pod refresh. The po
 
 Conditionall: After research, it can be made at a drug lab for 5 psychoid leaves and 2 neutroamine. It works like other drugs, but if you added this to an existing save see the compatibility notes. It is intended for pawns that are traveling, downed, or otherwise can not get to a pod. You should just let your pawns use the pod to refresh, keeping them jacked up on Conditionall will get very expensive. It will raise their need level 25%.
 
-Neural Cement: Requires a medical skill of 15, 20 plasteel, and 5 glitterworld medicine. It will remove the conditioning hediff and replace it with neural cement. The pawn will no longer have the conditioning need, but they also can never be reconditioned again. Nothing can remove neural cement (maybe, honestly haven’t tried all the hediff removing items on it)
+Neural Cement: Requires a medical skill of 15, 20 plasteel, and 5 glitterworld medicine. It will remove the conditioning hediff and replace it with neural cement. The pawn will no longer have the conditioning need, but they also can never be reconditioned again. Nothing can remove neural cement
 
-![Image](https://i.imgur.com/PwoNOj4.png)
+![Image](https://img.litet.net/logos/ReportingIssues.png)
 
 
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
+-  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) and command Ctrl+F12
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
--  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/PSReconditioningPod?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2044003955) | tags:  alteration
+[![Image](https://img.shields.io/github/v/release/emipa606/PSReconditioningPod?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2044003955) | tags: alteration

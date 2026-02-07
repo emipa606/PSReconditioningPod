@@ -10,7 +10,6 @@ namespace PS_ReconPod;
 public class PS_Needs_Reconditioning : Need
 {
     private readonly bool CheckedForBadSave;
-    private float _fallPerDay;
     public bool FallPerDayIsDirty = true;
 
     public PS_Needs_Reconditioning(Pawn pawn) : base(pawn)
@@ -24,13 +23,13 @@ public class PS_Needs_Reconditioning : Need
         {
             if (!FallPerDayIsDirty)
             {
-                return _fallPerDay;
+                return field;
             }
 
-            _fallPerDay = PS_ConditioningHelper.GetNeedFallPerDay(pawn);
+            field = PS_ConditioningHelper.GetNeedFallPerDay(pawn);
             FallPerDayIsDirty = false;
 
-            return _fallPerDay;
+            return field;
         }
     }
 

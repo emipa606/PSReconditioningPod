@@ -84,7 +84,7 @@ public class PS_JobGiver_RefreshConditioning : ThinkNode_JobGiver
         }
     }
 
-    private bool IsConditionallAvalible(Thing conditionall, Pawn pawn)
+    private static bool IsConditionallAvalible(Thing conditionall, Pawn pawn)
     {
         if (conditionall.IsForbidden(pawn))
         {
@@ -100,7 +100,7 @@ public class PS_JobGiver_RefreshConditioning : ThinkNode_JobGiver
         return pawn.CanReach(localTarget, PathEndMode.ClosestTouch, Danger.Deadly);
     }
 
-    private Thing GetClostest(Pawn pawn, List<Thing> things)
+    private static Thing GetClostest(Pawn pawn, List<Thing> things)
     {
         var index = 0;
         var minDist = float.MaxValue;

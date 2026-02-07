@@ -44,11 +44,7 @@ public class PS_Recipes_Surgery_NeuralCement : Recipe_Surgery
 
         TaleRecorder.RecordTale(TaleDefOf.DidSurgery, billDoer, pawn);
         PS_ConditioningHelper.TryRemoveConditioning(pawn);
-        var brainPart = pawn.RaceProps.body.AllParts.FirstOrDefault(x => x.def.defName == "Brain");
-        if (brainPart == null)
-        {
-            brainPart = part;
-        }
+        var brainPart = pawn.RaceProps.body.AllParts.FirstOrDefault(x => x.def.defName == "Brain") ?? part;
 
         pawn.health.AddHediff(
             HediffMaker.MakeHediff(DefDatabase<HediffDef>.GetNamed("PS_Hediff_NeuralCement"), pawn,

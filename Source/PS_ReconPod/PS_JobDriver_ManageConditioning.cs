@@ -28,7 +28,7 @@ public class PS_JobDriver_ManageConditioning : JobDriver
         yield return openMissionSelect;
     }
 
-    private void StartPoding(PS_Buildings_ReconPod pod, Pawn podPawn)
+    private static void StartPoding(PS_Buildings_ReconPod pod, Pawn podPawn)
     {
         if (!pod.IsUseable(podPawn))
         {
