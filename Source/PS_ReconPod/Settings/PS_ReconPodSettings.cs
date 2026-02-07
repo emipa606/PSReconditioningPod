@@ -8,6 +8,7 @@ namespace PS_ReconPod;
 internal class PS_ReconPodSettings : ModSettings
 {
     public bool RecondIsBad;
+    public bool RecondDecays;
 
     /// <summary>
     ///     Saving and loading the values
@@ -16,5 +17,6 @@ internal class PS_ReconPodSettings : ModSettings
     {
         base.ExposeData();
         Scribe_Values.Look(ref RecondIsBad, "RecondIsBad");
+        Scribe_Values.Look(ref RecondDecays, "RecondDecays", true);
     }
 }
