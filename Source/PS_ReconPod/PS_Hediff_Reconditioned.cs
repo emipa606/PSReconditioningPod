@@ -7,9 +7,6 @@ namespace PS_ReconPod;
 public class PS_Hediff_Reconditioned : Hediff
 {
     private bool CheckedConData;
-    //public TraitAlterType ChangeType;
-    //public TraitDef OrigonalTraitDef;
-    //public TraitDef AddedTraitDef;
 
     // Old: to support pre-multi-conditioning
     private PS_Conditioning_Data ConditioningData;

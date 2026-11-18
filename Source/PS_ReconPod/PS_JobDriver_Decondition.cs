@@ -22,7 +22,6 @@ public class PS_JobDriver_Decondition : JobDriver
         {
             var actor = enterPodToil.actor;
             _ = (PS_Buildings_ReconPod)actor.jobs.curJob.GetTarget(TargetIndex.A).Thing;
-            //pod.StartDeconditioning(actor);
         };
         yield return enterPodToil;
     }

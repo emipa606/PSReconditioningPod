@@ -17,8 +17,8 @@ public class PS_Panel_Reconditioning : Window
     private bool CheatMode;
     private PS_Conditioning_Data ConditioningToRemove;
     private PS_ScrollView<PS_Conditioning_Data> CurrentConditioningScrollView;
-    private List<Trait> CurrentTraits;
     private PS_ScrollView<Trait> CurrentTraitScrollView;
+    private List<Trait> CurrentTraits;
     private bool FixingBotch;
 
     private bool Initalized;
@@ -26,12 +26,12 @@ public class PS_Panel_Reconditioning : Window
     private PS_Buildings_ReconPod Pod;
 
     private bool RemoveingConditioning;
-    private string searchString;
-    private List<PS_Conditioning_Data> StartingConditioning;
     private List<Trait> StartTraits;
+    private List<PS_Conditioning_Data> StartingConditioning;
     private Trait ToAdd;
-    private Func<string, string> ToolTipFunc;
     private Trait ToRemove;
+    private Func<string, string> ToolTipFunc;
+    private string searchString;
 
     public PS_Panel_Reconditioning()
     {
@@ -531,7 +531,7 @@ public class PS_Panel_Reconditioning : Window
         var options = traits.Select(trait =>
         {
             var black = PS_TraitHelper.IsBlacklisted(trait);
-            var wasAdded = StartingConditioning?.Where(x => x.AddedTraitDefName == trait.def.defName).Any() ??
+            var wasAdded = StartingConditioning?.Any(x => x.AddedTraitDefName == trait.def.defName) ??
                            false;
             var valid = !(black || wasAdded) || CheatMode;
 
@@ -590,7 +590,7 @@ public class PS_Panel_Reconditioning : Window
         var dropDownList = new List<FloatMenuOption>();
 
         dropDownActions.Add(delegate { RemoveTrait(trait); });
-        dropDownList.Add(new FloatMenuOption("PS_Remove".Translate(), dropDownActions.Last()));
+        dropDownList.Add(new FloatMenuOption("PS_Remove".Translate(), dropDownActions[^1]));
 
         foreach (var degree in trait.def.degreeDatas)
         {
@@ -601,7 +601,7 @@ public class PS_Panel_Reconditioning : Window
 
             var label = degree.label;
             dropDownActions.Add(delegate { AlterTrait(trait, new Trait(trait.def, degree.degree)); });
-            dropDownList.Add(new FloatMenuOption("PS_ChangeTo".Translate() + label, dropDownActions.Last()));
+            dropDownList.Add(new FloatMenuOption("PS_ChangeTo".Translate() + label, dropDownActions[^1]));
         }
 
         Find.WindowStack.Add(new FloatMenu(dropDownList, null));

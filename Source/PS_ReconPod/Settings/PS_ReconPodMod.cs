@@ -29,10 +29,6 @@ internal class PS_ReconPodMod : Mod
         currentVersion =
             VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
         Settings = GetSettings<PS_ReconPodSettings>();
-        //var hediff = DefDatabase<HediffDef>.GetNamedSilentFail("PS_Hediff_Reconditioned");
-        //Log.Message(hediff.label + ". IsBad: " + hediff.isBad);
-        //hediff.isBad = LoadedModManager.GetMod<PS_ReconPodMod>().GetSettings<PS_ReconPodSettings>().RecondIsBad;
-        //Log.Message(hediff.label + ". IsBad: " + hediff.isBad);
     }
 
     /// <summary>

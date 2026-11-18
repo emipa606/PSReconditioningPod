@@ -79,10 +79,6 @@ public static class PS_ConditioningHelper
         {
             return 0;
         }
-        //if (CurrentConCount == 1)
-        //    return 2;
-
-        //return 2f/ (float)(Math.Pow(2d, (double)(CurrentConCount - 1)));
 
         return 0.5f / GetNeedFallPerDay(CurrentConCount);
     }
@@ -417,7 +413,6 @@ public static class PS_ConditioningHelper
 
     private static void UndoTraitChange(Pawn pawn, PS_Conditioning_Data conData)
     {
-        //Log.Message(string.Format("PS_ReconPod: Undoing Trait Change Pawn: {0}, ConData: {1}", pawn.LabelShort, conData.ToString()));
         if (conData.AlterType is TraitAlterType.Added or TraitAlterType.Altered)
         {
             var traitList = new List<Trait>();
@@ -437,12 +432,10 @@ public static class PS_ConditioningHelper
         {
             pawn.story.traits.allTraits.Add(new Trait(DefDatabase<TraitDef>.GetNamed(conData.OriginalTraitDefName),
                 conData.OriginalDegree));
-            //Log.Message("PS_ConditoningHelper: UndoTraitChange added trait " + conData.OrigonalTraitDefName + " degree: " + conData.OrigonalDegree);
         }
 
         pawn.workSettings?.Notify_DisabledWorkTypesChanged();
 
-        //pawn.story.Notify_TraitChanged(); <- Internal method, need to use reflection
         try
         {
             typeof(Pawn_StoryTracker)
@@ -496,15 +489,18 @@ public static class PS_ConditioningHelper
 
     public static void ClearBuggedConditioning(Pawn pawn)
     {
-        var hediffs = (pawn?.health?.hediffSet?.hediffs).Where(hediff => hediff is PS_Hediff_Reconditioned);
-        if (!hediffs.Any())
+        if (pawn?.health?.hediffSet?.hediffs != null)
         {
-            return;
-        }
+            var hediffs = pawn.health.hediffSet.hediffs.Where(hediff => hediff is PS_Hediff_Reconditioned);
+            if (!hediffs.Any())
+            {
+                return;
+            }
 
-        foreach (var hediff in hediffs)
-        {
-            pawn?.health?.RemoveHediff(hediff);
+            foreach (var hediff in hediffs)
+            {
+                pawn?.health?.RemoveHediff(hediff);
+            }
         }
 
         pawn?.needs.AddOrRemoveNeedsAsAppropriate();

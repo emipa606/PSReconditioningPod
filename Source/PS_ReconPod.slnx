@@ -6,4 +6,45 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="PS_ReconPod/PS_ReconPod.csproj" />
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/Alerts.xml" />
+    <File Path="../Languages/English/Keyed/Hediffs.xml" />
+    <File Path="../Languages/English/Keyed/Misc.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/NeedDefs/">
+    <File Path="../1.7/Defs/NeedDefs/PS_Needs_ReconPod.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/ThoughtDefs/">
+    <File Path="../1.7/Defs/ThoughtDefs/PS_Thought_Situation_Needs.xml" />
+    <File Path="../1.7/Defs/ThoughtDefs/PS_Thoughts_Memory_Reconditioned.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/Buildings/">
+    <File Path="../1.7/Defs/Buildings/PS_Buildings_ReconPod.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/DrugDefs/">
+    <File Path="../1.7/Defs/DrugDefs/PS_Drug_Conditionall.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/HediffsDefs/">
+    <File Path="../1.7/Defs/HediffsDefs/PS_Hediffs_Reconditioned.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/ResearchDefs/">
+    <File Path="../1.7/Defs/ResearchDefs/Research_PS_ReconPod.xml" />
+  </Folder>
+  <Folder Name="/XML/Patches/">
+    <File Path="../Patches/Patch_Needs.xml" />
+    <File Path="../Patches/Patch_Races.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/JobDefs/">
+    <File Path="../1.7/Defs/JobDefs/PS_Jobs_ReconPod.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/TraitDefs/">
+    <File Path="../1.7/Defs/TraitDefs/PS_Traits.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Defs/Recipe_Defs/">
+    <File Path="../1.7/Defs/Recipe_Defs/PS_Recipes_AdministerConditionall.xml" />
+    <File Path="../1.7/Defs/Recipe_Defs/Recipe_Surgery.xml" />
+  </Folder>
 </Solution>

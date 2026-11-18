@@ -5,7 +5,7 @@ using Verse;
 
 namespace PS_ReconPod;
 
-public class PS_TraitHelper
+public static class PS_TraitHelper
 {
     private static List<Trait> _AllTraits;
 

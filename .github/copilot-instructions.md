@@ -2,42 +2,106 @@
 
 ## Mod Overview and Purpose
 
-The [PS] Reconditioning Pod (Continued) mod for RimWorld introduces a novel way to manage pawns' traits through advanced plasteel-based reconditioning technology. It offers players the ability to modify, add, or remove traits from colonist characters, effectively altering their behavior and interactions within the game. Enabling players to refine their colony's dynamics, this mod updates the original by Neon1028, adding new functionalities and enhancing performance.
+[PS] Reconditioning Pod (Continued) is an update and expansion to Neon1028's original mod, introducing advanced mind-altering technology through the Plasteel Surgery Reconditioning Pod. This mod allows players to modify colonists' traits through a series of conditioning sessions. The pod can add, remove, or change traits, providing a unique way to manage colonist personalities and behaviors within the RimWorld universe.
 
 ## Key Features and Systems
 
-- **Trait Management**: Modify colonist traits via a reconditioning pod with options to add, remove, or swap traits.
-- **Pod Biometrics**: Each pod biometrically assigns a specific colonist to prevent unauthorized use.
-- **Conditioning and Maintenance**: Conditioning effect degrades 12.5% per day; maintenance is required via pods or Conditionall, a portable drug lab product.
-- **Neural Cementing**: Permanently cements desired traits, though it's a risky procedure.
-- **Trait Value and Searchable UI**: Enhanced UI elements allow for searching and sorting traits, supporting the integration of Trait Values.
+### Reconditioning Pod
+- **Add Trait:** Introduces a new trait to a pawn, allowing them to exceed the standard 3-trait limit.
+- **Remove Trait:** Deletes an existing trait from a pawn.
+- **Change Trait:** Swaps one trait for another within the same spectrum.
+- **Maintenance:** Requires periodic refreshing to maintain conditioning, which can be done through the pod, Conditionall (a supplementary drug), or Neural Cementing (a permanent procedure).
+
+### Conditionall
+- A drug that provides a quick, temporary boost to a pawn's conditioning level, useful when the pod is not accessible.
+
+### Neural Cementing
+- A risky procedure that locks neural pathways permanently, eliminating the need for further conditioning but carrying significant risks.
+
+### Conditioning Needs
+- A new need system that tracks the effectiveness of conditioning, affecting a pawn's mental break threshold.
 
 ## Coding Patterns and Conventions
 
-- **Class Structure**: The mod employs structured classes for different functionalities, adhering to a single-responsibility principle.
-- **Method Naming**: Follows a clear verb-noun naming pattern to increase readability (e.g., `StartReconditioning`, `TryAssignPawn`).
-- **Private/Internal Members**: Applied encapsulation using private/internal access modifiers to limit class and method accessibility.
+### C# Coding Style
+- **Classes and Methods:** Use descriptive naming conventions, ensuring that class and method names clearly convey their purpose.
+- **Extensibility:** Leverage extension methods (`PS_Extensions.cs`) to add functionality to existing RimWorld classes without modifying the original codebase.
+- **Alerts and Notifications:** Utilize custom alert classes (`PS_Alert_ConditionedHasNoPod.cs`, `PS_Alert_ConditioningFailing.cs`) to provide real-time feedback to players.
 
-## XML Integration
+### XML Integration
+- **Defs Files:** Define mod-specific objects, such as buildings, thoughts, drugs, and hediffs, in XML files. Ensure that these definitions are well-organized and adhere to RimWorld's XML schema.
+- **MinifiedDefs:** Use `minifiedDef` elements to reference existing RimWorld definitions, allowing for seamless integration with vanilla game mechanics.
 
-- The mod uses XML to define various game objects, such as traits, buildings, and drugs. XML files are essential for defining trait properties and in-game interactions.
-- Ensure XML definitions are up-to-date to match added features or changes, particularly when integrating new traits or modifying existing ones.
-
-## Harmony Patching
-
-- **Patching Practices**: Uses Harmony for modifying game behavior without altering core files, ensuring compatibility with other mods.
-- **Patch Locations**: Focuses on methods dealing with trait alteration, pod interaction, and need adjustments.
-- Ensure patches are concise and specifically target methods to minimize unexpected behaviors and bugs.
+### Harmony Patching
+- **Job States:** Implement custom job states (`PS_Conditioning_JobState.cs`) using Harmony patching to manage the conditioning process, ensuring that it integrates smoothly with the game's job system.
 
 ## Suggestions for Copilot
 
-- **Code Completion**: Assist in writing methods that handle trait modification logic, involving complex condition checks and UI updates.
-- **XML Suggestions**: Guide in writing new XML definitions or modifications for traits and buildings, ensuring syntax correctness.
-- **Harmony Patch Proposals**: Propose Harmony patches for new features, maintaining consistency with existing game logic.
-- **Bug Detection**: Provide insights for potential issues, especially in complex method implementations like those managing conditioning sequences.
-- **UI Enhancements**: Support UI-related code improvements, enhancing the sorting and searching capabilities for traits within the mod interface.
+### General Tips
+- **Modular Code:** Write code in a modular fashion, breaking down complex logic into smaller, reusable methods and classes.
+- **Documentation:** Include comments and documentation within your code to explain the purpose and functionality of each component, especially for complex systems like the conditioning process.
 
-This instruction file serves as a guide for utilizing GitHub Copilot efficiently within the [PS] Reconditioning Pod (Continued) project. By adhering to the described patterns and considerations, contributions to the mod will be both effective and coherent.
+### XML Defs
+- **Consistent Naming:** Use consistent naming conventions for XML elements and attributes to maintain readability and ease of maintenance.
+- **Error Handling:** Implement error handling within XML definitions to manage potential issues, such as missing or malformed elements.
+
+### Harmony Patching
+- **Selective Patching:** Ensure that Harmony patches are applied selectively to avoid unintended side effects on the game's core mechanics.
+- **Testing:** Thoroughly test Harmony patches in different scenarios to verify their effectiveness and stability.
+
+## Example Usage
+
+### C# Example
+csharp
+// Example of a custom extension method
+public static class PS_Extensions
+{
+    public static float ConditioningLevel(this Pawn pawn)
+    {
+        // Logic to calculate the conditioning level of the pawn
+        return 0.8f; // Placeholder value
+    }
+}
 
 
-This markdown file provides an overview and guidance for using GitHub Copilot in developing and maintaining the provided RimWorld mod. It covers the mod's purpose, its systems and features, coding conventions, XML usage, Harmony patching, and suggestions for leveraging Copilot effectively.
+### XML Example
+xml
+<!-- Example of a custom drug definition -->
+<ThingDef ParentName="Drug">
+    <label>Conditionall</label>
+    <description>A quick, temporary boost to conditioning.</description>
+    <defName>PS_Drug_Conditionall</defName>
+    <!-- Other properties -->
+</ThingDef>
+
+
+### Harmony Patch Example
+csharp
+// Example of a Harmony patch to modify job states
+[HarmonyPatch(typeof(JobDriver), "DoWork")]
+public static class PS_Conditioning_JobState
+{
+    public static void Postfix(JobDriver __instance)
+    {
+        // Custom logic to handle conditioning job states
+    }
+}
+
+
+By following these guidelines and using Copilot's suggestions, developers can enhance the functionality, maintainability, and user experience of the [PS] Reconditioning Pod mod.
+
+## Project Solution Guidelines
+- Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
+- Use these in-solution XML files as the primary files for reference and modification.
+- The `.github/copilot-instructions.md` file is included in the solution under the `.github` solution folder, so it should be read/modified from within the solution instead of using paths outside the solution. Update this file once only, as it and the parent-path solution reference point to the same file in this workspace.
+- When making functional changes in this mod, ensure the documented features stay in sync with implementation; use the in-solution `.github` copy as the primary file.
+- In the solution is also a project called Assembly-CSharp, containing a read-only version of the decompiled game source, for reference and debugging purposes.
+- For any new documentation, update this copilot-instructions.md file rather than creating separate documentation files.
+
+
+## Hard rules (must follow)
+- Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
+- Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+- When mentioning SonarQube issues, automatically use the SonarQube MCP service to fetch and address issues instead of making inferred fixes without querying SonarQube first.
+- When mentioning the rimworld log, automatically use the Rimworld MCP service to fetch the log.
+

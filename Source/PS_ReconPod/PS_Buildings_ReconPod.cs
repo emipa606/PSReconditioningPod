@@ -11,9 +11,9 @@ namespace PS_ReconPod;
 
 public class PS_Buildings_ReconPod : Building_CryptosleepCasket
 {
-    private readonly CompProperties_Power powerComp;
     private readonly float TicksPerDay = 60000;
     private readonly float TotalTicksPerAction = 2500;
+    private readonly CompProperties_Power powerComp;
 
     public bool CheatMod;
     private bool CheckedHediffPart;
@@ -22,8 +22,6 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
 
     private float CurrentTicksLeft;
 
-    //private Pawn _Owner;
-    //private string PodOwnerId;
     private PS_Conditioning_JobState JobState;
 
     public Pawn PodOwner;
@@ -37,29 +35,10 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
     {
         return this.TryGetComp<CompPowerTrader>().PowerOn && !this.IsForbidden(pawn);
     }
-    //{
-    //    get
-    //    {
-    //        if (this._Owner == null)
-    //        {
-    //            if (!string.IsNullOrEmpty(this.PodOwnerId))
-    //            {
-    //                //var pawn = Find.World.worldPawns.AllPawnsAlive.Where(x => x.ThingID == this.PodOwnerId).FirstOrDefault();
-    //                var pawn = PawnsFinder.All_AliveOrDead.Where(x => x.ThingID == this.PodOwnerId).FirstOrDefault();
-    //                if (pawn == null)
-    //                    Log.Error("PS_ReconPod: Failed to find pod owner withing ThingId " + this.PodOwnerId);
-    //                else
-    //                    this._Owner = pawn;
-    //            }
-    //        }
-    //        return this._Owner;
-    //    }
-    //}
 
     public override void ExposeData()
     {
         base.ExposeData();
-        //Scribe_Values.Look<string>(ref this.PodOwnerId, "PodOwnerId");
         Scribe_Deep.Look(ref ConditioningData, "ConditionData");
         Scribe_References.Look(ref PodOwner, "PodOwner");
         Scribe_Values.Look(ref JobState, "JobState");
@@ -83,9 +62,9 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
         return true;
     }
 
-    public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn pawn)
+    public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn myPawn)
     {
-        foreach (var o in base.GetFloatMenuOptions(pawn))
+        foreach (var o in base.GetFloatMenuOptions(myPawn))
         {
             if (o.Label != "EnterCryptosleepCasket".Translate())
             {
@@ -98,14 +77,14 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
             var jobDef = PS_ReconPodDefsOf.PS_DoConditioning;
             string jobStr = "PS_PodOption_CheatMode".Translate();
 
-            yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(jobStr, jobAction), pawn,
+            yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(jobStr, jobAction), myPawn,
                 this);
             yield break;
 
             void jobAction()
             {
                 var job = new Job(jobDef, this);
-                pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                myPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
             }
         }
 
@@ -113,39 +92,39 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
         {
             yield return new FloatMenuOption("CannotUseNoPower".Translate(), null);
         }
-        else if (PS_ConditioningHelper.IsCemented(pawn))
+        else if (PS_ConditioningHelper.IsCemented(myPawn))
         {
-            yield return new FloatMenuOption(string.Format("PS_CementCantUsePod".Translate(), pawn.LabelShort),
+            yield return new FloatMenuOption(string.Format("PS_CementCantUsePod".Translate(), myPawn.LabelShort),
                 null);
         }
-        else if (PodOwner != null && pawn != PodOwner)
+        else if (PodOwner != null && myPawn != PodOwner)
         {
             yield return new FloatMenuOption("PS_OwnedBy".Translate() + PodOwner.LabelShort, null);
         }
         else if (innerContainer.Count == 0)
         {
-            if (PS_ConditioningHelper.IsReconditioned(pawn) && PS_PodFinder.FindMyPod(pawn) != this &&
-                PS_PodFinder.FindMyPod(pawn) != null)
+            if (PS_ConditioningHelper.IsReconditioned(myPawn) && PS_PodFinder.FindMyPod(myPawn) != this &&
+                PS_PodFinder.FindMyPod(myPawn) != null)
             {
-                yield return new FloatMenuOption(string.Format("PS_NotOwnedBy".Translate(), pawn.LabelShort), null);
+                yield return new FloatMenuOption(string.Format("PS_NotOwnedBy".Translate(), myPawn.LabelShort), null);
             }
-            else if (PS_ConditioningHelper.IsReconditioned(pawn) && PS_PodFinder.FindMyPod(pawn) == null &&
+            else if (PS_ConditioningHelper.IsReconditioned(myPawn) && PS_PodFinder.FindMyPod(myPawn) == null &&
                      PodOwner == null)
             {
                 _ = PS_ReconPodDefsOf.PS_RefreshConditioning;
-                var jobStr = string.Format("PS_PodOption_ClaimPod".Translate(), pawn.LabelShort);
+                var jobStr = string.Format("PS_PodOption_ClaimPod".Translate(), myPawn.LabelShort);
 
                 void jobAction()
                 {
-                    TryAssignPawn(pawn);
+                    TryAssignPawn(myPawn);
                 }
 
-                yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(jobStr, jobAction), pawn,
+                yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(jobStr, jobAction), myPawn,
                     this);
             }
-            else if (pawn.CanReach(this, PathEndMode.InteractionCell, Danger.Deadly))
+            else if (myPawn.CanReach(this, PathEndMode.InteractionCell, Danger.Deadly))
             {
-                if (PS_ConditioningHelper.IsReconditioned(pawn))
+                if (PS_ConditioningHelper.IsReconditioned(myPawn))
                 {
                     var jobDef = PS_ReconPodDefsOf.PS_RefreshConditioning;
                     string jobStr = "PS_PodOption_RefreshConditioning".Translate();
@@ -153,11 +132,11 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
                     void jobAction()
                     {
                         var job = new Job(jobDef, this);
-                        pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                        myPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                     }
 
                     yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(jobStr, jobAction),
-                        pawn, this);
+                        myPawn, this);
 
                     var jobDef2 = PS_ReconPodDefsOf.PS_ManageConditioning;
                     string jobStr2 = "PS_PodOption_Decondition".Translate();
@@ -165,11 +144,11 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
                     void jobAction2()
                     {
                         var job2 = new Job(jobDef2, this);
-                        pawn.jobs.TryTakeOrderedJob(job2, JobTag.Misc);
+                        myPawn.jobs.TryTakeOrderedJob(job2, JobTag.Misc);
                     }
 
                     yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(jobStr2, jobAction2),
-                        pawn, this);
+                        myPawn, this);
                 }
                 else
                 {
@@ -179,11 +158,11 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
                     void jobAction()
                     {
                         var job = new Job(jobDef, this);
-                        pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                        myPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
                     }
 
                     yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(jobStr, jobAction),
-                        pawn, this);
+                        myPawn, this);
                 }
             }
         }
@@ -191,31 +170,8 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
 
     private void TryAssignPawn(Pawn pawn)
     {
-        //if (string.IsNullOrEmpty(this.PodOwnerId))
-        //{
-        //    this._Owner = null;
-        //    this.PodOwnerId = pawn.ThingID;
-        //}
         PodOwner ??= pawn;
     }
-
-    //public bool TryStartConditioning(Pawn, PS_Conditioning_JobState ConditionType)
-    //{
-    //    if(this.JobState != PS_Conditioning_JobState.Waiting || !this.IsUseable(pawn))
-    //    {
-    //        return false;
-    //    }
-    //    else
-    //    {
-    //        if(this.TryAcceptThing(pawn))
-    //        {
-    //            this.JobState = ConditionType;
-    //            this.CurrentTicksLeft = this.TotalTicksPerAction;
-    //            return true;
-    //        }
-    //    }
-    //    return false;
-    //}
 
     public override string GetInspectString()
     {
@@ -228,7 +184,7 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
         {
             var stringBuilder = new StringBuilder(base.GetInspectString());
             stringBuilder.AppendLine();
-            if (PodOwner == null) //string.IsNullOrEmpty(this.PodOwnerId))
+            if (PodOwner == null)
             {
                 stringBuilder.AppendLine("Owner".Translate() + ": " + "Nobody".Translate());
             }
@@ -282,11 +238,6 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
         {
             PodOwner = null;
         }
-        //if (pawn.ThingID == this.PodOwnerId)
-        //{
-        //    this._Owner = null;
-        //    this.PodOwnerId = null;
-        //}
     }
 
     public void ForceUnassignPawn(Pawn pawn)
@@ -303,11 +254,6 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
         }
 
         EjectContents();
-        //if (pawn.ThingID == this.PodOwnerId)
-        //{
-        //    this._Owner = null;
-        //    this.PodOwnerId = null;
-        //}
     }
 
     public bool AssignedAnything(Pawn pawn)
@@ -448,7 +394,7 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
     public void StartReconditioning(Pawn pawn, PS_Conditioning_Data conData)
     {
         if (PodOwner != null &&
-            PodOwner != pawn) //!string.IsNullOrEmpty(this.PodOwnerId) && pawn.ThingID != this.PodOwnerId)
+            PodOwner != pawn)
         {
             Log.Error("PS_Buildings_ReconPod: Tried to start conditioning on a pawn that was not the owner");
             return;
@@ -475,7 +421,6 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
 
     public void StartRefreshing(Pawn pawn, LocalTargetInfo targetInfo)
     {
-        //if (pawn.ThingID != this.PodOwnerId)
         if (PodOwner != pawn)
         {
             return;
@@ -499,7 +444,6 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
 
     public void StartFixingBotched(Pawn pawn)
     {
-        //if (pawn.ThingID != this.PodOwnerId)
         if (PodOwner != null && PodOwner != pawn)
         {
             return;
@@ -524,7 +468,6 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
 
     public void StartDeconditioning(Pawn pawn, PS_Conditioning_Data conData)
     {
-        //if (pawn.ThingID != this.PodOwnerId)
         if (PodOwner != pawn)
         {
             return;
@@ -751,9 +694,6 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
         var conCount = PS_ConditioningHelper.GetConditioningDataFromHediff(pawn, false)?.Count ?? 0;
         var successChance = PS_ConditioningHelper.GetSucessChance(conCount);
         var roll = Rand.Range(0f, 1f);
-        //Log.Message($"PS_Buildings_ReconPod: Rolled for sucess Chance: {successChance}, Roll: {roll}");
-
-        //roll = 1.00f;
 
         // Sucess
         if (roll < successChance)
@@ -808,7 +748,7 @@ public class PS_Buildings_ReconPod : Building_CryptosleepCasket
         return false;
     }
 
-    private class NeedValuePair : IExposable
+    private sealed class NeedValuePair : IExposable
     {
         public string DefName;
         public float Value;

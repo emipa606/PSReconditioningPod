@@ -3,7 +3,7 @@
 namespace PS_ReconPod;
 
 [StaticConstructorOnStartup]
-public class RecondApplyer
+public static class RecondApplyer
 {
     static RecondApplyer()
     {

@@ -95,7 +95,6 @@ public class PS_Conditioning_Data : IExposable
             default:
                 return false;
         }
-        //return (this.AlterType != TraitAlterType.UNSET) && (!string.IsNullOrEmpty(this.OrigonalTraitDefName) || !string.IsNullOrEmpty(this.AddedTraitDefName));
     }
 
     public bool IsSame(PS_Conditioning_Data conData)
